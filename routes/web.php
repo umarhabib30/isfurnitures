@@ -12,4 +12,5 @@ Route::view('/cart', 'frontend.cart.cart')->name('cart.view');
 
 
 
-Route::view('/admin','admin.layout.app');
+Route::view('/admin/login','admin.auth.login');
+Route::view('/admin/dashboard','admin.content.content');
