@@ -197,7 +197,7 @@
                                                             class="icon nalika-settings author-log-ic"></span>
                                                         Settings</a>
                                                 </li>
-                                                <li><a href="login.html"><span
+                                                <li><a href="{{route('admin.logout')}}"><span
                                                             class="icon nalika-unlocked author-log-ic"></span>
                                                         Log Out</a>
                                                 </li>

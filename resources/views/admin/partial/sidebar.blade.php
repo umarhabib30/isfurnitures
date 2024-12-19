@@ -1,12 +1,13 @@
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
-            <a href="index.html"><img class="main-logo" src="{{asset('assets/admin/img/logo/logo.png')}}" alt="" /></a>
-            <strong><img src="{{asset('assets/admin/img/logo/logosn.png')}}" alt="" /></strong>
+            <a href="index.html"><img class="main-logo" src="{{ asset('assets/admin/img/logo/logo.png') }}"
+                    alt="" /></a>
+            <strong><img src="{{ asset('assets/admin/img/logo/logosn.png') }}" alt="" /></strong>
         </div>
         <div class="nalika-profile">
             <div class="profile-dtl">
-                <a href="#"><img src="{{asset('assets/admin/img/notification/4.jpg')}}" alt="" /></a>
+                <a href="#"><img src="{{ asset('assets/admin/img/notification/4.jpg') }}" alt="" /></a>
                 <h2>Lakian <span class="min-dtn">Das</span></h2>
             </div>
             <div class="profile-social-dtl">
@@ -23,42 +24,30 @@
                     <li class="active">
                         <a class="has-arrow" href="index.html">
                             <i class="icon nalika-home icon-wrap"></i>
-                            <span class="mini-click-non">Ecommerce</span>
+                            <span class="mini-click-non">Category</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
-                            <li><a title="Dashboard v.1" href="index.html"><span class="mini-sub-pro">Dashboard
-                                        v.1</span></a></li>
-                            <li><a title="Dashboard v.2" href="index-1.html"><span class="mini-sub-pro">Dashboard
-                                        v.2</span></a></li>
-                            <li><a title="Dashboard v.3" href="index-2.html"><span class="mini-sub-pro">Dashboard
-                                        v.3</span></a></li>
-                            <li><a title="Product List" href="product-list.html"><span class="mini-sub-pro">Product
-                                        List</span></a></li>
-                            <li><a title="Product Edit" href="product-edit.html"><span
-                                        class="mini-sub-pro">Product Edit</span></a></li>
-                            <li><a title="Product Detail" href="product-detail.html"><span
-                                        class="mini-sub-pro">Product Detail</span></a></li>
-                            <li><a title="Product Cart" href="product-cart.html"><span
-                                        class="mini-sub-pro">Product Cart</span></a></li>
-                            <li><a title="Product Payment" href="product-payment.html"><span
-                                        class="mini-sub-pro">Product Payment</span></a></li>
-                            <li><a title="Analytics" href="analytics.html"><span
-                                        class="mini-sub-pro">Analytics</span></a></li>
-                            <li><a title="Widgets" href="widgets.html"><span
-                                        class="mini-sub-pro">Widgets</span></a></li>
+                            <li><a title="Dashboard v.1" href="{{ route('admin.category') }}"><span
+                                        class="mini-sub-pro">Store Category
+                                    </span></a></li>
+                            <li><a title="Dashboard v.2" href="{{ route('category.index') }}"><span
+                                        class="mini-sub-pro">Show Categories
+                                    </span></a></li>
+
                         </ul>
                     </li>
                     <li>
                         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i
                                 class="icon nalika-mail icon-wrap"></i> <span
-                                class="mini-click-non">Mailbox</span></a>
+                                class="mini-click-non">SubCategory</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Inbox" href="mailbox.html"><span class="mini-sub-pro">Inbox</span></a>
+                            <li><a title="Inbox" href="{{ route('subcategory.view') }}"><span
+                                        class="mini-sub-pro">Store SubCategory</span></a>
                             </li>
-                            <li><a title="View Mail" href="mailbox-view.html"><span class="mini-sub-pro">View
-                                        Mail</span></a></li>
-                            <li><a title="Compose Mail" href="mailbox-compose.html"><span
-                                        class="mini-sub-pro">Compose Mail</span></a></li>
+                            <li><a title="View Mail" href="{{ route('subcategory.index') }}"><span
+                                        class="mini-sub-pro">Sub_Categories
+                                    </span></a></li>
+
                         </ul>
                     </li>
                     <li>
@@ -80,8 +69,8 @@
                                         View</span></a></li>
                             <li><a title="Preloader" href="preloader.html"><span
                                         class="mini-sub-pro">Preloader</span></a></li>
-                            <li><a title="Images Cropper" href="images-cropper.html"><span
-                                        class="mini-sub-pro">Images Cropper</span></a></li>
+                            <li><a title="Images Cropper" href="images-cropper.html"><span class="mini-sub-pro">Images
+                                        Cropper</span></a></li>
                         </ul>
                     </li>
                     <li>
@@ -127,8 +116,8 @@
                                 class="icon nalika-table icon-wrap"></i> <span class="mini-click-non">Data
                                 Tables</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Peity Charts" href="static-table.html"><span
-                                        class="mini-sub-pro">Static Table</span></a></li>
+                            <li><a title="Peity Charts" href="static-table.html"><span class="mini-sub-pro">Static
+                                        Table</span></a></li>
                             <li><a title="Data Table" href="data-table.html"><span class="mini-sub-pro">Data
                                         Table</span></a></li>
                         </ul>
@@ -148,14 +137,14 @@
                                         Upload</span></a></li>
                             <li><a title="Text Editor" href="tinymc.html"><span class="mini-sub-pro">Text
                                         Editor</span></a></li>
-                            <li><a title="Dual List Box" href="dual-list-box.html"><span
-                                        class="mini-sub-pro">Dual List Box</span></a></li>
+                            <li><a title="Dual List Box" href="dual-list-box.html"><span class="mini-sub-pro">Dual
+                                        List Box</span></a></li>
                         </ul>
                     </li>
                     <li>
                         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i
-                                class="icon nalika-smartphone-call icon-wrap"></i> <span
-                                class="mini-click-non">App views</span></a>
+                                class="icon nalika-smartphone-call icon-wrap"></i> <span class="mini-click-non">App
+                                views</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="Notifications" href="notifications.html"><span
                                         class="mini-sub-pro">Notifications</span></a></li>
@@ -163,8 +152,8 @@
                             </li>
                             <li><a title="Modals" href="modals.html"><span class="mini-sub-pro">Modals</span></a>
                             </li>
-                            <li><a title="Buttons" href="buttons.html"><span
-                                        class="mini-sub-pro">Buttons</span></a></li>
+                            <li><a title="Buttons" href="buttons.html"><span class="mini-sub-pro">Buttons</span></a>
+                            </li>
                             <li><a title="Tabs" href="tabs.html"><span class="mini-sub-pro">Tabs</span></a>
                             </li>
                             <li><a title="Accordion" href="accordion.html"><span
