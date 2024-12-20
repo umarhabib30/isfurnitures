@@ -53,24 +53,15 @@
                     <li>
                         <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i
                                 class="icon nalika-diamond icon-wrap"></i> <span
-                                class="mini-click-non">Interface</span></a>
+                                class="mini-click-non">Product</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Google Map" href="google-map.html"><span class="mini-sub-pro">Google
-                                        Map</span></a></li>
-                            <li><a title="Data Maps" href="data-maps.html"><span class="mini-sub-pro">Data
-                                        Maps</span></a></li>
-                            <li><a title="Pdf Viewer" href="pdf-viewer.html"><span class="mini-sub-pro">Pdf
-                                        Viewer</span></a></li>
-                            <li><a title="X-Editable" href="x-editable.html"><span
-                                        class="mini-sub-pro">X-Editable</span></a></li>
-                            <li><a title="Code Editor" href="code-editor.html"><span class="mini-sub-pro">Code
-                                        Editor</span></a></li>
-                            <li><a title="Tree View" href="tree-view.html"><span class="mini-sub-pro">Tree
-                                        View</span></a></li>
-                            <li><a title="Preloader" href="preloader.html"><span
-                                        class="mini-sub-pro">Preloader</span></a></li>
-                            <li><a title="Images Cropper" href="images-cropper.html"><span class="mini-sub-pro">Images
-                                        Cropper</span></a></li>
+                            <li><a title="Google Map" href="{{ route('product') }}"><span class="mini-sub-pro">Store
+                                        Product
+                                    </span></a></li>
+                            <li><a title="Google Map" href="{{ route('admin.products') }}"><span class="mini-sub-pro">
+                                        All Products
+                                    </span></a></li>
+
                         </ul>
                     </li>
                     <li>
