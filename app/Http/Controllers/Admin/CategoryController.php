@@ -9,6 +9,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
+    public function create(){
+        return view('admin.category.create',['active' => 'category','title'=> 'Add Category']);
+    }
     public function store(Request $request)
     {
         try {
@@ -33,7 +36,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.category.index',)->with('categories', $categories);
+        return view('admin.category.index',['categories' => $categories, 'active'=> 'category', 'title' => 'Categories']);
     }
 
     public function delete(Request $request)
@@ -50,7 +53,7 @@ class CategoryController extends Controller
     {
         $id = $request->id;
         $category = Category::find($id);
-        return view('admin.category.edit')->with('category', $category);
+        return view('admin.category.edit',['category' => $category, 'active' => 'category','title'=> 'Update Category']);
     }
     public function update(Request $request)
     {

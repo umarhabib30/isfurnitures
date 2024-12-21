@@ -12,7 +12,12 @@ class SubCategoryController extends Controller
     public function category()
     {
         $categories = Category::all();
-        return view('admin.subcategory.create', compact('categories'));
+        $data = [
+            'categories' => $categories,
+            'active' => 'sub-category',
+            'title' => 'Add Sub-Category'
+        ];
+        return view('admin.subcategory.create', $data);
     }
 
     public function storeCategory(Request $request)
@@ -38,7 +43,7 @@ class SubCategoryController extends Controller
     public function subcategory()
     {
         $subcategories = SubCategory::with('category')->get();
-        return view('admin.subcategory.index')->with('subcategories', $subcategories);
+        return view('admin.subcategory.index', ['subcategories' => $subcategories, 'active' => 'sub-category', 'title' => 'Sub-Categories']);
     }
 
 
@@ -56,7 +61,7 @@ class SubCategoryController extends Controller
     {
         $id = $request->id;
         $SubCategory = SubCategory::find($id);
-        return view('admin.subcategory.edit')->with('SubCategory', $SubCategory);
+        return view('admin.subcategory.edit', ['SubCategory' => $SubCategory, 'active' => 'sub-category', 'title' => 'Update Sub-Category']);
     }
     public function update(Request $request)
     {

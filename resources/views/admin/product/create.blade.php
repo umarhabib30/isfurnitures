@@ -1,166 +1,75 @@
-@extends('admin.layout.app')
+@extends('admin.layout.admin')
 
 @section('content')
-    <div class="single-product-tab-area mg-b-30">
-        <div class="single-pro-review-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="review-tab-pro-inner">
-                            <ul id="myTab3" class="tab-review-design">
-                                <li class="active"><a href="#description">Store Product</a></li>
-                            </ul>
-                            <div id="myTabContent" class="tab-content custom-product-edit">
-                                <form action="{{ route('admin.productstore') }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="product-tab-list tab-pane fade active in" id="description">
-                                        <div class="row " style="margin-bottom: 10px">
-                                            <!-- Category Dropdown -->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="category-dropdown" class="lable">Category</label>
-                                                <select name="category_id" id="category-dropdown"
-                                                    class="form-control pro-edt-select form-control-primary">
-                                                    <option value="">Select One Value Only</option>
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
 
-                                            <!-- SubCategory Dropdown -->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="subcategory-dropdown" class="lable">SubCategory</label>
-                                                <select name="subcategory_id" id="subcategory-dropdown"
-                                                    class="form-control pro-edt-select form-control-primary">
-                                                    <option value="">Select SubCategory</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row ">
-                                            <!-- Product Name -->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="product-name" class="lable">Product Name</label>
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"></span>
-                                                        <input type="text" name="name" id="product-name" required
-                                                            class="form-control" placeholder="Enter Product Name">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Product Original Price -->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="product-price" class="lable">Product Original Price</label>
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"></span>
-                                                        <input type="number" name="original_price" id="product-price"
-                                                            required class="form-control" placeholder="Enter Product Price">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <!-- Product Name -->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="product-name" class="lable">Product Sale Price</label>
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"></span>
-                                                        <input type="number" name="sale_price" id="product-name" required
-                                                            class="form-control" placeholder="Enter Product Sale Price">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <!-- Product delivery fee -->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="product-name" class="lable">Product Delivery Charge</label>
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"></span>
-                                                        <input type="number" name="delivery_charge" id="product-name"
-                                                             class="form-control" value="0" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Product Delivery  time-->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="product-price" class="lable">Delivery Time</label>
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"></span>
-                                                        <input type="text" name="delivery_time" id="product-price"
-                                                             class="form-control" placeholder="Enter Delivery Time">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <!-- Product delivery fee -->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="product-name" class="lable">Product Discount Price </label>
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"></span>
-                                                        <input type="number" name="discount_price" id="product-name"
-                                                             class="form-control" value="0">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Product Delivery  time-->
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <label for="product-price" class="lable">Discount Time</label>
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"></span>
-                                                        <input type="text" name="discount_time" id="product-price"
-                                                             class="form-control"
-                                                            placeholder="Enter Number of Days">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row ">
-                                            <!-- Product Description -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label for="product-name" class="lable">Product Description</label>
-                                                <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"></span>
-                                                        <textarea type="text" name="description" id="product-name"  class="form-control"
-                                                            placeholder="Enter product description"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-
-                                        <div class="row ">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="text-center custom-pro-edt-ds">
-                                                    <button type="submit"
-                                                        class="btn btn-ctl-bt waves-effect waves-light m-r-10">Save</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<div class="card">
+    <h5 class="card-header">Add Product</h5>
+    <div class="card-body">
+        <form action="{{ route('admin.productstore') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="category-dropdown" class="form-label">Category</label>
+                    <select name="category_id" id="category-dropdown" class="form-control">
+                        <option value="">Select One Value Only</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="subcategory-dropdown" class="form-label">SubCategory</label>
+                    <select name="subcategory_id" id="subcategory-dropdown" class="form-control">
+                        <option value="">Select SubCategory</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="product-name" class="form-label">Product Name</label>
+                    <input type="text" name="name" id="product-name" required class="form-control" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="product-price" class="form-label">Product Original Price</label>
+                    <input type="number" name="original_price" id="product-price" required class="form-control" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="sale-price" class="form-label">Product Sale Price</label>
+                    <input type="number" name="sale_price" id="sale-price" required class="form-control" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="delivery-charge" class="form-label">Product Delivery Charge</label>
+                    <input type="number" name="delivery_charge" id="delivery-charge" class="form-control" value="0" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="delivery-time" class="form-label">Delivery Days</label>
+                    <input type="text" name="delivery_time" id="delivery-time" class="form-control" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="discount-price" class="form-label">Product Discount Price</label>
+                    <input type="number" name="discount_price" id="discount-price" class="form-control" value="0">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="discount-time" class="form-label">Discount Time</label>
+                    <input type="text" name="discount_time" id="discount-time" class="form-control" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="images" class="form-label">Images</label>
+                    <input type="file" name="images[]" id="images" class="form-control" multiple>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="description" class="form-label">Product Description</label>
+                    <textarea name="description" id="description" class="form-control" rows="4" ></textarea>
+                </div>
+
             </div>
-        </div>
+            <input type="submit" class="btn btn-primary">
+        </form>
     </div>
+</div>
+
 @endsection
 
-@section('js')
+
+@section('script')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -193,7 +102,7 @@
     </script>
 @endsection
 
-@section('css')
+@section('style')
     <style>
         .lable {
             color: white

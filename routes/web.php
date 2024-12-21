@@ -22,9 +22,9 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::view('/admin/dashboard', 'admin.content.content')->name('admin.dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
-    // Category 
+    // Category
 
-    Route::view('/category', 'admin.category.create')->name('admin.category');
+    Route::get('/category', [CategoryController::class, 'create'])->name('category.create');
 
     Route::post('/create/category', [CategoryController::class, 'store'])->name('category.store');
     Route::get('index', [CategoryController::class, 'index'])->name('category.index');
@@ -32,7 +32,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/category/edit', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/update', [CategoryController::class, 'update'])->name('category.update');
     // subcategory
-    Route::get('/subcategory', [SubCategoryController::class, 'category'])->name('subcategory.view');
+    Route::get('/subcategory', [SubCategoryController::class, 'category'])->name('subcategory.create');
     Route::post('/store/subcategory', [SubCategoryController::class, 'storeCategory'])->name('subcategory.store');
     Route::get('/index/subcategory', [SubCategoryController::class, 'subcategory'])->name('subcategory.index');
     Route::post('/subcategory/delete', [SubCategoryController::class, 'delete'])->name('subcategory.delete');
@@ -41,7 +41,7 @@ Route::middleware(['auth:admin'])->group(function () {
 
     // product
 
-    Route::get('/product', [ProductController::class, 'product'])->name('product');
+    Route::get('/product', [ProductController::class, 'product'])->name('product.create');
     Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('get.subcategories');
     Route::post('/product/store',[ProductController::class,'storeProduct'])->name('admin.productstore');
     Route::get('/index/product',[ProductController::class,'showProducts'])->name('admin.products');

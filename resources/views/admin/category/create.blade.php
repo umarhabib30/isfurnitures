@@ -1,51 +1,16 @@
-@extends('admin.layout.app')
+@extends('admin.layout.admin')
 @section('content')
-    <div class="single-product-tab-area mg-b-30">
-        <!-- Single pro tab review Start-->
-        <div class="single-pro-review-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="review-tab-pro-inner">
-                            <ul id="myTab3" class="tab-review-design">
-                                <li class="active"><a href="#description">Store Category</a></li>
-
-                            </ul>
-                            <div id="myTabContent" class="tab-content custom-product-edit">
-                                <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                <div class="product-tab-list tab-pane fade active in" id="description">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <div class="review-content-section">
-                                                <div class="input-group mg-b-pro-edt">
-                                                    <span class="input-group-addon"></span>
-                                                    <input type="text" name="name" required class="form-control"
-                                                        placeholder="Enter Category Name">
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="text-center custom-pro-edt-ds">
-                                                <button type="submit"
-                                                    class="btn btn-ctl-bt waves-effect waves-light m-r-10">Save
-                                                </button>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="card">
+    <h5 class="card-header">Add Category</h5>
+    <div class="card-body">
+        <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+                <label for="inputText3" class="col-form-label">Name</label>
+                <input id="inputText3" type="text" class="form-control" name="name"  placeholder="Enter Category Name">
             </div>
-        </div>
+            <input type="submit" class="btn btn-primary">
+        </form>
     </div>
+</div>
 @endsection

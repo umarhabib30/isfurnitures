@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,12 @@ class ProductController extends Controller
     public function product()
     {
         $categories = Category::all();
-        return view('admin.product.create')->with('categories', $categories);
+        $data=[
+            'active' => 'product',
+            'title' => 'Add Product',
+            'categories' => $categories
+        ];
+        return view('admin.product.create', $data);
     }
 
     public function getSubcategories($category_id)
@@ -25,6 +32,7 @@ class ProductController extends Controller
 
     public function storeProduct(Request $request)
     {
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'original_price' => 'required|numeric|min:0',
@@ -44,6 +52,15 @@ class ProductController extends Controller
                 'discount_time' => $request->discount_time,
                 'description' => $request->description,
             ]);
+
+            foreach($request->images as $image){
+                $path = ImageHelper::saveImage('productimages',$image);
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image' => $path
+                ]);
+            }
+
             alert()->success('Success', 'Product added successfully.');
             return redirect()->back();
         } catch (\Exception $e) {
