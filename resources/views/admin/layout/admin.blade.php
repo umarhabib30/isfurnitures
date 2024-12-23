@@ -204,6 +204,12 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
+                                <a class="nav-link @if ($active == 'dashboard') active @endif " href="{{ route('admin.dashboard') }}"
+
+                             ><i class="fa fa-fw fa-user-circle"></i>Dashboard <span
+                                    class="badge badge-success">6</span></a>
+                            </li>
+                            <li class="nav-item ">
                                 <a class="nav-link @if ($active == 'category') active @endif " href="#"
                                     data-toggle="collapse" aria-expanded="false" data-target="#submenu-1"
                                     aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Category <span
@@ -245,7 +251,7 @@
                                             <a class="nav-link" href="{{ route('product.create') }}">Add Product</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-gauge.html">View All</a>
+                                            <a class="nav-link" href="{{ route('admin.products') }}">View All</a>
                                         </li>
                                     </ul>
                                 </div>

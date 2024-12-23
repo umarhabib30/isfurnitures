@@ -1,89 +1,89 @@
-@extends('admin.layout.app')
+@extends('admin.layout.admin')
 
 @section('content')
-    <div class="single-product-tab-area mg-b-30">
-        <div class="single-pro-review-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="review-tab-pro-inner">
-                            <ul id="myTab3" class="tab-review-design">
-                                <li class="active"><a href="#description">Show Categories</a></li>
-                                <table id="myTable" class="display mt-5">
-                                    <thead>
-                                        <tr>
-                                            <th>Sr#</th>
-                                            <th>Category Name</th>
-                                            <th>Sub Category Name</th>
-                                            <th>Product Name</th>
-                                            <th>Original Price</th>
-                                            <th>Sale Price</th>
-                                            <th>Delivery Charge</th>
-                                            <th>Delivery Time</th>
-                                            <th>Discount Price</th>
-                                            <th>Discount Time</th>
-                                            <th>Description</th>
-                                            <th>Action</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($products as $index => $product)
-                                            <tr>
-                                                <td>{{ $index + 1 }}</td>
-                                                <td>{{ $product->category->name }}</td>
-                                                <td>{{ $product->subcategory->name }}</td>
-                                                <td>{{ $product->name }}</td>
-                                                <td>{{ $product->original_price }}</td>
-                                                <td>{{ $product->sale_price }}</td>
-                                                <td>{{ $product->delivery_charge }}</td>
-                                                <td>{{ $product->delivery_time }}</td>
-                                                <td>{{ $product->discount_price }}</td>
-                                                <td>{{ $product->discount_time }}</td>
-                                                <td>{{ $product->description }}</td>
-                                                <td>
-                                                    <form action="{{ route('category.delete') }}" method="POST"
-                                                        style="display:inline;">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $category->id }}" name="id">
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- data table  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        Products
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered second" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>Sr#</th>
+                                    <th>Image</th>
+                                    <th>Category Name</th>
+                                    <th>Sub Category Name</th>
+                                    <th>Product Name</th>
+                                    <th>Original Price</th>
+                                    <th>Sale Price</th>
+                                    <th>Delivery Charge</th>
+                                    {{-- <th>Delivery Time</th> --}}
+                                    {{-- <th>Discount Price</th> --}}
+                                    <th>Action</th>
+                                    <th>Action</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($products as $index => $product)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td><img src="{{ asset($product->image)  }}" alt="" height="50px"></td>
 
-                                                <td>
-                                                    <form action="{{ route('category.edit') }}" method="POST"
-                                                        style="display:inline;">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $category->id }}" name="id">
-                                                        <button type="submit" class="btn btn-primary">Edit</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </ul>
-                        </div>
+                                        <td>{{ $product->category->name }}</td>
+                                        <td>{{ $product->subcategory->name }}</td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->original_price }}</td>
+                                        <td>{{ $product->sale_price }}</td>
+                                        <td>{{ $product->delivery_charge }}</td>
+                                         {{-- <td>{{ $product->delivery_time }}</td> --}}
+                                        {{-- <td>{{ $product->discount_price }}</td> --}}
+
+                                        <td>
+                                          <a href="{{ route('product.delete',$product->id) }}" class="btn btn-danger">Delete</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('product.edit',$product->id) }}" class="btn btn-primary">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('product.details',$product->id) }}" class="btn btn-primary">View</a>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Sr#</th>
+                                    <th>Image</th>
+                                    <th>Category Name</th>
+                                    <th>Sub Category Name</th>
+                                    <th>Product Name</th>
+                                    <th>Original Price</th>
+                                    <th>Sale Price</th>
+                                    <th>Delivery Charge</th>
+                                    {{-- <th>Delivery Time</th> --}}
+                                    {{-- <th>Discount Price</th> --}}
+                                    <th>Action</th>
+                                    <th>Action</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- ============================================================== -->
+        <!-- end data table  -->
+        <!-- ============================================================== -->
     </div>
-@endsection
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
-@endsection
-
-@section('css')
-    <style>
-        #myTable thead th,
-        #myTable tbody tr td {
-            color: white;
-        }
-    </style>
 @endsection

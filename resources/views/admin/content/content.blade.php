@@ -1,452 +1,499 @@
-@extends('admin.layout.app')
+@extends('admin.layout.admin')
 @section('content')
-<div class="section-admin container-fluid res-mg-t-15">
-    <div class="row admin text-center">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <div class="admin-content analysis-progrebar-ctn">
-                        <h4 class="text-left text-uppercase"><b>Orders</b></h4>
-                        <div class="row vertical-center-box vertical-center-box-tablet">
-                            <div class="col-xs-3 mar-bot-15 text-left">
-                                <label class="label bg-green">30% <i class="fa fa-level-up"
-                                        aria-hidden="true"></i></label>
-                            </div>
-                            <div class="col-xs-9 cus-gh-hd-pro">
-                                <h2 class="text-right no-margin">10,000</h2>
-                            </div>
-                        </div>
-                        <div class="progress progress-mini">
-                            <div style="width: 78%;" class="progress-bar bg-green"></div>
-                        </div>
+<div class="ecommerce-widget">
+
+    <div class="row">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-muted">Total Revenue</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">$12099</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                        <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-bottom:1px;">
-                    <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                        <h4 class="text-left text-uppercase"><b>Tax Deduction</b></h4>
-                        <div class="row vertical-center-box vertical-center-box-tablet">
-                            <div class="text-left col-xs-3 mar-bot-15">
-                                <label class="label bg-red">15% <i class="fa fa-level-down"
-                                        aria-hidden="true"></i></label>
-                            </div>
-                            <div class="col-xs-9 cus-gh-hd-pro">
-                                <h2 class="text-right no-margin">5,000</h2>
-                            </div>
-                        </div>
-                        <div class="progress progress-mini">
-                            <div style="width: 38%;" class="progress-bar progress-bar-danger bg-red"></div>
-                        </div>
+                <div id="sparkline-revenue"></div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-muted">Affiliate Revenue</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">$12099</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                        <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                        <h4 class="text-left text-uppercase"><b>Revenue</b></h4>
-                        <div class="row vertical-center-box vertical-center-box-tablet">
-                            <div class="text-left col-xs-3 mar-bot-15">
-                                <label class="label bg-blue">50% <i class="fa fa-level-up"
-                                        aria-hidden="true"></i></label>
-                            </div>
-                            <div class="col-xs-9 cus-gh-hd-pro">
-                                <h2 class="text-right no-margin">$70,000</h2>
-                            </div>
-                        </div>
-                        <div class="progress progress-mini">
-                            <div style="width: 60%;" class="progress-bar bg-blue"></div>
-                        </div>
+                <div id="sparkline-revenue2"></div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-muted">Refunds</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">0.00</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-primary font-weight-bold">
+                        <span>N/A</span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                        <h4 class="text-left text-uppercase"><b>Yearly Sales</b></h4>
-                        <div class="row vertical-center-box vertical-center-box-tablet">
-                            <div class="text-left col-xs-3 mar-bot-15">
-                                <label class="label bg-purple">80% <i class="fa fa-level-up"
-                                        aria-hidden="true"></i></label>
-                            </div>
-                            <div class="col-xs-9 cus-gh-hd-pro">
-                                <h2 class="text-right no-margin">$100,000</h2>
-                            </div>
-                        </div>
-                        <div class="progress progress-mini">
-                            <div style="width: 60%;" class="progress-bar bg-purple"></div>
-                        </div>
+                <div id="sparkline-revenue3"></div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-muted">Avg. Revenue Per User</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">$28000</h1>
                     </div>
+                    <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
+                        <span>-2.00%</span>
+                    </div>
+                </div>
+                <div id="sparkline-revenue4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+
+                      <!-- recent orders  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">Recent Orders</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="bg-light">
+                                <tr class="border-0">
+                                    <th class="border-0">#</th>
+                                    <th class="border-0">Image</th>
+                                    <th class="border-0">Product Name</th>
+                                    <th class="border-0">Product Id</th>
+                                    <th class="border-0">Quantity</th>
+                                    <th class="border-0">Price</th>
+                                    <th class="border-0">Order Time</th>
+                                    <th class="border-0">Customer</th>
+                                    <th class="border-0">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="m-r-10"><img src="assets/images/product-pic.jpg" alt="user" class="rounded" width="45"></div>
+                                    </td>
+                                    <td>Product #1 </td>
+                                    <td>id000001 </td>
+                                    <td>20</td>
+                                    <td>$80.00</td>
+                                    <td>27-08-2018 01:22:12</td>
+                                    <td>Patricia J. King </td>
+                                    <td><span class="badge-dot badge-brand mr-1"></span>InTransit </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <div class="m-r-10"><img src="assets/images/product-pic-2.jpg" alt="user" class="rounded" width="45"></div>
+                                    </td>
+                                    <td>Product #2 </td>
+                                    <td>id000002 </td>
+                                    <td>12</td>
+                                    <td>$180.00</td>
+                                    <td>25-08-2018 21:12:56</td>
+                                    <td>Rachel J. Wicker </td>
+                                    <td><span class="badge-dot badge-success mr-1"></span>Delivered </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <div class="m-r-10"><img src="assets/images/product-pic-3.jpg" alt="user" class="rounded" width="45"></div>
+                                    </td>
+                                    <td>Product #3 </td>
+                                    <td>id000003 </td>
+                                    <td>23</td>
+                                    <td>$820.00</td>
+                                    <td>24-08-2018 14:12:77</td>
+                                    <td>Michael K. Ledford </td>
+                                    <td><span class="badge-dot badge-success mr-1"></span>Delivered </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <div class="m-r-10"><img src="assets/images/product-pic-4.jpg" alt="user" class="rounded" width="45"></div>
+                                    </td>
+                                    <td>Product #4 </td>
+                                    <td>id000004 </td>
+                                    <td>34</td>
+                                    <td>$340.00</td>
+                                    <td>23-08-2018 09:12:35</td>
+                                    <td>Michael K. Ledford </td>
+                                    <td><span class="badge-dot badge-success mr-1"></span>Delivered </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9"><a href="#" class="btn btn-outline-light float-right">View Details</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end recent orders  -->
+
+
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- customer acquistion  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">Customer Acquisition</h5>
+                <div class="card-body">
+                    <div class="ct-chart ct-golden-section" style="height: 354px;"></div>
+                    <div class="text-center">
+                        <span class="legend-item mr-2">
+                                <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full"></i></span>
+                        <span class="legend-text">Returning</span>
+                        </span>
+                        <span class="legend-item mr-2">
+
+                                <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full"></i></span>
+                        <span class="legend-text">First Time</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end customer acquistion  -->
+        <!-- ============================================================== -->
+    </div>
+    <div class="row">
+        <!-- ============================================================== -->
+                                  <!-- product category  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header"> Product Category</h5>
+                <div class="card-body">
+                    <div class="ct-chart-category ct-golden-section" style="height: 315px;"></div>
+                    <div class="text-center m-t-40">
+                        <span class="legend-item mr-3">
+                                <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full "></i></span><span class="legend-text">Man</span>
+                        </span>
+                        <span class="legend-item mr-3">
+                            <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full"></i></span>
+                        <span class="legend-text">Woman</span>
+                        </span>
+                        <span class="legend-item mr-3">
+                            <span class="fa-xs text-info mr-1 legend-tile"><i class="fa fa-fw fa-square-full"></i></span>
+                        <span class="legend-text">Accessories</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end product category  -->
+               <!-- product sales  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-header">
+                    <!-- <div class="float-right">
+                            <select class="custom-select">
+                                <option selected>Today</option>
+                                <option value="1">Weekly</option>
+                                <option value="2">Monthly</option>
+                                <option value="3">Yearly</option>
+                            </select>
+                        </div> -->
+                    <h5 class="mb-0"> Product Sales</h5>
+                </div>
+                <div class="card-body">
+                    <div class="ct-chart-product ct-golden-section"></div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end product sales  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-12 col-md-6 col-sm-12 col-12">
+            <!-- ============================================================== -->
+            <!-- top perfomimg  -->
+            <!-- ============================================================== -->
+            <div class="card">
+                <h5 class="card-header">Top Performing Campaigns</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table no-wrap p-table">
+                            <thead class="bg-light">
+                                <tr class="border-0">
+                                    <th class="border-0">Campaign</th>
+                                    <th class="border-0">Visits</th>
+                                    <th class="border-0">Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Campaign#1</td>
+                                    <td>98,789 </td>
+                                    <td>$4563</td>
+                                </tr>
+                                <tr>
+                                    <td>Campaign#2</td>
+                                    <td>2,789 </td>
+                                    <td>$325</td>
+                                </tr>
+                                <tr>
+                                    <td>Campaign#3</td>
+                                    <td>1,459 </td>
+                                    <td>$225</td>
+                                </tr>
+                                <tr>
+                                    <td>Campaign#4</td>
+                                    <td>5,035 </td>
+                                    <td>$856</td>
+                                </tr>
+                                <tr>
+                                    <td>Campaign#5</td>
+                                    <td>10,000 </td>
+                                    <td>$1000</td>
+                                </tr>
+                                <tr>
+                                    <td>Campaign#5</td>
+                                    <td>10,000 </td>
+                                    <td>$1000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <a href="#" class="btn btn-outline-light float-right">Details</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end top perfomimg  -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- sales  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                    <h5 class="text-muted">Sales</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">$12099</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                        <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1">5.86%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end sales  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- new customer  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                    <h5 class="text-muted">New Customer</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">1245</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                        <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1">10%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end new customer  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- visitor  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                    <h5 class="text-muted">Visitor</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">13000</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                        <span class="icon-circle-small icon-box-xs text-success bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1">5%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end visitor  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- total orders  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card border-3 border-top border-top-primary">
+                <div class="card-body">
+                    <h5 class="text-muted">Total Orders</h5>
+                    <div class="metric-value d-inline-block">
+                        <h1 class="mb-1">1340</h1>
+                    </div>
+                    <div class="metric-label d-inline-block float-right text-danger font-weight-bold">
+                        <span class="icon-circle-small icon-box-xs text-danger bg-danger-light bg-danger-light "><i class="fa fa-fw fa-arrow-down"></i></span><span class="ml-1">4%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end total orders  -->
+        <!-- ============================================================== -->
+    </div>
+    <div class="row">
+        <!-- ============================================================== -->
+        <!-- total revenue  -->
+        <!-- ============================================================== -->
+
+
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- category revenue  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">Revenue by Category</h5>
+                <div class="card-body">
+                    <div id="c3chart_category" style="height: 420px;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end category revenue  -->
+        <!-- ============================================================== -->
+
+        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header"> Total Revenue</h5>
+                <div class="card-body">
+                    <div id="morris_totalrevenue"></div>
+                </div>
+                <div class="card-footer">
+                    <p class="display-7 font-weight-bold"><span class="text-primary d-inline-block">$26,000</span><span class="text-success float-right">+9.45%</span></p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="product-sales-area mg-tb-30">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="product-sales-chart">
-                    <div class="portlet-title">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="caption pro-sl-hd">
-                                    <span class="caption-subject text-uppercase"><b>Product Sales</b></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="actions graph-rp">
-                                    <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-grey active">
-                                            <input type="radio" name="options" class="toggle"
-                                                id="option1" checked="">Today</label>
-                                        <label class="btn btn-grey">
-                                            <input type="radio" name="options" class="toggle"
-                                                id="option2">Week</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="curved-line-chart" class="flot-chart-sts flot-chart curved-chart-statistic">
-                    </div>
+    <div class="row">
+        <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12">
+            <!-- ============================================================== -->
+            <!-- social source  -->
+            <!-- ============================================================== -->
+            <div class="card">
+                <h5 class="card-header"> Sales By Social Source</h5>
+                <div class="card-body p-0">
+                    <ul class="social-sales list-group list-group-flush">
+                        <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle facebook-bgcolor mr-2"><i class="fab fa-facebook-f"></i></span><span class="social-sales-name">Facebook</span><span class="social-sales-count text-dark">120 Sales</span>
+                        </li>
+                        <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle twitter-bgcolor mr-2"><i class="fab fa-twitter"></i></span><span class="social-sales-name">Twitter</span><span class="social-sales-count text-dark">99 Sales</span>
+                        </li>
+                        <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle instagram-bgcolor mr-2"><i class="fab fa-instagram"></i></span><span class="social-sales-name">Instagram</span><span class="social-sales-count text-dark">76 Sales</span>
+                        </li>
+                        <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle pinterest-bgcolor mr-2"><i class="fab fa-pinterest-p"></i></span><span class="social-sales-name">Pinterest</span><span class="social-sales-count text-dark">56 Sales</span>
+                        </li>
+                        <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle googleplus-bgcolor mr-2"><i class="fab fa-google-plus-g"></i></span><span class="social-sales-name">Google Plus</span><span class="social-sales-count text-dark">36 Sales</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="#" class="btn-primary-link">View Details</a>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end social source  -->
+            <!-- ============================================================== -->
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+            <!-- ============================================================== -->
+            <!-- sales traffice source  -->
+            <!-- ============================================================== -->
+            <div class="card">
+                <h5 class="card-header"> Sales By Traffic Source</h5>
+                <div class="card-body p-0">
+                    <ul class="traffic-sales list-group list-group-flush">
+                        <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Direct</span><span class="traffic-sales-amount">$4000.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
+                        </li>
+                        <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Search<span class="traffic-sales-amount">$3123.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
+                            </span>
+                        </li>
+                        <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Social<span class="traffic-sales-amount ">$3099.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
+                            </span>
+                        </li>
+                        <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Referrals<span class="traffic-sales-amount ">$2220.00   <span class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i class="fa fa-fw fa-arrow-down"></i></span><span class="ml-1 text-danger">4.02%</span></span>
+                            </span>
+                        </li>
+                        <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Email<span class="traffic-sales-amount">$1567.00   <span class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i class="fa fa-fw fa-arrow-down"></i></span><span class="ml-1 text-danger">3.86%</span></span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="#" class="btn-primary-link">View Details</a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="traffic-analysis-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="white-box tranffic-als-inner">
-                    <h3 class="box-title"><small class="pull-right m-t-10 last-month-sc cl-one"><i
-                                class="fa fa-sort-asc"></i> 18% last month</small> Site Traffic</h3>
-                    <div class="stats-row">
-                        <div class="stat-item">
-                            <h6>Overall Growth</h6>
-                            <b>80.40%</b>
-                        </div>
-                        <div class="stat-item">
-                            <h6>Montly</h6>
-                            <b>15.40%</b>
-                        </div>
-                        <div class="stat-item">
-                            <h6>Day</h6>
-                            <b>5.50%</b>
-                        </div>
-                    </div>
-                    <div id="sparkline8"></div>
+        <!-- ============================================================== -->
+        <!-- end sales traffice source  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- sales traffic country source  -->
+        <!-- ============================================================== -->
+        <div class="col-xl-3 col-lg-12 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">Sales By Country Traffic Source</h5>
+                <div class="card-body p-0">
+                    <ul class="country-sales list-group list-group-flush">
+                        <li class="country-sales-content list-group-item"><span class="mr-2"><i class="flag-icon flag-icon-us" title="us" id="us"></i> </span>
+                            <span class="">United States</span><span class="float-right text-dark">78%</span>
+                        </li>
+                        <li class="list-group-item country-sales-content"><span class="mr-2"><i class="flag-icon flag-icon-ca" title="ca" id="ca"></i></span><span class="">Canada</span><span class="float-right text-dark">7%</span>
+                        </li>
+                        <li class="list-group-item country-sales-content"><span class="mr-2"><i class="flag-icon flag-icon-ru" title="ru" id="ru"></i></span><span class="">Russia</span><span class="float-right text-dark">4%</span>
+                        </li>
+                        <li class="list-group-item country-sales-content"><span class=" mr-2"><i class="flag-icon flag-icon-in" title="in" id="in"></i></span><span class="">India</span><span class="float-right text-dark">12%</span>
+                        </li>
+                        <li class="list-group-item country-sales-content"><span class=" mr-2"><i class="flag-icon flag-icon-fr" title="fr" id="fr"></i></span><span class="">France</span><span class="float-right text-dark">16%</span>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="white-box tranffic-als-inner res-mg-t-30">
-                    <h3 class="box-title"><small class="pull-right m-t-10 last-month-sc cl-two"><i
-                                class="fa fa-sort-desc"></i> 18% last month</small>Site Traffic</h3>
-                    <div class="stats-row">
-                        <div class="stat-item">
-                            <h6>Overall Growth</h6>
-                            <b>80.40%</b>
-                        </div>
-                        <div class="stat-item">
-                            <h6>Montly</h6>
-                            <b>15.40%</b>
-                        </div>
-                        <div class="stat-item">
-                            <h6>Day</h6>
-                            <b>5.50%</b>
-                        </div>
-                    </div>
-                    <div id="sparkline9"></div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="white-box tranffic-als-inner res-mg-t-30">
-                    <h3 class="box-title"><small class="pull-right m-t-10 last-month-sc cl-three"><i
-                                class="fa fa-sort-asc"></i> 18% last month</small>Site Traffic</h3>
-                    <div class="stats-row">
-                        <div class="stat-item">
-                            <h6>Overall Growth</h6>
-                            <b>80.40%</b>
-                        </div>
-                        <div class="stat-item">
-                            <h6>Montly</h6>
-                            <b>15.40%</b>
-                        </div>
-                        <div class="stat-item">
-                            <h6>Day</h6>
-                            <b>5.50%</b>
-                        </div>
-                    </div>
-                    <div id="sparkline10"></div>
+                <div class="card-footer text-center">
+                    <a href="#" class="btn-primary-link">View Details</a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="product-new-list-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="single-new-trend mg-t-30">
-                    <a href="#"><img src="{{('assets/admin/img/new-product/5.png')}}" alt=""></a>
-                    <div class="overlay-content">
-                        <a href="#">
-                            <h2>$280</h2>
-                        </a>
-                        <a href="#" class="btn-small">Now</a>
-                        <div class="product-action">
-                            <ul>
-                                <li>
-                                    <a data-toggle="tooltip" title="Shopping" href="#"><i
-                                            class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tooltip" title="Quick view" href="#"><i
-                                            class="fa fa-heart" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#">
-                            <h4>Princes Diamond</h4>
-                        </a>
-                        <div class="pro-rating">
-                            <i class="fa fa-star color"></i>
-                            <i class="fa fa-star color"></i>
-                            <i class="fa fa-star color"></i>
-                            <i class="icon nalika-half-filled-rating-star color"></i>
-                            <i class="icon nalika-half-filled-rating-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="single-new-trend mg-t-30">
-                    <a href="#"><img src="{{('assets/admin/img/new-product/5.png')}}" alt=""></a>
-                    <div class="overlay-content">
-                        <a href="#">
-                            <h2>$280</h2>
-                        </a>
-                        <a href="#" class="btn-small">Now</a>
-                        <div class="product-action">
-                            <ul>
-                                <li>
-                                    <a data-toggle="tooltip" title="Shopping" href="#"><i
-                                            class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tooltip" title="Quick view" href="#"><i
-                                            class="fa fa-heart" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#">
-                            <h4>Princes Diamond</h4>
-                        </a>
-                        <div class="pro-rating">
-                            <i class="fa fa-star color"></i>
-                            <i class="fa fa-star color"></i>
-                            <i class="fa fa-star color"></i>
-                            <i class="icon nalika-half-filled-rating-star color"></i>
-                            <i class="icon nalika-half-filled-rating-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="single-new-trend mg-t-30">
-                    <a href="#"><img src="{{('assets/admin/img/new-product/5.png')}}" alt=""></a>
-                    <div class="overlay-content">
-                        <a href="#">
-                            <h2>$280</h2>
-                        </a>
-                        <a href="#" class="btn-small">Now</a>
-                        <div class="product-action">
-                            <ul>
-                                <li>
-                                    <a data-toggle="tooltip" title="Shopping" href="#"><i
-                                            class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tooltip" title="Quick view" href="#"><i
-                                            class="fa fa-heart" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#">
-                            <h4>Princes Diamond</h4>
-                        </a>
-                        <div class="pro-rating">
-                            <i class="fa fa-star color"></i>
-                            <i class="fa fa-star color"></i>
-                            <i class="fa fa-star color"></i>
-                            <i class="icon nalika-half-filled-rating-star color"></i>
-                            <i class="icon nalika-half-filled-rating-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <div class="single-new-trend mg-t-30">
-                    <a href="#"><img src="{{('assets/admin/img/new-product/5.png')}}" alt=""></a>
-                    <div class="overlay-content">
-                        <a href="#">
-                            <h2>$280</h2>
-                        </a>
-                        <a href="#" class="btn-small">Now</a>
-                        <div class="product-action">
-                            <ul>
-                                <li>
-                                    <a data-toggle="tooltip" title="Shopping" href="#"><i
-                                            class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tooltip" title="Quick view" href="#"><i
-                                            class="fa fa-heart" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#">
-                            <h4>Princes Diamond</h4>
-                        </a>
-                        <div class="pro-rating">
-                            <i class="fa fa-star color"></i>
-                            <i class="fa fa-star color"></i>
-                            <i class="fa fa-star color"></i>
-                            <i class="icon nalika-half-filled-rating-star color"></i>
-                            <i class="icon nalika-half-filled-rating-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product-sales-area mg-tb-30">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="product-sales-chart">
-                    <div class="portlet-title">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="caption pro-sl-hd">
-                                    <span class="caption-subject text-uppercase"><b>Order Statistic</b></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div class="actions graph-rp">
-                                    <a href="#" class="btn btn-dark-blue btn-circle active tip-top"
-                                        data-toggle="tooltip" title="Upload">
-                                        <i class="fa fa-cloud-download" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-dark btn-circle active tip-top"
-                                        data-toggle="tooltip" title="Refresh">
-                                        <i class="fa fa-reply" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-blue-grey btn-circle active tip-top"
-                                        data-toggle="tooltip" title="Delete">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="line-chart" class="flot-chart flot-chart-sts line-chart-statistic"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="author-area-pro">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="personal-info-wrap">
-                    <div class="widget-head-info-box">
-                        <div class="persoanl-widget-hd">
-                            <h2>Jon Royita</h2>
-                            <p>Founder of Uttara It Park</p>
-                        </div>
-                        <img src="{{('assets/admin/img/notification/5.jpg')}}" class="img-circle circle-border m-b-md"
-                            alt="profile">
-                        <div class="social-widget-result">
-                            <span>100 Tweets</span> |
-                            <span>350 Following</span> |
-                            <span>610 Followers</span>
-                        </div>
-                    </div>
-                    <div class="widget-text-box">
-                        <h4>Jhon Royita</h4>
-                        <p>To all the athaists attacking me right now, I can't make you believe in God, you have
-                            to have faith.</p>
-                        <div class="text-right like-love-list">
-                            <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                            <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="author-widgets-single res-mg-t-30">
-                    <div class="author-wiget-inner">
-                        <div class="perso-img">
-                            <img src="{{('assets/admin/img/notification/6.jpg')}}" class="img-circle circle-border m-b-md"
-                                alt="profile">
-                        </div>
-                        <div class="persoanl-widget-hd persoanl1-widget-hd">
-                            <h2>Fire Foxy</h2>
-                            <p>Founder of Uttara It House</p>
-                        </div>
-                        <div class="social-widget-result social-widget1-result">
-                            <span>100 Tweets</span> |
-                            <span>350 Following</span> |
-                            <span>610 Followers</span>
-                        </div>
-                    </div>
-                    <div class="widget-text-box">
-                        <h4>Fire Foxy</h4>
-                        <p>To all the athaists attacking me right now, I can't make you believe in God, you have
-                            to have faith.</p>
-                        <div class="text-right like-love-list">
-                            <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                            <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="personal-info-wrap personal-info-ano res-mg-t-30">
-                    <div class="widget-head-info-box">
-                        <div class="persoanl-widget-hd">
-                            <h2>Jon Royita</h2>
-                            <p>Founder of Uttara It Park</p>
-                        </div>
-                        <img src="{{('assets/admin/img/contact/2.jpg')}}" class="img-circle circle-border m-b-md"
-                            alt="profile">
-                        <div class="social-widget-result">
-                            <span>100 Tweets</span> |
-                            <span>350 Following</span> |
-                            <span>610 Followers</span>
-                        </div>
-                    </div>
-                    <div class="widget-text-box">
-                        <h4>Jhon Royita</h4>
-                        <p>To all the athaists attacking me right now, I can't make you believe in God, you have
-                            to have faith.</p>
-                        <div class="text-right like-love-list">
-                            <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                            <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="calender-area mg-tb-30">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="calender-inner">
-                    <div id='calendar'></div>
-                </div>
-            </div>
-        </div>
+        <!-- ============================================================== -->
+        <!-- end sales traffice country source  -->
+        <!-- ============================================================== -->
     </div>
 </div>
 @endsection

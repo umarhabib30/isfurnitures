@@ -11,8 +11,10 @@
                         <label for="inputText3" class="col-form-label">Select Category</label>
                         <select name="category_id" class="form-control">
                             <option value="">Select One Value Only</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @foreach ($categories as $key => $category)
+                                <option value="{{ $category->id }}" @if ($key ==0) selected
+
+                                @endif>{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>

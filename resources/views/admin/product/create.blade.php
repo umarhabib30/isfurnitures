@@ -12,7 +12,7 @@
                     <label for="category-dropdown" class="form-label">Category</label>
                     <select name="category_id" id="category-dropdown" class="form-control">
                         <option value="">Select One Value Only</option>
-                        @foreach ($categories as $category)
+                        @foreach ($categories as $key=> $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
@@ -36,21 +36,25 @@
                     <input type="number" name="sale_price" id="sale-price" required class="form-control" >
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="delivery-charge" class="form-label">Product Delivery Charge</label>
-                    <input type="number" name="delivery_charge" id="delivery-charge" class="form-control" value="0" readonly>
+                    <label for="images" class="form-label">Thumbnail</label>
+                    <input type="file" name="image" id="images" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="delivery-charge" class="form-label">Product Delivery Charge</label>
+                    <input type="number" name="delivery_charge" id="delivery-charge" class="form-control" value="0" >
+                </div>
+                {{-- <div class="form-group col-md-6">
                     <label for="delivery-time" class="form-label">Delivery Days</label>
                     <input type="text" name="delivery_time" id="delivery-time" class="form-control" >
-                </div>
-                <div class="form-group col-md-6">
+                </div> --}}
+                {{-- <div class="form-group col-md-6">
                     <label for="discount-price" class="form-label">Product Discount Price</label>
                     <input type="number" name="discount_price" id="discount-price" class="form-control" value="0">
-                </div>
-                <div class="form-group col-md-6">
+                </div> --}}
+                {{-- <div class="form-group col-md-6">
                     <label for="discount-time" class="form-label">Discount Time</label>
                     <input type="text" name="discount_time" id="discount-time" class="form-control" >
-                </div>
+                </div> --}}
                 <div class="form-group col-md-6">
                     <label for="images" class="form-label">Images</label>
                     <input type="file" name="images[]" id="images" class="form-control" multiple>

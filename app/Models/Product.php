@@ -17,6 +17,7 @@ class Product extends Model
         'discount_price',
         'discount_time',
         'description',
+        'image',
     ];
 
     /**
@@ -36,4 +37,15 @@ class Product extends Model
     {
         return $this->belongsTo(SubCategory::class, 'subcategory_id');
     }
+
+    /**
+     * Get the subcategory associated with the product.
+     */
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id');
+    }
+
+
+
 }

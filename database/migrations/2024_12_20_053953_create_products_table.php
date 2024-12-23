@@ -25,6 +25,7 @@ return new class extends Migration
             $table->decimal('discount_price', 10, 2)->nullable();
             $table->integer('discount_time')->nullable();
             $table->longText('description')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

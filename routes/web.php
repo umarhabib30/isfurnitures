@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ Route::view('/cart', 'frontend.cart.cart')->name('cart.view');
 Route::view('/admin/login', 'admin.auth.login')->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('admin.login');
 Route::middleware(['auth:admin'])->group(function () {
-    Route::view('/admin/dashboard', 'admin.content.content')->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
     // Category
@@ -45,5 +46,9 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('get.subcategories');
     Route::post('/product/store',[ProductController::class,'storeProduct'])->name('admin.productstore');
     Route::get('/index/product',[ProductController::class,'showProducts'])->name('admin.products');
-
+    Route::get('product/delete/{id}',[ProductController::class, 'delete'])->name('product.delete');
+    Route::get('product/edit/{id}',[ProductController::class, 'edit'])->name('product.edit');
+    Route::post('product/update',[ProductController::class, 'update'])->name('product.update');
+    Route::get('product/details/{id}',[ProductController::class, 'details'])->name('product.details');
+    Route::get('product/image/delete/{id}',[ProductController::class,'deleteImage'])->name('product.image.delete');
 });
