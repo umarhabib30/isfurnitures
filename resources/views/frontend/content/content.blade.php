@@ -1,6 +1,7 @@
 @extends('frontend.layout.app')
 @section('content')
     <div class="hero">
+        
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-lg-5">
@@ -32,26 +33,29 @@
                     <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
                     <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
                         vulputate velit imperdiet dolor tempor tristique. </p>
-                    <p><a href="shop.html" class="btn">Explore</a></p>
+                    <p><a href="{{route('shop.view')}}" class="btn">Explore</a></p>
                 </div>
                 <!-- End Column 1 -->
 
                 <!-- Start Column 2 -->
+                @foreach ($latestProducts as $latestProduct)
                 <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                     <a class="product-item" href="cart.html">
-                        <img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">Nordic Chair</h3>
-                        <strong class="product-price">$50.00</strong>
+                        <img src="{{$latestProduct->image}}" class="img-fluid product-thumbnail">
+                        <h3 class="product-title">{{$latestProduct->name}}</h3>
+                        <strong class="product-price">£{{$latestProduct->sale_price}}</strong>
 
                         <span class="icon-cross">
                             <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
                         </span>
                     </a>
                 </div>
+                @endforeach
+                
                 <!-- End Column 2 -->
 
                 <!-- Start Column 3 -->
-                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                {{-- <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
                     <a class="product-item" href="cart.html">
                         <img src="{{ asset('assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
                         <h3 class="product-title">Kruzo Aero Chair</h3>
@@ -75,7 +79,7 @@
                             <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
                         </span>
                     </a>
-                </div>
+                </div> --}}
                 <!-- End Column 4 -->
 
             </div>
@@ -93,6 +97,9 @@
                         imperdiet dolor tempor tristique.</p>
 
                     <div class="row my-5">
+                        @foreach ($latestProducts as $latestProduct)
+                            
+                        @endforeach
                         <div class="col-6 col-md-6">
                             <div class="feature">
                                 <div class="icon">
@@ -177,7 +184,7 @@
                         <li>Donec vitae odio quis nisl dapibus malesuada</li>
                         <li>Donec vitae odio quis nisl dapibus malesuada</li>
                     </ul>
-                    <p><a herf="#" class="btn">Explore</a></p>
+                    <p><a herf="" class="btn">Explore</a></p>
                 </div>
             </div>
         </div>

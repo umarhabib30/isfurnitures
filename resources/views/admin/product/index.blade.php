@@ -25,6 +25,7 @@
                                     <th>Original Price</th>
                                     <th>Sale Price</th>
                                     <th>Delivery Charge</th>
+                                    <th>Color</th>
                                     {{-- <th>Delivery Time</th> --}}
                                     {{-- <th>Discount Price</th> --}}
                                     <th>Action</th>
@@ -36,7 +37,7 @@
                                 @foreach ($products as $index => $product)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td><img src="{{ asset($product->image)  }}" alt="" height="50px"></td>
+                                        <td><img src="{{ asset($product->image) }}" alt="" height="50px"></td>
 
                                         <td>{{ $product->category->name }}</td>
                                         <td>{{ $product->subcategory->name }}</td>
@@ -44,17 +45,22 @@
                                         <td>{{ $product->original_price }}</td>
                                         <td>{{ $product->sale_price }}</td>
                                         <td>{{ $product->delivery_charge }}</td>
-                                         {{-- <td>{{ $product->delivery_time }}</td> --}}
+                                        <td>{{ $product->color->name ?? 'No color' }}</td>
+
+                                        {{-- <td>{{ $product->delivery_time }}</td> --}}
                                         {{-- <td>{{ $product->discount_price }}</td> --}}
 
                                         <td>
-                                          <a href="{{ route('product.delete',$product->id) }}" class="btn btn-danger">Delete</a>
+                                            <a href="{{ route('product.delete', $product->id) }}"
+                                                class="btn btn-danger">Delete</a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('product.edit',$product->id) }}" class="btn btn-primary">Edit</a>
+                                            <a href="{{ route('product.edit', $product->id) }}"
+                                                class="btn btn-primary">Edit</a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('product.details',$product->id) }}" class="btn btn-primary">View</a>
+                                            <a href="{{ route('product.details', $product->id) }}"
+                                                class="btn btn-primary">View</a>
 
                                         </td>
                                     </tr>
@@ -70,6 +76,7 @@
                                     <th>Original Price</th>
                                     <th>Sale Price</th>
                                     <th>Delivery Charge</th>
+                                    <th>Color</th>
                                     {{-- <th>Delivery Time</th> --}}
                                     {{-- <th>Discount Price</th> --}}
                                     <th>Action</th>

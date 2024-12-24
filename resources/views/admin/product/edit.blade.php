@@ -68,6 +68,15 @@
                         <label for="images" class="form-label">Images</label>
                         <input type="file" name="images[]" id="images" class="form-control" multiple>
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="category-dropdown" class="form-label">Color</label>
+                        <select name="color_id" id="category-dropdown" class="form-control">
+                            <option value="">Select One Value Only</option>
+                            @foreach ($colors as $key => $color)
+                                <option value="{{ $color->id }}">{{ $color->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group col-md-12">
                         <label for="description" class="form-label">Product Description</label>
                         <textarea name="description" id="description" class="form-control" rows="4">{{ $product->description }}</textarea>

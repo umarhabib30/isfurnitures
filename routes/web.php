@@ -2,13 +2,18 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ShopController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'frontend.content.content');
-Route::view('/shop', 'frontend.shop.shop')->name('shop.view');
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/shop', [ShopController::class, 'shop'])->name('shop.view');
+Route::get('/shop/filter', [ShopController::class, 'filterProducts'])->name('filter.products');
+
 Route::view('/aboutus', 'frontend.about.about')->name('about.view');
 Route::view('/services', 'frontend.services.services')->name('services.view');
 Route::view('/blogs', 'frontend.blog.blog')->name('blog.view');
@@ -44,11 +49,19 @@ Route::middleware(['auth:admin'])->group(function () {
 
     Route::get('/product', [ProductController::class, 'product'])->name('product.create');
     Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('get.subcategories');
-    Route::post('/product/store',[ProductController::class,'storeProduct'])->name('admin.productstore');
-    Route::get('/index/product',[ProductController::class,'showProducts'])->name('admin.products');
-    Route::get('product/delete/{id}',[ProductController::class, 'delete'])->name('product.delete');
-    Route::get('product/edit/{id}',[ProductController::class, 'edit'])->name('product.edit');
-    Route::post('product/update',[ProductController::class, 'update'])->name('product.update');
-    Route::get('product/details/{id}',[ProductController::class, 'details'])->name('product.details');
-    Route::get('product/image/delete/{id}',[ProductController::class,'deleteImage'])->name('product.image.delete');
+    Route::post('/product/store', [ProductController::class, 'storeProduct'])->name('admin.productstore');
+    Route::get('/index/product', [ProductController::class, 'showProducts'])->name('admin.products');
+    Route::get('product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('product/update', [ProductController::class, 'update'])->name('product.update');
+    Route::get('product/details/{id}', [ProductController::class, 'details'])->name('product.details');
+    Route::get('product/image/delete/{id}', [ProductController::class, 'deleteImage'])->name('product.image.delete');
+
+    // color
+    Route::get('color', [ColorController::class, 'color'])->name('color.create');
+    Route::post('/create/color', [ColorController::class, 'store'])->name('color.store');
+    Route::get('/color/index', [ColorController::class, 'index'])->name('color.index');
+    Route::post('/color/delete', [ColorController::class, 'delete'])->name('color.delete');
+    Route::post('/color/edit', [ColorController::class, 'edit'])->name('color.edit');
+    Route::post('/color/update', [ColorController::class, 'update'])->name('color.update');
 });

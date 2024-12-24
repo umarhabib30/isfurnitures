@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\SubCategory;
@@ -16,10 +17,12 @@ class ProductController extends Controller
     public function product()
     {
         $categories = Category::all();
+        $colors = Color::all();
         $data = [
             'active' => 'product',
             'title' => 'Add Product',
-            'categories' => $categories
+            'categories' => $categories,
+            'colors' => $colors,
         ];
         return view('admin.product.create', $data);
     }
@@ -79,7 +82,7 @@ class ProductController extends Controller
 
     public function showProducts()
     {
-        $products = Product::with('category')->with('subcategory')->get();
+        $products = Product::with('category')->with('subcategory')->with('color')->get();
         $data = [
             'active' => 'product',
             'title' => 'Add Product',
@@ -106,6 +109,7 @@ class ProductController extends Controller
         try {
             $product = Product::find($id);
             $categories = Category::all();
+            $colors = Color::all();
             $subcategories = SubCategory::where('category_id', $product->category_id)->get();
             $data = [
                 'active' => 'product',
@@ -113,6 +117,7 @@ class ProductController extends Controller
                 'categories' => $categories,
                 'product' => $product,
                 'subcategories' => $subcategories,
+                'colors' => $colors,
             ];
             return view('admin.product.edit', $data);
         } catch (Exception $e) {
@@ -123,6 +128,7 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
+       
         try {
             $product = Product::find($request->id);
             if ($request->hasFile('images')) {

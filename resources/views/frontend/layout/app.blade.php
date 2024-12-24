@@ -13,7 +13,7 @@
     <!-- Bootstrap CSS -->
     @include('frontend.partials.css')
     @yield('css')
-    <title> </title>
+    <title> {{ $title }}</title>
 </head>
 
 <body>

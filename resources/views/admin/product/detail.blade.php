@@ -28,6 +28,12 @@
                     <th>Discount : </th>
                     <td>{{ $product->discount_price ? $product->discount_price : '0.00' }}</td>
                 </tr>
+                <tr>
+                    <th>Color: </th>
+                    <td>{{ $product->color->name }}</td>
+                   
+                </tr>
+
             </table>
         </div>
     </div>

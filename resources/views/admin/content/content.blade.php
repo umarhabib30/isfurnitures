@@ -1,7 +1,6 @@
 @extends('admin.layout.admin')
 @section('content')
 <div class="ecommerce-widget">
-
     <div class="row">
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card">

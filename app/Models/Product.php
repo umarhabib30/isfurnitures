@@ -18,6 +18,7 @@ class Product extends Model
         'discount_time',
         'description',
         'image',
+        'color_id'
     ];
 
     /**
@@ -46,6 +47,8 @@ class Product extends Model
         return $this->hasMany(ProductImage::class, 'product_id');
     }
 
-
-
+    public function color()
+    {
+        return $this->belongsTo(Color::class,'color_id');
+    }
 }
