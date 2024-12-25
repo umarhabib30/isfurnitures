@@ -1,20 +1,7 @@
 @extends('frontend.layout.app')
 
 @section('content')
-    <!-- Start Hero Section -->
-    <div class="hero">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-5">
-                    <div class="intro-excerpt">
-                        <h1>Shop</h1>
-                    </div>
-                </div>
-                <div class="col-lg-7"></div>
-            </div>
-        </div>
-    </div>
-    <!-- End Hero Section -->
+   
 
     <!-- Start Product Section -->
     <div class="untree_co-section product-section before-footer-section">
@@ -52,6 +39,16 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <!-- Filter by Price Range -->
+                        <div class="mb-4">
+                            <h5>Price Range</h5>
+                            <label for="price-range" class="form-label">
+                                <span id="min-price">0</span> - <span id="max-price">{{ $maxPrice ?? 1000 }}</span>
+                            </label>
+                            <input type="range" class="form-range"  max="{{ $maxPrice ?? 1000 }}" step="1" id="price-range" value="{{ request('max_price', 0) }}">
+                        </div>
+                        
                     </div>
                 </div>
                 <!-- End Sidebar -->
@@ -61,14 +58,14 @@
                     <div class="row product-list">
                         @foreach ($products as $product)
                             <div class="col-12 col-md-4 col-lg-3 mb-5">
-                                <a class="product-item" href="#">
+                                <a class="product-item" href="{{route('product.detail',$product->id)}}">
                                     <img src="{{ asset($product->image) }}" class="img-fluid product-thumbnail"
                                         alt="{{ $product->name }}">
                                     <h3 class="product-title">{{ $product->name }}</h3>
-                                    <strong class="product-price">£{{ $product->sale_price }}</strong>
+                                    <strong class="product-price">£{{ $product->price }}</strong>
 
                                     <span class="icon-cross">
-                                        <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid" alt="Icon">
+                                        <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add"  product-id={{ $product->id }} alt="Icon">
                                     </span>
                                 </a>
                             </div>
@@ -94,30 +91,35 @@
 @endsection
 
 @section('js')
-    <!-- Include jQuery CDN -->
+  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).on('change', '#color-filter, #subcategory-filter', function() {
+        $(document).on('input change', '#price-range', function() {
+            let maxPrice = $(this).val();
+            $('#max-price').text(maxPrice);
+        });
+        $(document).on('change', '#color-filter, #subcategory-filter, #price-range', function() {
             let color = $('#color-filter').val();
+           console.log(color);
+            
             let subcategory = $('#subcategory-filter').val();
+            let maxPrice = $('#price-range').val();
 
             $.ajax({
                 url: "{{ route('filter.products') }}",
                 method: "GET",
                 data: {
                     color: color,
-                    subcategory: subcategory
+                    subcategory: subcategory,
+                    max_price: maxPrice
                 },
                 success: function(response) {
-                    // Update the product list
                     if (response.products) {
                         $('.product-list').html(response.products);
                     } else if (response.message) {
                         $('.product-list').html('<div class="col-12 text-center"><p>' + response.message + '</p></div>');
                     }
-
-                    // Update pagination
                     if (response.pagination) {
                         $('.pagination').html(response.pagination);
                     }
@@ -128,4 +130,34 @@
             });
         });
     </script>
+<script>
+    $(document).ready(function() {
+        $('body').on('click', '.cart-add', function(e) {
+            e.preventDefault();
+            let id = $(this).attr('product-id');            
+            addToCart(id, 1);
+        });
+    });
+
+    function addToCart(productId, qty) {
+        let data = {
+            product_id: productId,
+            qty: qty,
+            expectsJson: true,
+            _token: '{{ csrf_token() }}',
+        };
+        $.ajax({
+            url: "{{ route('customer.cart') }}",
+            type: 'POST',
+            data: data,
+            success: function(response) {
+                $('.cart-qty').html(response.qty);
+                location.reload();
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+</script>
 @endsection

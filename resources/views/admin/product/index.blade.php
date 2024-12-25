@@ -43,7 +43,7 @@
                                         <td>{{ $product->subcategory->name }}</td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->original_price }}</td>
-                                        <td>{{ $product->sale_price }}</td>
+                                        <td>{{ $product->price }}</td>
                                         <td>{{ $product->delivery_charge }}</td>
                                         <td>{{ $product->color->name ?? 'No color' }}</td>
 

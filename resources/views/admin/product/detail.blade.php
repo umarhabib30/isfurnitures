@@ -20,7 +20,7 @@
                     <th>Origial Price : </th>
                     <td> {{ $product->original_price }} €</td>
                     <th>Sales price : </th>
-                    <td>{{ $product->sale_price }} €</td>
+                    <td>{{ $product->price }} €</td>
                 </tr>
                 <tr>
                     <th>Delivery Charges : </th>

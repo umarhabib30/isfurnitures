@@ -11,7 +11,7 @@ class Product extends Model
         'subcategory_id',
         'name',
         'original_price',
-        'sale_price',
+        'price',
         'delivery_charge',
         'delivery_time',
         'discount_price',

@@ -1,26 +1,5 @@
 @extends('frontend.layout.app')
 @section('content')
-    <div class="hero">
-        
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-5">
-                    <div class="intro-excerpt">
-                        <h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
-                        <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-                            vulputate velit imperdiet dolor tempor tristique.</p>
-                        <p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#"
-                                class="btn btn-white-outline">Explore</a></p>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img src="{{ asset('assets/images/couch.png') }}" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- End Hero Section -->
 
     <!-- Start Product Section -->
@@ -33,25 +12,26 @@
                     <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
                     <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
                         vulputate velit imperdiet dolor tempor tristique. </p>
-                    <p><a href="{{route('shop.view')}}" class="btn">Explore</a></p>
+                    <p><a href="{{ route('shop.view') }}" class="btn">Explore</a></p>
                 </div>
                 <!-- End Column 1 -->
 
                 <!-- Start Column 2 -->
                 @foreach ($latestProducts as $latestProduct)
-                <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                    <a class="product-item" href="cart.html">
-                        <img src="{{$latestProduct->image}}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">{{$latestProduct->name}}</h3>
-                        <strong class="product-price">£{{$latestProduct->sale_price}}</strong>
+                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                        <a class="product-item" href="cart.html">
+                            <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail">
+                            <h3 class="product-title">{{ $latestProduct->name }}</h3>
+                            <strong class="product-price">£{{ $latestProduct->price }}</strong>
 
-                        <span class="icon-cross">
-                            <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
+                            <span class="icon-cross">
+                                <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add"
+                                    product-id={{ $latestProduct->id }}>
+                            </span>
+                        </a>
+                    </div>
                 @endforeach
-                
+
                 <!-- End Column 2 -->
 
                 <!-- Start Column 3 -->
@@ -98,7 +78,6 @@
 
                     <div class="row my-5">
                         @foreach ($latestProducts as $latestProduct)
-                            
                         @endforeach
                         <div class="col-6 col-md-6">
                             <div class="feature">
@@ -149,7 +128,7 @@
 
                 <div class="col-lg-5">
                     <div class="img-wrap">
-                        <img src="{{ asset('assets/images/why-choose-us-img.jpg') }}" alt="Image" class="img-fluid">
+                        <img src="{{ asset('assets/images/choseus.jpg') }}" alt="Image" class="img-fluid">
                     </div>
                 </div>
 
@@ -416,4 +395,37 @@
         </div>
     </div>
     <!-- End Blog Section -->
+@endsection
+@section('js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('body').on('click', '.cart-add', function(e) {
+                e.preventDefault();
+                let id = $(this).attr('product-id');
+                addToCart(id, 1);
+            });
+        });
+
+        function addToCart(productId, qty) {
+            let data = {
+                product_id: productId,
+                qty: qty,
+                expectsJson: true,
+                _token: '{{ csrf_token() }}',
+            };
+            $.ajax({
+                url: "{{ route('customer.cart') }}",
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    $('.cart-qty').html(response.qty);
+                    location.reload();
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    </script>
 @endsection

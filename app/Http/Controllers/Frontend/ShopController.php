@@ -12,6 +12,9 @@ class ShopController extends Controller
 {
     public function shop(Request $request)
     {
+
+        $heading = 'Shop the Best';
+        $description = 'Explore top products, great prices, fast delivery.';
         $query = Product::with('category', 'subcategory');
 
         if ($request->has('color')) {
@@ -21,6 +24,7 @@ class ShopController extends Controller
         if ($request->has('subcategory')) {
             $query->where('subcategory_id', $request->subcategory);
         }
+
 
         $products = $query->paginate(8);
 
@@ -33,6 +37,8 @@ class ShopController extends Controller
             'products' => $products,
             'colors' => $colors,
             'subcategories' => $subcategories,
+            'heading' => $heading,
+            'description' => $description
         ]);
     }
 
@@ -40,30 +46,42 @@ class ShopController extends Controller
     {
         $query = Product::query();
 
-        // Filter by color
         if ($request->has('color') && $request->color) {
             $query->where('color_id', $request->color);
         }
 
-        // Filter by subcategory
         if ($request->has('subcategory') && $request->subcategory) {
             $query->where('subcategory_id', $request->subcategory);
         }
 
-        // Paginate results
+        if ($request->filled('max_price') && $request->max_price > 0) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
         $products = $query->paginate(8);
 
-        // If no products found
         if ($products->isEmpty()) {
             return response()->json(['message' => 'No products found.']);
         }
 
-        // Generate the HTML for products and pagination
         $html = view('frontend.shop.filter', compact('products'))->render();
-        
+
         return response()->json([
             'products' => $html,
-           
+        ]);
+    }
+
+    public function productDetail($id)
+    {
+        $heading = 'Shop the Best';
+        $description = 'Explore top products, great prices, fast delivery.';
+        $product = Product::with(['category', 'subcategory', 'images', 'color'])->where('id', $id)->first();
+        return view('frontend.shop.productdetail', [
+            'active' => 'shop',
+            'title' => 'Product Detail',
+            'product' => $product,
+            'heading' => $heading,
+            'description' => $description
         ]);
     }
 }

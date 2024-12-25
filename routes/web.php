@@ -6,7 +6,13 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Frontend\AboutUsController;
+use App\Http\Controllers\Frontend\BlogController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckOutController;
+use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ServiceController;
 use App\Http\Controllers\Frontend\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,11 +20,19 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop.view');
 Route::get('/shop/filter', [ShopController::class, 'filterProducts'])->name('filter.products');
 
-Route::view('/aboutus', 'frontend.about.about')->name('about.view');
-Route::view('/services', 'frontend.services.services')->name('services.view');
-Route::view('/blogs', 'frontend.blog.blog')->name('blog.view');
-Route::view('/contacts', 'frontend.contact.contact')->name('contact.view');
-Route::view('/cart', 'frontend.cart.cart')->name('cart.view');
+Route::get('/aboutus', [AboutUsController::class, 'about'])->name('about.view');
+Route::get('/services', [ServiceController::class, 'service'])->name('services.view');
+Route::get('/blogs', [BlogController::class, 'blog'])->name('blog.view');
+Route::get('/contacts', [ContactUsController::class, 'contact'])->name('contact.view');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart.view');
+
+Route::post('cart/add', [CartController::class, 'add'])->name('customer.cart');
+Route::post('/product/increase', [CartController::class, 'increase'])->name('cart.product.increase');
+Route::post('/product/decrease', [CartController::class, 'decrease'])->name('cart.product.decrease');
+Route::post('/product/remove', [CartController::class, 'destroy'])->name('cart.product.remove');
+Route::get('/product/detail/{id}', [ShopController::class, 'productDetail'])->name('product.detail');
+
+Route::get('/checkout',[CheckOutController::class,'checkout'])->name('checkout.view');
 
 
 

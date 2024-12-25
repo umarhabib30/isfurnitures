@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('subcategory_id')->references('id')->on('sub_categories')->onDelete('cascade');
             $table->string('name');
             $table->decimal('original_price', 10, 2)->nullable();
-            $table->decimal('sale_price', 10, 2);
+            $table->decimal('price', 10, 2);
             $table->decimal('delivery_charge', 10, 2)->default(0);
             $table->integer('delivery_time')->nullable();
             $table->decimal('discount_price', 10, 2)->nullable();

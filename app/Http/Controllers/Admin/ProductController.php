@@ -55,7 +55,7 @@ class ProductController extends Controller
                 'subcategory_id' => $request->subcategory_id,
                 'name' => $validatedData['name'],
                 'original_price' => $validatedData['original_price'],
-                'sale_price' => $request->sale_price,
+                'price' => $request->sale_price,
                 'delivery_charge' => $request->delivery_charge,
                 'delivery_time' => $request->delivery_time,
                 'discount_price' => $request->discount_price,
