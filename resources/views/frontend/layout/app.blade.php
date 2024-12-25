@@ -19,12 +19,6 @@
 
 <body>
 
-    <!-- Loading Spinner -->
-    <div id="loading-spinner">
-        <div class="spinner"></div>
-        <div class="loading-text">The Sofa Hub</div>
-    </div>
-
     <!-- Start Header/Navigation -->
     @include('frontend.partials.nav')
 
