@@ -61,6 +61,7 @@ class ProductController extends Controller
                 'discount_price' => $request->discount_price,
                 'discount_time' => $request->discount_time,
                 'description' => $request->description,
+                'color_id'=>$request->color_id,
                 'image' => $thumbnail,
             ]);
 
