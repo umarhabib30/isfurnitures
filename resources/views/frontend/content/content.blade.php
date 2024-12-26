@@ -1,5 +1,7 @@
 @extends('frontend.layout.app')
+
 @section('content')
+    <!-- Category Section -->
     <div class="category-section py-5">
         <div class="container">
             <h2 class="text-center mb-4">Explore Our Categories</h2>
@@ -7,10 +9,10 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($latestSubcategories as $latestsubcategory)
-                            <div class="col-6 col-md-4 col-lg-3 mb-5 mb-md-0"> <!-- Change col-12 to col-6 for mobile view -->
-                                <a class="product-item" href="{{  route('subcategory.products', $latestsubcategory->id) }}">
+                            <div class="col-6 col-md-4 col-lg-3 mb-3 mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
+                                <a class="product-item" href="{{ route('subcategory.products', $latestsubcategory->id) }}">
                                     <img src="{{ $latestsubcategory->image }}" class="img-fluid product-thumbnail"
-                                        alt="{{ $latestsubcategory->name }}">
+                                         alt="{{ $latestsubcategory->name }}">
                                     <h3 class="product-title">{{ $latestsubcategory->name }}</h3>   
                                 </a>
                             </div>
@@ -21,6 +23,7 @@
         </div>
     </div>
 
+    <!-- Latest Products Section -->
     <div class="product-section">
         <div class="container">
             <div class="row">
@@ -36,16 +39,16 @@
 
                 <!-- Start Column 2 -->
                 @foreach ($latestProducts as $latestProduct)
-                    <div class="col-6 col-md-4 col-lg-3 mb-5 mb-md-0"> <!-- Change col-12 to col-6 for mobile view -->
+                    <div class="col-6 col-md-4 col-lg-3 mb-3 mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
                         <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
                             <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
-                                alt="{{ $latestProduct->name }}">
+                                 alt="{{ $latestProduct->name }}">
                             <h3 class="product-title">{{ $latestProduct->name }}</h3>
                             <strong class="product-price">£{{ $latestProduct->price }}</strong>
 
                             <span class="icon-cross">
                                 <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add"
-                                    product-id="{{ $latestProduct->id }}" alt="Add to Cart">
+                                     product-id="{{ $latestProduct->id }}" alt="Add to Cart">
                             </span>
                         </a>
                     </div>
@@ -54,9 +57,36 @@
         </div>
     </div>
 
-    <!-- End Product Section -->
+    <!-- Popular Products Section -->
+    <div class="category-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Explore Our Products</h2>
+            <div class="product-section">
+                <div class="container">
+                    <div class="row">
+                        @foreach ($allProducts as $latestProduct)
+                            <div class="col-6 col-md-4 col-lg-3 mb-3 mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
+                                <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
+                                    <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
+                                         alt="{{ $latestProduct->name }}">
+                                    <h3 class="product-title">{{ $latestProduct->name }}</h3>
+                                    <strong class="product-price">£{{ $latestProduct->price }}</strong>
 
-    <!-- Start Why Choose Us Section -->
+                                    <span class="icon-cross">
+                                        <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add"
+                                             product-id="{{ $latestProduct->id }}" alt="Add to Cart">
+                                    </span>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <!-- End Popular Product -->
+
+    <!-- Why Choose Us Section -->
     <div class="why-choose-section">
         <div class="container">
             <div class="row justify-content-between">
@@ -66,11 +96,11 @@
                         commitment to excellence ensures a seamless shopping experience tailored to your needs.</p>
 
                     <div class="row my-5">
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6 mb-4"> <!-- Reduced margin -->
                             <div class="feature">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/truck.svg') }}" alt="Fast & Free Shipping"
-                                        class="img-fluid">
+                                         class="img-fluid">
                                 </div>
                                 <h3>Fast &amp; Free Shipping</h3>
                                 <p>Enjoy fast and free delivery for all your sofa purchases, ensuring your comfort arrives
@@ -78,7 +108,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6 mb-4"> <!-- Reduced margin -->
                             <div class="feature">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/bag.svg') }}" alt="Easy to Shop" class="img-fluid">
@@ -89,11 +119,11 @@
                             </div>
                         </div>
 
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6 mb-4"> <!-- Reduced margin -->
                             <div class="feature">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/support.svg') }}" alt="24/7 Support"
-                                        class="img-fluid">
+                                         class="img-fluid">
                                 </div>
                                 <h3>24/7 Customer Support</h3>
                                 <p>Our team is available around the clock to assist you with any questions or concerns about
@@ -101,11 +131,11 @@
                             </div>
                         </div>
 
-                        <div class="col-6 col-md-6">
+                        <div class="col-6 col-md-6 mb-4"> <!-- Reduced margin -->
                             <div class="feature">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/return.svg') }}" alt="Hassle-Free Returns"
-                                        class="img-fluid">
+                                         class="img-fluid">
                                 </div>
                                 <h3>Hassle-Free Returns</h3>
                                 <p>We offer easy and convenient returns, ensuring your satisfaction with every sofa you
@@ -118,7 +148,7 @@
                 <div class="col-lg-5">
                     <div class="img-wrap">
                         <img src="{{ asset('assets/images/choseus.jpg') }}" alt="Why Choose Us - Sofa Shop"
-                            class="img-fluid">
+                             class="img-fluid">
                     </div>
                 </div>
 
@@ -128,43 +158,8 @@
 
     <!-- End Why Choose Us Section -->
 
-    <!-- Start We Help Section -->
-    <!-- End We Help Section -->
-
-    <!-- Start Popular Product -->
-    <div class="category-section py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Explore Our Products</h2>
-            <div class="product-section">
-                <div class="container">
-                    <div class="row">
-                        @foreach ($allProducts as $latestProduct)
-                        <div class="col-6 col-md-4 col-lg-3 mb-5 mb-md-0"> <!-- Change col-12 to col-6 for mobile view -->
-                            <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
-                                <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
-                                    alt="{{ $latestProduct->name }}">
-                                <h3 class="product-title">{{ $latestProduct->name }}</h3>
-                                <strong class="product-price">£{{ $latestProduct->price }}</strong>
-    
-                                <span class="icon-cross">
-                                    <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add"
-                                        product-id="{{ $latestProduct->id }}" alt="Add to Cart">
-                                </span>
-                            </a>
-                        </div>
-                    @endforeach
-                    </div>
-                </div>
-            </div>            
-        </div>
-    </div>
-    <!-- End Popular Product -->
-
-    <!-- End Testimonial Slider -->
-
-    <!-- Start Blog Section -->
-    <!-- End Blog Section -->
 @endsection
+
 @section('js')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
