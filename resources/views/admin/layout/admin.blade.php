@@ -176,7 +176,7 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i
+                                <a class="dropdown-item" href="{{route('admin.logout')}}"><i
                                         class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
@@ -204,10 +204,10 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link @if ($active == 'dashboard') active @endif " href="{{ route('admin.dashboard') }}"
-
-                             ><i class="fa fa-fw fa-user-circle"></i>Dashboard <span
-                                    class="badge badge-success">6</span></a>
+                                <a class="nav-link @if ($active == 'dashboard') active @endif "
+                                    href="{{ route('admin.dashboard') }}"><i
+                                        class="fa fa-fw fa-user-circle"></i>Dashboard <span
+                                        class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link @if ($active == 'category') active @endif " href="#"
@@ -218,7 +218,8 @@
                                     <ul class="nav flex-column">
 
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('category.create') }}">Add Category</a>
+                                            <a class="nav-link" href="{{ route('category.create') }}">Add
+                                                Category</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('category.index') }}">View All</a>
@@ -227,13 +228,14 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if ($active == 'sub-category') active @endif" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-2" aria-controls="submenu-2"><i
-                                        class="fa fa-fw fa-rocket"></i>Sub Category</a>
+                                <a class="nav-link @if ($active == 'sub-category') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-2"
+                                    aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Sub Category</a>
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('subcategory.create') }}">Add Sub Category</a>
+                                            <a class="nav-link" href="{{ route('subcategory.create') }}">Add Sub
+                                                Category</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('subcategory.index') }}">View All</a>
@@ -242,9 +244,9 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if ($active == 'color') active @endif" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-4" aria-controls="submenu-4"><i
-                                        class="fa fa-fw fa-rocket"></i>Color</a>
+                                <a class="nav-link @if ($active == 'color') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-4"
+                                    aria-controls="submenu-4"><i class="fa fa-fw fa-rocket"></i>Color</a>
                                 <div id="submenu-4" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
@@ -257,9 +259,9 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @if ($active == 'product') active @endif" href="#" data-toggle="collapse" aria-expanded="false"
-                                    data-target="#submenu-3" aria-controls="submenu-3"><i
-                                        class="fas fa-fw fa-chart-pie"></i>Products</a>
+                                <a class="nav-link @if ($active == 'product') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-3"
+                                    aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Products</a>
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
@@ -267,6 +269,42 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('admin.products') }}">View All</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if ($active == 'order') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-5"
+                                    aria-controls="submenu-5"><i class="fa fa-fw fa-rocket"></i>Order</a>
+                                <div id="submenu-5" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('order.index') }}">All Order</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if ($active == 'contact') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-6"
+                                    aria-controls="submenu-6"><i class="fa fa-fw fa-rocket"></i>Contact</a>
+                                <div id="submenu-6" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('contact.view') }}">All Messages</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if ($active == 'user') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-7"
+                                    aria-controls="submenu-7"><i class="fa fa-fw fa-rocket"></i>User</a>
+                                <div id="submenu-7" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('user.view') }}">All Users</a>
                                         </li>
                                     </ul>
                                 </div>

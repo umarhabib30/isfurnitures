@@ -1,8 +1,5 @@
 @extends('frontend.layout.app')
 @section('content')
-   
-
-
     <!-- Start Contact Form -->
     <div class="untree_co-section">
         <div class="container">
@@ -15,21 +12,7 @@
 
 
                         <div class="row mb-5">
-                            <div class="col-lg-4">
-                                <div class="service no-shadow align-items-center link horizontal d-flex active"
-                                    data-aos="fade-left" data-aos-delay="0">
-                                    <div class="service-icon color-1 mb-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                                        </svg>
-                                    </div> <!-- /.icon -->
-                                    <div class="service-contents">
-                                        <p>43 Raymouth Rd. Baltemoer, London 3910</p>
-                                    </div> <!-- /.service-contents-->
-                                </div> <!-- /.service -->
-                            </div>
+                          
 
                             <div class="col-lg-4">
                                 <div class="service no-shadow align-items-center link horizontal d-flex active"
@@ -64,29 +47,30 @@
                             </div>
                         </div>
 
-                        <form>
+                        <form method="POST" enctype="multipart/form-data" action="{{route('message.store')}}">
+                            @csrf
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label class="text-black" for="fname">First name</label>
-                                        <input type="text" class="form-control" id="fname">
+                                        <input type="text" class="form-control" id="fname" name="firstname">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label class="text-black" for="lname">Last name</label>
-                                        <input type="text" class="form-control" id="lname">
+                                        <input type="text" class="form-control" id="lname" name="lastname">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="text-black" for="email">Email address</label>
-                                <input type="email" class="form-control" id="email">
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
 
                             <div class="form-group mb-5">
                                 <label class="text-black" for="message">Message</label>
-                                <textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+                                <textarea name="message" class="form-control" id="message" cols="30" rows="5"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary-hover-outline">Send Message</button>

@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    protected $guard = "user";
     protected $fillable = [
         'name',
         'email',
@@ -44,5 +45,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function review(){
+        return $this->hasMany(Review::class);
     }
 }

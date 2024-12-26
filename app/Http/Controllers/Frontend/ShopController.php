@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -76,12 +77,14 @@ class ShopController extends Controller
         $heading = 'Shop the Best';
         $description = 'Explore top products, great prices, fast delivery.';
         $product = Product::with(['category', 'subcategory', 'images', 'color'])->where('id', $id)->first();
+        $reviews = Review::where('product_id', $id)->get();
         return view('frontend.shop.productdetail', [
             'active' => 'shop',
             'title' => 'Product Detail',
             'product' => $product,
             'heading' => $heading,
-            'description' => $description
+            'description' => $description,
+            'reviews' => $reviews,
         ]);
     }
 }

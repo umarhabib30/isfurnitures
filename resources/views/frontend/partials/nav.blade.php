@@ -18,7 +18,7 @@
             </ul>
 
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                <li><a class="nav-link" href="#"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+                <li><a class="nav-link" href="{{route('register.view')}}"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
                 <li @if (Request::is('contacts')) class="active" @endif ><a class="nav-link" href="{{route('cart.view')}}"><img src="{{ asset('assets/images/cart.svg') }}">
                     <span class="cart-qty">{{ App\Helpers\Cart::qty() }}</span>
                 </a></li>

@@ -1,7 +1,7 @@
 @extends('admin.layout.admin')
 @section('content')
 <div class="ecommerce-widget">
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <div class="card-body">
@@ -58,7 +58,7 @@
                 <div id="sparkline-revenue4"></div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="row">
         <!-- ============================================================== -->
 
@@ -66,7 +66,7 @@
 
                       <!-- recent orders  -->
         <!-- ============================================================== -->
-        <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+        {{-- <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <h5 class="card-header">Recent Orders</h5>
                 <div class="card-body p-0">
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- ============================================================== -->
         <!-- end recent orders  -->
 
@@ -155,7 +155,7 @@
         <!-- ============================================================== -->
         <!-- customer acquistion  -->
         <!-- ============================================================== -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        {{-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <h5 class="card-header">Customer Acquisition</h5>
                 <div class="card-body">
@@ -173,12 +173,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- ============================================================== -->
         <!-- end customer acquistion  -->
         <!-- ============================================================== -->
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <!-- ============================================================== -->
                                   <!-- product category  -->
         <!-- ============================================================== -->
@@ -289,7 +289,7 @@
             <!-- end top perfomimg  -->
             <!-- ============================================================== -->
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         <!-- ============================================================== -->
@@ -369,7 +369,7 @@
         <!-- end total orders  -->
         <!-- ============================================================== -->
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <!-- ============================================================== -->
         <!-- total revenue  -->
         <!-- ============================================================== -->
@@ -402,8 +402,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
+    </div> --}}
+    {{-- <div class="row">
         <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12">
             <!-- ============================================================== -->
             <!-- social source  -->
@@ -493,6 +493,6 @@
         <!-- ============================================================== -->
         <!-- end sales traffice country source  -->
         <!-- ============================================================== -->
-    </div>
+    </div> --}}
 </div>
 @endsection

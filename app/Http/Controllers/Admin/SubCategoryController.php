@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -22,6 +23,11 @@ class SubCategoryController extends Controller
 
     public function storeCategory(Request $request)
     {
+        if ($request->hasFile('image')) {
+            $image = ImageHelper::saveImage($request->image, 'subcategory');
+        } else {
+            $image = '';
+        }
         try {
             $existingsubCategory = SubCategory::where('name', $request->name)->first();
             if ($existingsubCategory) {
@@ -29,7 +35,11 @@ class SubCategoryController extends Controller
                 return redirect()->back();
             }
 
-            $subCategory = SubCategory::create($request->all());
+            $subCategory = SubCategory::create([
+                'category_id',
+                'name' => $request->name,
+                'image' => $image
+            ]);
             if ($subCategory) {
                 alert()->success('Success', 'SubCategory added successfully.');
                 return redirect()->back();
@@ -65,9 +75,15 @@ class SubCategoryController extends Controller
     }
     public function update(Request $request)
     {
+        if ($request->hasFile('image')) {
+            $image = ImageHelper::saveImage($request->image, 'subcategory');
+        } else {
+            $image = '';
+        }
         $SubCategory = SubCategory::find($request->id);
         $SubCategories =  $SubCategory->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'image' => $image
         ]);
         if ($SubCategories) {
             alert()->success('Success', 'SubCategory update successfully.');

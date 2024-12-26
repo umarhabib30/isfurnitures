@@ -20,6 +20,7 @@
                                     <th>Sr#</th>
                                     <th>Category</th>
                                     <th>Sub Category</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                     <th>Action</th>
 
@@ -31,6 +32,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $subcategory->category->name }}</td>
                                         <td>{{ $subcategory->name }}</td>
+                                        <td><img src="{{asset($subcategory->image)}}" height="50px" width="50px"></td>
                                         <td>
                                             <form action="{{ route('subcategory.delete') }}" method="POST"
                                                 style="display:inline;">
@@ -51,15 +53,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Sr#</th>
-                                    <th>Category</th>
-                                    <th>Sub Category</th>
-                                    <th>Action</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
+                           
                         </table>
                     </div>
                 </div>

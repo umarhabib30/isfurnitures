@@ -15,6 +15,10 @@
                         placeholder="Enter SubCategory Name">
                     </div>
                 </div>
+                <div class="col-md-6 form-group">
+                    <label for="inputText3" class="col-form-label">Image</label>
+                    <input id="file" type="file" class="form-control" name="image" placeholder="Pick Up Image">
+            </div>
                 <input type="submit" class="btn btn-primary mt-3">
             </form>
         </div>
