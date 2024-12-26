@@ -36,7 +36,7 @@ class SubCategoryController extends Controller
             }
 
             $subCategory = SubCategory::create([
-                'category_id',
+                'category_id' => $request->category_id,
                 'name' => $request->name,
                 'image' => $image
             ]);
