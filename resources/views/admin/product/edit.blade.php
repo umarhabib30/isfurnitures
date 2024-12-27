@@ -73,9 +73,32 @@
                         <select name="color_id" id="category-dropdown" class="form-control">
                             <option value="">Select One Value Only</option>
                             @foreach ($colors as $key => $color)
-                                <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                <option value="{{ $color->id }}" @if ($color->id == $product->color_id) selected @endif>{{ $color->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="category-dropdown" class="form-label">Stuff</label>
+                        <select name="stuff_id" id="category-dropdown" class="form-control">
+                            <option value="">Select One Value Only</option>
+                            @foreach ($stuffs as $key => $stuff)
+                                <option value="{{ $stuff->id }}" @if ($stuff->id == $product->stuff_id) selected @endif>{{ $stuff->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="category-dropdown" class="form-label">Seats</label>
+                        <select name="seatnumber_id" id="category-dropdown" class="form-control">
+                            <option value="seatnumber_id">Select One Value Only</option>
+                            @foreach ($seatNumbers as $key => $seatNumber)
+                                <option value="{{ $seatNumber->id }}" @if ($seatNumber->id == $product->seatnumber_id) selected @endif>{{ $seatNumber->seat_number }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="size" class="form-label">Size</label>
+
+                        <input type="text" value="{{$product->size}}" name="size" id="size" class="form-control">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="description" class="form-label">Product Description</label>

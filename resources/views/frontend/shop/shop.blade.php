@@ -1,8 +1,6 @@
 @extends('frontend.layout.app')
 
 @section('content')
-   
-
     <!-- Start Product Section -->
     <div class="untree_co-section product-section before-footer-section">
         <div class="container">
@@ -40,13 +38,41 @@
                             </select>
                         </div>
 
+                        <!-- Filter by Stuff -->
+                        <div class="mb-4">
+                            <h5>Stuff</h5>
+                            <select class="form-control" id="stuff-filter">
+                                <option value="">Select Stuff</option>
+                                @foreach ($stuffs as $stuff)
+                                    <option value="{{ $stuff->id }}"
+                                        {{ request('stuff') == $stuff->id ? 'selected' : '' }}>
+                                        {{ $stuff->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Filter by Seats -->
+                        <div class="mb-4">
+                            <h5>Seats</h5>
+                            <select class="form-control" id="seat-filter">
+                                <option value="">Select Seats</option>
+                                @foreach ($seatNumbers as $seatNumber)
+                                    <option value="{{ $seatNumber->id }}"
+                                        {{ request('seatNumber') == $seatNumber->id ? 'selected' : '' }}>
+                                        {{ $seatNumber->seat_number }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <!-- Filter by Price Range -->
                         <div class="mb-4">
                             <h5>Price Range</h5>
                             <label for="price-range" class="form-label">
                                 <span id="min-price">0</span> - <span id="max-price">{{ $maxPrice ?? 1000 }}</span>
                             </label>
-                            <input type="range" class="form-range"  max="{{ $maxPrice ?? 1000 }}" step="1" id="price-range" value="{{ request('max_price', 0) }}">
+                            <input type="range" class="form-range" max="{{ $maxPrice ?? 1000 }}" step="1" id="price-range" value="{{ request('max_price', 0) }}">
                         </div>
                         
                     </div>
@@ -63,9 +89,8 @@
                                     <h3 class="product-title">{{ $product->name }}</h3>
                                     <strong class="product-price">£{{ $product->price }}</strong>
                     
-                                    <span class="icon-cross">
-                                        <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add" product-id="{{ $product->id }}" alt="Icon">
-                                    </span>
+                                    <button type="submit" product-id="{{ $product->id }}"
+                                        class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
                                 </a>
                             </div>
                         @endforeach
@@ -91,7 +116,6 @@
 @endsection
 
 @section('js')
-  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
@@ -99,11 +123,12 @@
             let maxPrice = $(this).val();
             $('#max-price').text(maxPrice);
         });
-        $(document).on('change', '#color-filter, #subcategory-filter, #price-range', function() {
+
+        $(document).on('change', '#color-filter, #subcategory-filter, #stuff-filter, #seat-filter, #price-range', function() {
             let color = $('#color-filter').val();
-           console.log(color);
-            
             let subcategory = $('#subcategory-filter').val();
+            let stuff = $('#stuff-filter').val();
+            let seat = $('#seat-filter').val();
             let maxPrice = $('#price-range').val();
 
             $.ajax({
@@ -112,6 +137,8 @@
                 data: {
                     color: color,
                     subcategory: subcategory,
+                    stuff: stuff,
+                    seatNumber: seat,
                     max_price: maxPrice
                 },
                 success: function(response) {
@@ -130,34 +157,35 @@
             });
         });
     </script>
-<script>
-    $(document).ready(function() {
-        $('body').on('click', '.cart-add', function(e) {
-            e.preventDefault();
-            let id = $(this).attr('product-id');            
-            addToCart(id, 1);
-        });
-    });
 
-    function addToCart(productId, qty) {
-        let data = {
-            product_id: productId,
-            qty: qty,
-            expectsJson: true,
-            _token: '{{ csrf_token() }}',
-        };
-        $.ajax({
-            url: "{{ route('customer.cart') }}",
-            type: 'POST',
-            data: data,
-            success: function(response) {
-                $('.cart-qty').html(response.qty);
-                location.reload();
-            },
-            error: function(error) {
-                console.error('Error:', error);
-            }
+    <script>
+        $(document).ready(function() {
+            $('body').on('click', '.cart-add', function(e) {
+                e.preventDefault();
+                let id = $(this).attr('product-id');            
+                addToCart(id, 1);
+            });
         });
-    }
-</script>
+
+        function addToCart(productId, qty) {
+            let data = {
+                product_id: productId,
+                qty: qty,
+                expectsJson: true,
+                _token: '{{ csrf_token() }}',
+            };
+            $.ajax({
+                url: "{{ route('customer.cart') }}",
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    $('.cart-qty').html(response.qty);
+                  
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    </script>
 @endsection

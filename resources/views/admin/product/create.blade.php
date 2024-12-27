@@ -68,11 +68,34 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group col-md-6">
+                        <label for="category-dropdown" class="form-label">Stuff</label>
+                        <select name="stuff_id" id="category-dropdown" class="form-control">
+                            <option value="">Select One Value Only</option>
+                            @foreach ($stuffs as $key => $stuff)
+                                <option value="{{ $stuff->id }}">{{ $stuff->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="category-dropdown" class="form-label">Seat Number</label>
+                        <select name="seatnumber_id" id="category-dropdown" class="form-control">
+                            <option value="">Select One Value Only</option>
+                            @foreach ($seatNumbers as $key => $seatNumbers)
+                                <option value="{{ $seatNumbers->id }}">{{ $seatNumbers->seat_number }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="size" class="form-label">Size</label>
+
+                        <input type="text" name="size" id="size" class="form-control">
+                    </div>
                     <div class="form-group col-md-12">
                         <label for="description" class="form-label">Product Description</label>
                         <textarea name="description" id="description" class="form-control" rows="4"></textarea>
                     </div>
-                    
+
                 </div>
                 <input type="submit" class="btn btn-primary">
             </form>

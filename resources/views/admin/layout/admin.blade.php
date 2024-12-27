@@ -176,7 +176,7 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="{{route('admin.logout')}}"><i
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}"><i
                                         class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
@@ -259,6 +259,36 @@
                                 </div>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link @if ($active == 'seat') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-8"
+                                    aria-controls="submenu-8"><i class="fa fa-fw fa-rocket"></i>Seat Number</a>
+                                <div id="submenu-8" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('seat.create') }}">Add Seat Number</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('seat.index') }}">All Seat Number</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if ($active == 'stuff') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-9"
+                                    aria-controls="submenu-9"><i class="fa fa-fw fa-rocket"></i>Stuff</a>
+                                <div id="submenu-9" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('stuff.create') }}">Add Stuff</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('stuff.index') }}">All Stuff</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link @if ($active == 'product') active @endif" href="#"
                                     data-toggle="collapse" aria-expanded="false" data-target="#submenu-3"
                                     aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Products</a>
@@ -292,7 +322,7 @@
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('contact.view') }}">All Messages</a>
+                                            <a class="nav-link" href="{{ route('admin.contact') }}">All Messages</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -26,6 +26,9 @@
                                     <th>Sale Price</th>
                                     <th>Delivery Charge</th>
                                     <th>Color</th>
+                                    <th>Stuff</th>
+                                    <th>Seats</th>
+                                    <th>size</th>
                                     {{-- <th>Delivery Time</th> --}}
                                     {{-- <th>Discount Price</th> --}}
                                     <th>Action</th>
@@ -46,6 +49,9 @@
                                         <td>{{ $product->price }}</td>
                                         <td>{{ $product->delivery_charge }}</td>
                                         <td>{{ $product->color->name ?? 'No color' }}</td>
+                                        <td>{{ $product->stuff->name ?? 'No available' }}</td>
+                                        <td>{{ $product->seat->seat_number ?? 'No available' }}</td>
+                                        <td>{{ $product->size ?? 'No size' }}</td>
 
                                         {{-- <td>{{ $product->delivery_time }}</td> --}}
                                         {{-- <td>{{ $product->discount_price }}</td> --}}

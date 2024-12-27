@@ -15,9 +15,8 @@
                                 <h3 class="product-title">{{ $product->name }}</h3>
                                 <strong class="product-price">£{{ $product->price }}</strong>
 
-                                <span class="icon-cross">
-                                    <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add"  product-id={{ $product->id }} alt="Icon">
-                                </span>
+                                <button type="submit" product-id="{{ $product->id }}"
+                                    class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
                             </a>
                         </div>
                     @endforeach
@@ -56,7 +55,7 @@
             data: data,
             success: function(response) {
                 $('.cart-qty').html(response.qty);
-                location.reload();
+               
             },
             error: function(error) {
                 console.error('Error:', error);

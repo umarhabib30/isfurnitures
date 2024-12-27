@@ -20,12 +20,12 @@
                                     <th>Sr#</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
-                                    <th>Email</th>
+                                    {{-- <th>Email</th> --}}
                                     <th>Phone Number</th>
-                                    <th>City</th>
-                                    <th>Zip Code</th>
+                                    {{-- <th>City</th> --}}
+                                    {{-- <th>Zip Code</th> --}}
                                     <th>Address</th>
-                                    <th>Order Note</th>
+                                    {{-- <th>Order Note</th> --}}
                                     <th>Grand Total</th>
                                     <th>Qty</th>
                                     <th>Action</th>
@@ -37,12 +37,12 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $order->firstname ?? 'Not Available' }}</td>
                                         <td>{{ $order->lastname ?? 'Not Available' }}</td>
-                                        <td>{{ $order->email ?? 'Not Available' }}</td>
+                                        {{-- <td>{{ $order->email ?? 'Not Available' }}</td> --}}
                                         <td>{{ $order->phone_no ?? 'Not Available' }}</td>
-                                        <td>{{ $order->city ?? 'Not Available' }}</td>
-                                        <td>{{ $order->zip_code ?? 'Not Available' }}</td>
+                                        {{-- <td>{{ $order->city ?? 'Not Available' }}</td>
+                                        <td>{{ $order->zip_code ?? 'Not Available' }}</td> --}}
                                         <td>{{ $order->address ?? 'Not Available' }}</td>
-                                        <td>{{ $order->order_note ?? 'Not Available' }}</td>
+                                        {{-- <td>{{ $order->order_note ?? 'Not Available' }}</td> --}}
                                         <td>{{ $order->grand_total ?? 'Not Available' }}</td>
                                         <td>{{ $order->qty ?? 'Not Available' }}</td>
                                         <td>
@@ -53,22 +53,7 @@
                                 @endforeach
                             </tbody>
 
-                            <tfoot>
-                                <tr>
-                                    <th>Sr#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>City</th>
-                                    <th>Zip Code</th>
-                                    <th>Address</th>
-                                    <th>Order Note</th>
-                                    <th>Grand Total</th>
-                                    <th>Qty</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
+                          
                         </table>
                     </div>
                 </div>

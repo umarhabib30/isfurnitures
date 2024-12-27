@@ -18,7 +18,10 @@ class Product extends Model
         'discount_time',
         'description',
         'image',
-        'color_id'
+        'color_id',
+        'seatnumber_id',
+        'stuff_id',
+        'size',
     ];
 
     /**
@@ -55,5 +58,14 @@ class Product extends Model
     public function orderItem()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function seat()
+    {
+        return $this->belongsTo(Seat::class, 'seatnumber_id');
+    }
+    public function stuff()
+    {
+        return $this->belongsTo(Stuff::class, 'stuff_id');
     }
 }

@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function home()
     {
         $latestProducts = Product::with('category')->with('subcategory')->take(3)->get();
-        $allProducts = Product::with('category')->with('subcategory')->take(12)->get();
+        $allProducts = Product::with('category')->with('subcategory')->take(8)->get();
         $latestSubcategories = SubCategory::latest()->take(4)->get();
         $heading = 'Shop the Best';
         $description = 'Explore top products, great prices, fast delivery.';

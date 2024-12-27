@@ -52,5 +52,7 @@ class CheckOutController extends Controller
             Cart::clear();
         }
         return redirect()->route('home');
+        // return redirect()->route('email.detail', ['id' => $order->id]);
+
     }
 }

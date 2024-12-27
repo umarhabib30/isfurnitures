@@ -1,6 +1,7 @@
 <nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="Furni navigation bar">
     <div class="container">
-        <img class="navbar-brand" src="{{ asset('assets/images/logo2.svg') }}">
+        <a href="{{route('home')}}">   <img class="navbar-brand" src="{{ asset('assets/images/logo2.svg') }}"></a>
+     
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
             aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,23 +29,6 @@
 </nav>
 
 <!-- Start Hero Section -->
-<div class="container-fluid pt-5" style="background-color: #3B5D50;">
-    <div class="row justify-content-between">
-        <div class="col-lg-6" style="color: white">
-            <div class="intro-excerpt">
-                <h1 class="ms-md-5 pt-5">{{$heading}}</h1>
-                <p class="mb-4 ms-md-5">{{$description}}</p>
-                <p><a href="{{route('shop.view')}}" class="btn btn-secondary me-2 ms-md-5">Shop Now</a><a href="#"
-                        class="btn btn-white-outline">Explore</a></p>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="hero-img-wrap">
-                <img src="{{ asset('assets/images/couch.png') }}" class="img-fluid w-75">
-            </div>
-        </div>
-    </div>
-</div>
 <style>
    .cart-qty {
     position: absolute;

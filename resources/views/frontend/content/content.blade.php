@@ -9,17 +9,18 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($latestSubcategories as $latestsubcategory)
-                            <div class="col-6 col-md-4 col-lg-3 mb-3 mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
+                            <div class="col-6 col-md-4 col-lg-3 mb-3 mb-md-4">
+                                <!-- Reduced margin for mobile and medium screens -->
                                 <a class="product-item" href="{{ route('subcategory.products', $latestsubcategory->id) }}">
                                     <img src="{{ $latestsubcategory->image }}" class="img-fluid product-thumbnail"
-                                         alt="{{ $latestsubcategory->name }}">
-                                    <h3 class="product-title">{{ $latestsubcategory->name }}</h3>   
+                                        alt="{{ $latestsubcategory->name }}">
+                                    <h3 class="product-title">{{ $latestsubcategory->name }}</h3>
                                 </a>
                             </div>
                         @endforeach
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 
@@ -28,28 +29,27 @@
         <div class="container">
             <div class="row">
                 <!-- Start Column 1 -->
-                <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-                    <h2 class="mb-4 section-title">Crafted with Premium Quality Materials</h2>
-                    <p class="mb-4">Explore our collection of expertly crafted sofas, designed to bring comfort, style,
-                        and durability to your living space. Every piece is made with the finest materials to ensure
-                        long-lasting satisfaction.</p>
+                <div class="col-md-12 col-lg-3  mb-lg-0">
+                    <h2 class="mb-4 section-title">Explore Our Latest Products</h2>
+                    <p class="mb-4">Discover our newest collection, designed to bring comfort, style, and durability to
+                        your living space. Each product is carefully selected to ensure long-lasting satisfaction.</p>
+
+
                     <p><a href="{{ route('shop.view') }}" class="btn">Shop Now</a></p>
                 </div>
                 <!-- End Column 1 -->
 
                 <!-- Start Column 2 -->
                 @foreach ($latestProducts as $latestProduct)
-                    <div class="col-6 col-md-4 col-lg-3 mb-3 mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
+                    <div class="col-6 col-md-4 col-lg-3  mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
                         <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
                             <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
-                                 alt="{{ $latestProduct->name }}">
+                                alt="{{ $latestProduct->name }}">
                             <h3 class="product-title">{{ $latestProduct->name }}</h3>
                             <strong class="product-price">£{{ $latestProduct->price }}</strong>
 
-                            <span class="icon-cross">
-                                <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add"
-                                     product-id="{{ $latestProduct->id }}" alt="Add to Cart">
-                            </span>
+                            <button type="submit" product-id="{{ $latestProduct->id }}"
+                                class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
                         </a>
                     </div>
                 @endforeach
@@ -60,30 +60,38 @@
     <!-- Popular Products Section -->
     <div class="category-section py-5">
         <div class="container">
-            <h2 class="text-center mb-4">Explore Our Products</h2>
+            <h2 class="text-center pb-5">Explore Our Products</h2>
             <div class="product-section">
                 <div class="container">
                     <div class="row">
                         @foreach ($allProducts as $latestProduct)
-                            <div class="col-6 col-md-4 col-lg-3 mb-3 mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
+                            <div class="col-6 col-md-4 col-lg-3 mb-md-4">
+                                <!-- Reduced margin for mobile and medium screens -->
                                 <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
                                     <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
-                                         alt="{{ $latestProduct->name }}">
+                                        alt="{{ $latestProduct->name }}">
                                     <h3 class="product-title">{{ $latestProduct->name }}</h3>
                                     <strong class="product-price">£{{ $latestProduct->price }}</strong>
 
-                                    <span class="icon-cross">
-                                        <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid cart-add"
-                                             product-id="{{ $latestProduct->id }}" alt="Add to Cart">
-                                    </span>
+                                    <button type="submit" product-id="{{ $latestProduct->id }}"
+                                        class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
+
                                 </a>
                             </div>
                         @endforeach
                     </div>
                 </div>
-            </div>            
+            </div>
+
+            <!-- Shop Now Button Row -->
+            <div class="row justify-content-center pt-4">
+                <div class="col-auto">
+                    <a href="{{ route('shop.view') }}" class="btn btn-lg">Shop Now</a>
+                </div>
+            </div>
         </div>
     </div>
+
     <!-- End Popular Product -->
 
     <!-- Why Choose Us Section -->
@@ -100,7 +108,7 @@
                             <div class="feature">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/truck.svg') }}" alt="Fast & Free Shipping"
-                                         class="img-fluid">
+                                        class="img-fluid">
                                 </div>
                                 <h3>Fast &amp; Free Shipping</h3>
                                 <p>Enjoy fast and free delivery for all your sofa purchases, ensuring your comfort arrives
@@ -123,7 +131,7 @@
                             <div class="feature">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/support.svg') }}" alt="24/7 Support"
-                                         class="img-fluid">
+                                        class="img-fluid">
                                 </div>
                                 <h3>24/7 Customer Support</h3>
                                 <p>Our team is available around the clock to assist you with any questions or concerns about
@@ -135,7 +143,7 @@
                             <div class="feature">
                                 <div class="icon">
                                     <img src="{{ asset('assets/images/return.svg') }}" alt="Hassle-Free Returns"
-                                         class="img-fluid">
+                                        class="img-fluid">
                                 </div>
                                 <h3>Hassle-Free Returns</h3>
                                 <p>We offer easy and convenient returns, ensuring your satisfaction with every sofa you
@@ -148,7 +156,7 @@
                 <div class="col-lg-5">
                     <div class="img-wrap">
                         <img src="{{ asset('assets/images/choseus.jpg') }}" alt="Why Choose Us - Sofa Shop"
-                             class="img-fluid">
+                            class="img-fluid">
                     </div>
                 </div>
 
@@ -157,7 +165,6 @@
     </div>
 
     <!-- End Why Choose Us Section -->
-
 @endsection
 
 @section('js')
@@ -184,7 +191,7 @@
                 data: data,
                 success: function(response) {
                     $('.cart-qty').html(response.qty);
-                    location.reload();
+
                 },
                 error: function(error) {
                     console.error('Error:', error);

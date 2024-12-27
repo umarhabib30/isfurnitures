@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SeatController;
+use App\Http\Controllers\Admin\StuffController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\AboutUsController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckOutController;
 use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\MailController;
 use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\ServiceController;
 use App\Http\Controllers\Frontend\ShopController;
@@ -43,6 +46,7 @@ Route::post('/order/store', [CheckOutController::class, 'orderStore'])->name('or
 
 Route::post('/contact/store', [ContactUsController::class, 'store'])->name('message.store');
 Route::get('/subcategory/{id}/products', [HomeController::class, 'showSubcategoryProducts'])->name('subcategory.products');
+Route::get('get/{id}',[MailController::class,'index'])->name('email.detail');
 
 Route::get('/register', [FrontendAuthController::class, 'register'])->name('register.view');
 Route::post('/store/user', [FrontendAuthController::class, 'storeUser'])->name('register');
@@ -50,8 +54,7 @@ Route::get('/login/view', [FrontendAuthController::class, 'loginView'])->name('l
 Route::post('/login/user', [FrontendAuthController::class, 'loginUser'])->name('user.login');
 Route::middleware(['auth:user'])->group(function () {
     Route::get('/check-auth', [FrontendAuthController::class, 'checkAuth']);
-    Route::post('/store/review',[ReviewController::class,'store'])->name('review.store');
-
+    Route::post('/store/review', [ReviewController::class, 'store'])->name('review.store');
 });
 
 
@@ -102,9 +105,23 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/order/index', [OrderController::class, 'order'])->name('order.index');
     Route::get('/order/items/{id}', [OrderController::class, 'detail'])->name('order.detail');
 
-    Route::get('/message/index', [ContactController::class, 'contact'])->name('contact.view');
+    Route::get('/message/index', [ContactController::class, 'contact'])->name('admin.contact');
 
-    Route::get('/user/index',[UserController::class,'user'])->name('user.view');
+    Route::get('/user/index', [UserController::class, 'user'])->name('user.view');
 
-    
+    // seat
+    Route::get('/seat', [SeatController::class, 'seat'])->name('seat.create');
+    Route::post('/seat/create', [SeatController::class, 'store'])->name('seat.store');
+    Route::get('/seat/index',[SeatController::class,'index'])->name('seat.index');
+    Route::post('/seat/delete', [SeatController::class, 'delete'])->name('seat.delete');
+    Route::post('/seat/edit', [SeatController::class, 'edit'])->name('seat.edit');
+    Route::post('/seat/update', [SeatController::class, 'update'])->name('seat.update');
+
+    // stuff
+    Route::get('/stuff', [StuffController::class, 'stuff'])->name('stuff.create');
+    Route::post('/stuff/create', [StuffController::class, 'store'])->name('stuff.store');
+    Route::get('/stuff/index',[StuffController::class,'index'])->name('stuff.index');
+    Route::post('/stuff/delete', [StuffController::class, 'delete'])->name('stuff.delete');
+    Route::post('/stuff/edit', [StuffController::class, 'edit'])->name('stuff.edit');
+    Route::post('/stuff/update', [StuffController::class, 'update'])->name('stuff.update');
 });

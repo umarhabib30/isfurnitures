@@ -6,8 +6,9 @@
                 <div class="row">
 
                     <div class="col-12 d-flex justify-content-center flex-column align-items-center">
-                        <img id="mainImage" src="{{ asset($product->image) }}" alt="" class="w-50 mb-3 rounded shadow"
-                            style="border: 2px solid #ddd; padding: 10px;">
+                        <img id="mainImage" src="{{ asset($product->image) }}" alt="" class="w-75 mb-3 rounded shadow"
+                            style="border: 2px solid #ddd; padding: 10px; max-width: 100%; height: auto;" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        
                         <div class="image-slider d-flex flex-wrap justify-content-center" style="gap: 10px;">
                             @if ($product->images)
                                 @foreach ($product->images as $image)
@@ -23,6 +24,17 @@
                                 width="70px" class="rounded shadow-sm"
                                 style="background-color: white; padding: 5px; cursor: pointer; border: 2px solid #ddd;"
                                 onclick="changeMainImage(this.src)">
+                        </div>
+                    </div>
+                    
+                    <!-- Modal for zoomed-in image -->
+                    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body text-center">
+                                    <img id="zoomedImage" src="{{ asset($product->image) }}" alt="Zoomed Image" class="img-fluid">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="accordion col-12 mt-5 pt-3" id="reviewAccordion">
@@ -78,7 +90,18 @@
                         <p><b>Sub Category: </b><span class="ms-3">{{ $product->subcategory->name }}</span></p>
                     </div>
                     <div class="col-11 col-md-8  text-dark">
-                        <p><b>Color:</b> <span class="ms-3">{{ $product->color->name }}</span></p>
+                        <p><b>Color:</b> <span class="ms-3">{{ $product->color->name ?? 'not available' }}</span></p>
+                    </div>
+
+                    <div class="col-11 col-md-8  text-dark">
+                        <p><b>Stuff:</b> <span class="ms-3">{{ $product->stuff->name ?? 'not available' }}</span></p>
+                    </div>
+                    <div class="col-11 col-md-8  text-dark">
+                        <p><b>Seat:</b> <span class="ms-3">{{ $product->seat->seat_number ?? 'not available' }}</span>
+                        </p>
+                    </div>
+                    <div class="col-11 col-md-8  text-dark">
+                        <p><b>Size:</b> <span class="ms-3">{{ $product->size ?? 'not available' }}</span></p>
                     </div>
 
                     <div class="col-11 col-md-10 text-muted">
@@ -137,7 +160,7 @@
                 data: data,
                 success: function(response) {
                     $('.cart-qty').html(response.qty);
-                    location.reload();
+                   
                 },
                 error: function(error) {
                     console.error('Error:', error);
@@ -148,7 +171,7 @@
     <script>
         $(document).ready(function() {
             $('#reviewButton').on('click', function() {
-                // Check if the user is authenticated when the button is clicked
+              
                 $.ajax({
                     url: '/check-auth', // Route to check authentication status
                     method: 'GET',
@@ -168,7 +191,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href =
-                                '/login/view'; // Redirect to login page
+                                    '/login/view'; // Redirect to login page
                             }
                         });
                     }
@@ -194,5 +217,12 @@
                 toggle: false
             });
         });
+    </script>
+    
+    <script>
+        document.getElementById("mainImage").onclick = function () {
+            const zoomedImage = document.getElementById("zoomedImage");
+            zoomedImage.src = this.src;  
+        }
     </script>
 @endsection

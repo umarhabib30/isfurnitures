@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\Seat;
+use App\Models\Stuff;
 use App\Models\SubCategory;
 use Exception;
 use Illuminate\Http\Request;
@@ -18,11 +20,15 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $colors = Color::all();
+        $stuffs = Stuff::all();
+        $seatNumbers = Seat::all();
         $data = [
             'active' => 'product',
             'title' => 'Add Product',
             'categories' => $categories,
             'colors' => $colors,
+            'stuffs' => $stuffs,
+            'seatNumbers' => $seatNumbers
         ];
         return view('admin.product.create', $data);
     }
@@ -61,8 +67,11 @@ class ProductController extends Controller
                 'discount_price' => $request->discount_price,
                 'discount_time' => $request->discount_time,
                 'description' => $request->description,
-                'color_id'=>$request->color_id,
+                'color_id' => $request->color_id,
                 'image' => $thumbnail,
+                'seatnumber_id' => $request->seatnumber_id,
+                'stuff_id' => $request->stuff_id,
+                'size' => $request->size,
             ]);
 
             foreach ($request->images as $image) {
@@ -111,6 +120,8 @@ class ProductController extends Controller
             $product = Product::find($id);
             $categories = Category::all();
             $colors = Color::all();
+            $stuffs = Stuff::all();
+            $seatNumbers = Seat::all();
             $subcategories = SubCategory::where('category_id', $product->category_id)->get();
             $data = [
                 'active' => 'product',
@@ -119,6 +130,8 @@ class ProductController extends Controller
                 'product' => $product,
                 'subcategories' => $subcategories,
                 'colors' => $colors,
+                'stuffs' => $stuffs,
+                'seatNumbers' => $seatNumbers
             ];
             return view('admin.product.edit', $data);
         } catch (Exception $e) {
@@ -129,7 +142,7 @@ class ProductController extends Controller
 
     public function update(Request $request)
     {
-       
+
         try {
             $product = Product::find($request->id);
             if ($request->hasFile('images')) {
