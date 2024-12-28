@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <!-- ============================================================== -->
-        <!-- data table  -->
+        <!-- Data Table  -->
         <!-- ============================================================== -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
@@ -11,6 +11,8 @@
                     <h5 class="mb-0">
                         Order Detail
                     </h5>
+                    <!-- Print Button -->
+                    <a class="btn btn-primary float-right" href="{{route('invoice.generate', $orderItems->first()->order->id)}}">Print Invoice</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -46,12 +48,9 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- end data table  -->
-        <!-- ============================================================== -->
 
         <!-- ============================================================== -->
-        <!-- Order Summary Card -->
+        <!-- Order Summary -->
         <!-- ============================================================== -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-4">
             <div class="card">
@@ -87,8 +86,7 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Order Summary Card -->
-        <!-- ============================================================== -->
     </div>
+
+    <!-- JavaScript for Print functionality -->
 @endsection

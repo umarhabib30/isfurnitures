@@ -74,7 +74,6 @@
                             </label>
                             <input type="range" class="form-range" max="{{ $maxPrice ?? 1000 }}" step="1" id="price-range" value="{{ request('max_price', 0) }}">
                         </div>
-                        
                     </div>
                 </div>
                 <!-- End Sidebar -->
@@ -96,7 +95,6 @@
                         @endforeach
                     </div>
                     
-
                     <!-- Pagination -->
                     @if ($products->hasPages())
                         <div class="row">
@@ -113,10 +111,13 @@
         </div>
     </div>
     <!-- End Product Section -->
+
+    
 @endsection
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $(document).on('input change', '#price-range', function() {
@@ -156,9 +157,7 @@
                 }
             });
         });
-    </script>
 
-    <script>
         $(document).ready(function() {
             $('body').on('click', '.cart-add', function(e) {
                 e.preventDefault();
@@ -179,7 +178,15 @@
                 type: 'POST',
                 data: data,
                 success: function(response) {
+                    // Update the cart quantity display
                     $('.cart-qty').html(response.qty);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Added to Cart',
+                        text: 'The product has been added to your cart.',
+                        showConfirmButton: false,
+                        timer: 3000 // Auto-close after 3 seconds
+                    });
                   
                 },
                 error: function(error) {
@@ -188,4 +195,5 @@
             });
         }
     </script>
+    
 @endsection

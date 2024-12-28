@@ -289,6 +289,22 @@
                                 </div>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link @if ($active == 'size') active @endif" href="#"
+                                    data-toggle="collapse" aria-expanded="false" data-target="#submenu-10"
+                                    aria-controls="submenu-10"><i class="fa fa-fw fa-rocket"></i>Sizes</a>
+                                <div id="submenu-10" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('size.create') }}">Add size</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('size.index') }}">All sizes</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link @if ($active == 'product') active @endif" href="#"
                                     data-toggle="collapse" aria-expanded="false" data-target="#submenu-3"
                                     aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Products</a>

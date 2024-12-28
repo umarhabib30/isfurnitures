@@ -41,12 +41,14 @@
 
                 <!-- Start Column 2 -->
                 @foreach ($latestProducts as $latestProduct)
+            
                     <div class="col-6 col-md-4 col-lg-3  mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
                         <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
                             <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
                                 alt="{{ $latestProduct->name }}">
                             <h3 class="product-title">{{ $latestProduct->name }}</h3>
                             <strong class="product-price">£{{ $latestProduct->price }}</strong>
+                            {{-- <h6>Sold Quantity :{{$latestProduct->total_sold_qty}}</h6> --}}
 
                             <button type="submit" product-id="{{ $latestProduct->id }}"
                                 class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
@@ -72,6 +74,8 @@
                                         alt="{{ $latestProduct->name }}">
                                     <h3 class="product-title">{{ $latestProduct->name }}</h3>
                                     <strong class="product-price">£{{ $latestProduct->price }}</strong>
+                                    {{-- <h6>Sold Quantity :{{$latestProduct->total_sold_qty}}</h6> --}}
+
 
                                     <button type="submit" product-id="{{ $latestProduct->id }}"
                                         class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
@@ -169,6 +173,8 @@
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready(function() {
             $('body').on('click', '.cart-add', function(e) {
@@ -191,7 +197,13 @@
                 data: data,
                 success: function(response) {
                     $('.cart-qty').html(response.qty);
-
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Added to Cart',
+                        text: 'The product has been added to your cart.',
+                        showConfirmButton: false,
+                        timer: 3000 // Auto-close after 3 seconds
+                    });
                 },
                 error: function(error) {
                     console.error('Error:', error);

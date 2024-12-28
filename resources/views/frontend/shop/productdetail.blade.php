@@ -2,31 +2,31 @@
 @section('content')
     <div class="container mt-5">
         <div class="row mb-5">
-            <div class="col-md-6 ">
+            <div class="col-md-6">
                 <div class="row">
-
                     <div class="col-12 d-flex justify-content-center flex-column align-items-center">
-                        <img id="mainImage" src="{{ asset($product->image) }}" alt="" class="w-75 mb-3 rounded shadow"
-                            style="border: 2px solid #ddd; padding: 10px; max-width: 100%; height: auto;" data-bs-toggle="modal" data-bs-target="#imageModal">
-                        
-                        <div class="image-slider d-flex flex-wrap justify-content-center" style="gap: 10px;">
+                        <img id="mainImage" src="{{ asset($product->image) }}" alt="" 
+                            class="col-md-6 mb-3 rounded main-image"
+                            style="padding: 10px; max-width: 100%; height: auto; border: none;" 
+                            data-bs-toggle="modal" data-bs-target="#imageModal">
+                    
+                        <div class="image-slider d-flex flex-wrap justify-content-center col-md-6" style="gap: 10px;">
                             @if ($product->images)
                                 @foreach ($product->images as $image)
-                                    <img src="{{ asset($image->image) }}" alt="Not Found" height="70px" width="70px"
-                                        class="rounded shadow-sm"
-                                        style="background-color: white; padding: 5px; cursor: pointer; border: 2px solid #ddd;"
+                                    <img src="{{ asset($image->image) }}" alt="Not Found" 
+                                        class="rounded shadow-sm slider-image"
+                                        style="padding: 5px; cursor: pointer; border: none; height: 70px; width: 70px;"
                                         onclick="changeMainImage(this.src)">
                                 @endforeach
                             @else
                                 <p>No images found.</p>
                             @endif
-                            <img id="mainImage" src="{{ asset($product->image) }}" alt="" height="70px"
-                                width="70px" class="rounded shadow-sm"
-                                style="background-color: white; padding: 5px; cursor: pointer; border: 2px solid #ddd;"
+                            <img src="{{ asset($product->image) }}" alt="" 
+                                class="rounded shadow-sm slider-image"
+                                style="padding: 5px; cursor: pointer; border: none; height: 70px; width: 70px;"
                                 onclick="changeMainImage(this.src)">
                         </div>
                     </div>
-                    
                     <!-- Modal for zoomed-in image -->
                     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -68,13 +68,9 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
             </div>
+
             <div class="col-md-6 px-4 mt-3 mt-md-0">
                 <div class="row d-flex justify-content-center">
                     <div class="col-11 col-md-8 text-dark">
@@ -101,15 +97,16 @@
                         </p>
                     </div>
                     <div class="col-11 col-md-8  text-dark">
-                        <p><b>Size:</b> <span class="ms-3">{{ $product->size ?? 'not available' }}</span></p>
+                        <p><b>Size:</b> <span class="ms-3">{{ $product->size->name ?? 'not available' }}</span></p>
                     </div>
 
                     <div class="col-11 col-md-10 text-muted">
                         <p class="ps-md-5">{{ $product->description }}</p>
                     </div>
                     <div class="col-8 d-flex justify-content-around mt-2">
-                        <a href="" class="btn btn-dark px-4 py-2 shadow-sm w-100 cart-add"
-                            product-id={{ $product->id }}>Add to Cart</a>
+                        <a href="#" class="btn btn-dark px-4 py-2 shadow-sm w-100 cart-add" product-id="{{ $product->id }}">
+                            Add to Cart
+                        </a>
                     </div>
                 </div>
             </div>
@@ -118,23 +115,22 @@
         <div class="row">
             <h2 class="fw-bold"><u>Reviews</u></h2>
             <div class="col-md-6 p-4">
-                <div class="user-reviews border p-3" style="max-height: 300px; overflow-y: scroll;">
+                <div class="user-reviews border p-3" style="max-height: 400px; overflow-y: scroll;">
                     @foreach ($reviews as $review)
                         <div class="review mb-3 p-2 border-bottom">
-                            <p class="fw-bold mb-1">Email: {{ $review->user->email }}</p>
+                            <p class="fw-bold mb-1">Email: {{ $review->user->name }}</p>
                             <img src="{{ asset($review->image) }}" alt="User 1 Image" class="img-fluid rounded mb-2"
                                 style="width: 50px; height: 50px;">
                             <p>Review: {{ $review->notes }}</p>
                         </div>
                     @endforeach
-
-
                 </div>
             </div>
         </div>
     </div>
 
 @endsection
+
 @section('js')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -160,7 +156,15 @@
                 data: data,
                 success: function(response) {
                     $('.cart-qty').html(response.qty);
-                   
+
+                    // Show success popup using SweetAlert2
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Added to Cart',
+                        text: 'The product has been added to your cart.',
+                        showConfirmButton: false,
+                        timer: 3000 // Auto-close after 3 seconds
+                    });
                 },
                 error: function(error) {
                     console.error('Error:', error);
@@ -171,7 +175,6 @@
     <script>
         $(document).ready(function() {
             $('#reviewButton').on('click', function() {
-              
                 $.ajax({
                     url: '/check-auth', // Route to check authentication status
                     method: 'GET',
@@ -205,24 +208,36 @@
             document.getElementById('mainImage').src = newSrc;
         }
 
-        function closeReviewSection() {
-            var myAccordion = new bootstrap.Collapse(document.getElementById('reviewCollapse'), {
-                toggle: false
-            });
-            myAccordion.hide();
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            var myAccordion = new bootstrap.Collapse(document.getElementById('reviewCollapse'), {
-                toggle: false
-            });
-        });
-    </script>
-    
-    <script>
         document.getElementById("mainImage").onclick = function () {
             const zoomedImage = document.getElementById("zoomedImage");
             zoomedImage.src = this.src;  
+        }
+    </script>
+@endsection
+
+@section('css')
+    <style>
+        /* Remove border for images in slider */
+        .slider-image {
+            border: none !important;
+        }
+
+        /* Ensure main image is fully responsive on mobile */
+        @media (max-width: 768px) {
+            .main-image {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+        .main-image, .slider-image {
+            background-color: transparent !important;
+        }
+    </style>
+   
+    
+    <script>
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
         }
     </script>
 @endsection

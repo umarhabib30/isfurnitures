@@ -29,8 +29,7 @@
                                     <th>Stuff</th>
                                     <th>Seats</th>
                                     <th>size</th>
-                                    {{-- <th>Delivery Time</th> --}}
-                                    {{-- <th>Discount Price</th> --}}
+                                    <th>Sold Qty</th>
                                     <th>Action</th>
                                     <th>Action</th>
                                     <th>Action</th>
@@ -51,11 +50,8 @@
                                         <td>{{ $product->color->name ?? 'No color' }}</td>
                                         <td>{{ $product->stuff->name ?? 'No available' }}</td>
                                         <td>{{ $product->seat->seat_number ?? 'No available' }}</td>
-                                        <td>{{ $product->size ?? 'No size' }}</td>
-
-                                        {{-- <td>{{ $product->delivery_time }}</td> --}}
-                                        {{-- <td>{{ $product->discount_price }}</td> --}}
-
+                                        <td>{{ $product->size->name ?? 'No size' }}</td>
+                                        <td>{{ $product->sold_qty ?? 'No qty' }}</td>
                                         <td>
                                             <a href="{{ route('product.delete', $product->id) }}"
                                                 class="btn btn-danger">Delete</a>
@@ -72,24 +68,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Sr#</th>
-                                    <th>Image</th>
-                                    <th>Category Name</th>
-                                    <th>Sub Category Name</th>
-                                    <th>Product Name</th>
-                                    <th>Original Price</th>
-                                    <th>Sale Price</th>
-                                    <th>Delivery Charge</th>
-                                    <th>Color</th>
-                                    {{-- <th>Delivery Time</th> --}}
-                                    {{-- <th>Discount Price</th> --}}
-                                    <th>Action</th>
-                                    <th>Action</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
+                           
                         </table>
                     </div>
                 </div>

@@ -30,9 +30,18 @@
                 </tr>
                 <tr>
                     <th>Color: </th>
-                    <td>{{ $product->color->name }}</td>
-                   
+                    <td>{{ $product->color->name ?? ' NO Color' }}</td>
+                    <th>Stuff: </th>
+                    <td>{{ $product->stuff->name ?? 'No stuff ' }}</td>
                 </tr>
+               
+                <tr>
+                    <th>Color: </th>
+                    <td>{{ $product->seat->seat_number?? ' NO seat' }}</td>
+                    <th>Size: </th>
+                    <td>{{ $product->size->name ?? ' NO size' }}</td>
+                </tr>
+               
 
             </table>
         </div>
@@ -47,7 +56,7 @@
                         <img class="img-fluid" src="{{ asset($image->image) }}" alt="Card image cap" height="150px">
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('product.image.delete',$image->id) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('product.image.delete', $image->id) }}" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SeatController;
+use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\StuffController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\UserController;
@@ -46,7 +47,7 @@ Route::post('/order/store', [CheckOutController::class, 'orderStore'])->name('or
 
 Route::post('/contact/store', [ContactUsController::class, 'store'])->name('message.store');
 Route::get('/subcategory/{id}/products', [HomeController::class, 'showSubcategoryProducts'])->name('subcategory.products');
-Route::get('get/{id}',[MailController::class,'index'])->name('email.detail');
+Route::get('get/{id}', [MailController::class, 'index'])->name('email.detail');
 
 Route::get('/register', [FrontendAuthController::class, 'register'])->name('register.view');
 Route::post('/store/user', [FrontendAuthController::class, 'storeUser'])->name('register');
@@ -112,7 +113,7 @@ Route::middleware(['auth:admin'])->group(function () {
     // seat
     Route::get('/seat', [SeatController::class, 'seat'])->name('seat.create');
     Route::post('/seat/create', [SeatController::class, 'store'])->name('seat.store');
-    Route::get('/seat/index',[SeatController::class,'index'])->name('seat.index');
+    Route::get('/seat/index', [SeatController::class, 'index'])->name('seat.index');
     Route::post('/seat/delete', [SeatController::class, 'delete'])->name('seat.delete');
     Route::post('/seat/edit', [SeatController::class, 'edit'])->name('seat.edit');
     Route::post('/seat/update', [SeatController::class, 'update'])->name('seat.update');
@@ -120,8 +121,18 @@ Route::middleware(['auth:admin'])->group(function () {
     // stuff
     Route::get('/stuff', [StuffController::class, 'stuff'])->name('stuff.create');
     Route::post('/stuff/create', [StuffController::class, 'store'])->name('stuff.store');
-    Route::get('/stuff/index',[StuffController::class,'index'])->name('stuff.index');
+    Route::get('/stuff/index', [StuffController::class, 'index'])->name('stuff.index');
     Route::post('/stuff/delete', [StuffController::class, 'delete'])->name('stuff.delete');
     Route::post('/stuff/edit', [StuffController::class, 'edit'])->name('stuff.edit');
     Route::post('/stuff/update', [StuffController::class, 'update'])->name('stuff.update');
+
+    // 
+    Route::get('pdf/{id}', [OrderController::class, 'invoiceGenerate'])->name('invoice.generate');
+    // size
+    Route::get('/size', [SizeController::class, 'size'])->name('size.create');
+    Route::post('/size/create', [SizeController::class, 'store'])->name('size.store');
+    Route::get('/size/index', [SizeController::class, 'index'])->name('size.index');
+    Route::post('/size/delete', [SizeController::class, 'delete'])->name('size.delete');
+    Route::post('/size/edit', [SizeController::class, 'edit'])->name('size.edit');
+    Route::post('/size/update', [SizeController::class, 'update'])->name('size.update');
 });

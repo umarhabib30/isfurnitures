@@ -9,6 +9,7 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Seat;
+use App\Models\Size;
 use App\Models\Stuff;
 use App\Models\SubCategory;
 use Exception;
@@ -22,13 +23,15 @@ class ProductController extends Controller
         $colors = Color::all();
         $stuffs = Stuff::all();
         $seatNumbers = Seat::all();
+        $sizes = Size::all();
         $data = [
             'active' => 'product',
             'title' => 'Add Product',
             'categories' => $categories,
             'colors' => $colors,
             'stuffs' => $stuffs,
-            'seatNumbers' => $seatNumbers
+            'seatNumbers' => $seatNumbers,
+            'sizes' => $sizes,
         ];
         return view('admin.product.create', $data);
     }
@@ -42,6 +45,7 @@ class ProductController extends Controller
 
     public function storeProduct(Request $request)
     {
+        // dd($request);
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -71,7 +75,8 @@ class ProductController extends Controller
                 'image' => $thumbnail,
                 'seatnumber_id' => $request->seatnumber_id,
                 'stuff_id' => $request->stuff_id,
-                'size' => $request->size,
+                'size_id' => $request->size_id,
+                'sold_qty' => $request->sold_qty,
             ]);
 
             foreach ($request->images as $image) {
@@ -122,6 +127,7 @@ class ProductController extends Controller
             $colors = Color::all();
             $stuffs = Stuff::all();
             $seatNumbers = Seat::all();
+            $sizes = Size::all();
             $subcategories = SubCategory::where('category_id', $product->category_id)->get();
             $data = [
                 'active' => 'product',
@@ -131,7 +137,8 @@ class ProductController extends Controller
                 'subcategories' => $subcategories,
                 'colors' => $colors,
                 'stuffs' => $stuffs,
-                'seatNumbers' => $seatNumbers
+                'seatNumbers' => $seatNumbers,
+                'sizes' => $sizes,
             ];
             return view('admin.product.edit', $data);
         } catch (Exception $e) {

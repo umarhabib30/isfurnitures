@@ -87,9 +87,17 @@
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="size" class="form-label">Size</label>
-
-                        <input type="text" name="size" id="size" class="form-control">
+                        <label for="category-dropdown" class="form-label">Size</label>
+                        <select name="size_id" id="category-dropdown" class="form-control">
+                            <option value="">Select One Value Only</option>
+                            @foreach ($sizes as $key => $size)
+                                <option value="{{ $size->id }}">{{ $size->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="sold_qty" class="form-label">Sold Qty</label>
+                        <input type="number" name="sold_qty" id="sold_qty" class="form-control" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="description" class="form-label">Product Description</label>

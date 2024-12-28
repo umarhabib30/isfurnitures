@@ -21,7 +21,9 @@ class Product extends Model
         'color_id',
         'seatnumber_id',
         'stuff_id',
-        'size',
+        'size_id',
+        'sold_qty'
+
     ];
 
     /**
@@ -67,5 +69,9 @@ class Product extends Model
     public function stuff()
     {
         return $this->belongsTo(Stuff::class, 'stuff_id');
+    }
+    public function size()
+    {
+        return $this->belongsTo(Size::class);
     }
 }

@@ -13,12 +13,12 @@ class MailController extends Controller
 {
     public function index($id)
     {
-        
+
         $order = Order::find($id);
         $items = OrderItem::where('order_id', $id)->get();
 
         if ($order) {
-            $email = 'info@thesofahub.com';  
+            $email = 'mumarhabibrb102@gmail.com';
 
             $mailData = [
                 'title' => 'Mail from Sofa Hub',
@@ -27,7 +27,7 @@ class MailController extends Controller
             ];
 
             Mail::to($email)->send(new OrderMail($mailData));
-
+            alert()->success('Your order has been successfully placed!', 'Thank you for shopping with us. We will get in touch soon.');
             return redirect()->route('home');
         }
     }

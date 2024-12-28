@@ -51,8 +51,9 @@ class CheckOutController extends Controller
         if ($order) {
             Cart::clear();
         }
-        return redirect()->route('home');
-        // return redirect()->route('email.detail', ['id' => $order->id]);
+        alert()->success('Your order has been successfully placed!', 'Thank you for shopping with us. We will get in touch soon.');
+        // return redirect()->route('home');
+        return redirect()->route('email.detail', ['id' => $order->id]);
 
     }
 }
