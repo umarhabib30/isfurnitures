@@ -18,8 +18,7 @@ class MailController extends Controller
         $items = OrderItem::where('order_id', $id)->get();
 
         if ($order) {
-            // $email = 'mumarhabibrb102@gmail.com';
-            $email = 'b633090@gmail.com';
+            $email = 'mumarhabibrb102@gmail.com';
 
 
             $mailData = [
