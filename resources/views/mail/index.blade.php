@@ -107,7 +107,7 @@
             <div class="col-md-6">
                 <h6><strong>Billing Details:</strong></h6>
                 <p><strong>Name:</strong> {{ $mailData['order']['firstname'] }} {{ $mailData['order']['lastname'] }}</p>
-                <p><strong>Email:</strong> {{ $mailData['order']['email'] }}</p>
+                <p><strong>Email:</strong> {{ $mailData['order']['email'] ?? 'no email' }}</p>
                 <p><strong>Phone No:</strong> {{ $mailData['order']['phone_no'] }}</p>
                 <p><strong>Address:</strong> {{ $mailData['order']['address'] }}, {{ $mailData['order']['city'] }},
                     {{ $mailData['order']['zip_code'] ?? 'No zip Code' }}</p>
@@ -131,10 +131,11 @@
             </thead>
             <tbody>
                 @foreach ($mailData['items'] as $index => $item)
+                    {{-- {{dd($item['product']['image'] )}} --}}
                     <tr>
                         <td class="align-middle text-center">{{ $index + 1 }}</td>
                         <td class="align-middle text-center">
-                            <img src="{{ public_html($item['product']['image']) }}" class="product-image"
+                            <img src="{{ env('APP_URL') . '/' . $item['product']['image'] }}" class="product-image"
                                 alt="Product Image">
                         </td>
                         <td class="align-middle text-center">{{ $item['product']['name'] }}</td>
