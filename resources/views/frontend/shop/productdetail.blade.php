@@ -118,7 +118,7 @@
                 <div class="user-reviews border p-3" style="max-height: 400px; overflow-y: scroll;">
                     @foreach ($reviews as $review)
                         <div class="review mb-3 p-2 border-bottom">
-                            <p class="fw-bold mb-1">Email: {{ $review->user->name }}</p>
+                            <p class="fw-bold mb-1">User Name: {{ $review->user->name }}</p>
                             <img src="{{ asset($review->image) }}" alt="User 1 Image" class="img-fluid rounded mb-2"
                                 style="width: 50px; height: 50px;">
                             <p>Review: {{ $review->notes }}</p>

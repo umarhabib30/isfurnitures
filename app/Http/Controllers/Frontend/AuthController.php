@@ -15,7 +15,8 @@ class AuthController extends Controller
         return view('frontend.auth.register', ['active' => 'register', 'title' => 'Register']);
     }
 
-    public function loginView(){
+    public function loginView()
+    {
         return view('frontend.auth.login');
     }
 
@@ -23,22 +24,26 @@ class AuthController extends Controller
     {
         try {
             if ($request->password != $request->confirm_password) {
-                alert()->error('error', 'Password and Confirm Password Not matc');
-                return;
+                alert()->error('error', 'Password and Confirm Password do not match');
+                return redirect()->back();
             }
 
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => bcrypt($request->password),
             ]);
+
             if ($user) {
-                return redirect()->route('login.view');
+                Auth::guard('user')->login($user);
+                return redirect()->route('home');
             }
         } catch (\Exception $e) {
             alert()->error('error', 'An error occurred: ' . $e->getMessage());
+            return redirect()->back();
         }
     }
+
 
     public function loginUser(Request $request)
     {
@@ -68,5 +73,4 @@ class AuthController extends Controller
             return response()->json(['message' => 'Not Authenticated'], 401); // User is not authenticated
         }
     }
-    
 }

@@ -12,6 +12,10 @@ class CheckOutController extends Controller
 {
     public function checkout()
     {
+        if (Cart::qty() <= 0) {
+            alert()->error('Your cart is empty!', 'Please add some products to your cart before placing an order.');
+            return redirect()->back();
+        }
         $heading = 'Checkout Now';
         $description = 'Complete your purchase securely and conveniently.';
         return view('frontend.checkout.checkout', [
@@ -24,6 +28,10 @@ class CheckOutController extends Controller
 
     public function orderStore(Request $request)
     {
+        if (Cart::qty() <= 0) {
+            alert()->error('Your cart is empty!', 'Please add some products to your cart before placing an order.');
+            return redirect()->back();
+        }
         $order = Order::create([
             'firstname' => $request->firstName,
             'lastname' => $request->lastname,
@@ -54,6 +62,5 @@ class CheckOutController extends Controller
         alert()->success('Your order has been successfully placed!', 'Thank you for shopping with us. We will get in touch soon.');
         // return redirect()->route('home');
         return redirect()->route('email.detail', ['id' => $order->id]);
-
     }
 }

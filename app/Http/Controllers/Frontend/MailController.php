@@ -29,7 +29,7 @@ class MailController extends Controller
 
             Mail::to($email)->send(new OrderMail($mailData));
 
-           
+
             alert()->success('Your order has been successfully placed!', 'Thank you for shopping with us. We will get in touch soon.');
             return redirect()->route('home');
         }

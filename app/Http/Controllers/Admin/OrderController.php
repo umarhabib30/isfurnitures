@@ -28,6 +28,6 @@ class OrderController extends Controller
         $order = Order::where('id', $id)->first();
         $orderItems = OrderItem::with('product')->where('order_id', $order->id)->get();
         $pdf = PDF::loadView('pdf.orderinvoice', ['order' => $order, 'orderItems' => $orderItems]);
-        return $pdf->download('orderInvoice');
+        return $pdf->download('orderInvoice.pdf');
     }
 }
