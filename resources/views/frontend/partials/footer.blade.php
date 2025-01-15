@@ -1,35 +1,25 @@
 <footer class="footer-section">
     <div class="container relative">
-        <div class="row g-5 mb-5">
-            <div class="col-lg-4">
+        <div class="row  mb-5">
+            <div class="col-md-6">
                 <div class="mb-4 footer-logo-wrap text-center text-lg-start">
                     <a href="{{ route('home') }}" class="footer-logo">
-                        <img class="navbar-brand" src="{{ asset('assets/images/logo2.svg') }}" >
+                        <img class="navbar-brand" src="{{ asset('assets/images/logo2.svg') }}">
                     </a>
                 </div>
-                
-                <ul class="list-unstyled custom-social d-flex justify-content-center justify-content-lg-start">
-                    <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-                </ul>
 
                 <!-- Contact Info Below Logo -->
                 <div class="contact-info text-center text-lg-start mt-4">
                     <p><strong>Contact Us:</strong></p>
-                    <p>Phone: <a href="https://wa.me/447768379202" target="_blank">+44 7768 379202</a></p>
-                    <p>Email: <a href="mailto:info@thesofahub.com">info@thesofahub.com</a></p>
+                    <p>Phone: <a href="https://wa.me/447768379202" target="_blank"
+                            style="text-decoration: none; color:#5B6A55">+44 7768 379202</a></p>
+                    <p>Email: <a href="mailto:info@thesofahub.com"
+                            style="text-decoration: none;color:#5B6A55">info@thesofahub.com</a></p>
                 </div>
             </div>
 
-            <div class="col-lg-8">
+            <div class="col-md-6">
                 <div class="row links-wrap">
-                    <div class="col-6 col-sm-6 col-md-3 d-flex flex-column align-items-center about-section">
-                        <ul class="list-unstyled text-center">
-                            <li><a href="{{ route('about.view') }}">About us</a></li>
-                            <li><a href="{{ route('shop.view') }}">Shop</a></li>
-                            <li><a href="{{ route('contact.view') }}">Contact us</a></li>
-                        </ul>
-                    </div>
                     <div class="col-12 col-sm-12 col-md-9">
                         <div class="subscription-form d-flex flex-column align-items-center justify-content-center">
                             <h3 class="d-flex align-items-center justify-content-center mb-3">
@@ -41,11 +31,9 @@
                             </h3>
                             <form action="#"
                                 class="d-flex flex-column flex-sm-row align-items-center gap-2 w-100 justify-content-center">
-                                <input type="text" class="form-control w-auto" placeholder="Enter your name"
-                                    style="flex: 1;">
-                                <input type="email" class="form-control w-auto" placeholder="Enter your email"
-                                    style="flex: 1;">
-                                <button class="btn btn-primary w-auto" style="flex: 1;">
+                                <input type="text" class="form-control" placeholder="Enter your name" style="flex: 1; max-width: 250px;">
+                                <input type="email" class="form-control" placeholder="Enter your email" style="flex: 1; max-width: 250px;">
+                                <button class="btn btn-primary" style="flex: 1; max-width: 100px;">
                                     <span class="fa fa-paper-plane"></span>
                                 </button>
                             </form>
@@ -62,7 +50,7 @@
                         <script>
                             document.write(new Date().getFullYear());
                         </script>. All Rights Reserved. &mdash; Designed with love by
-                        <a href="https://thesofahub.com/">thesofahub.com</a> 
+                        <a href="https://thesofahub.com/">thesofahub.com</a>
                     </p>
                 </div>
             </div>
@@ -75,7 +63,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 5px; /* Reduced gap */
+        gap: 10px; /* Increased gap between fields */
         width: 100%;
     }
 

@@ -9,7 +9,7 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($latestSubcategories as $latestsubcategory)
-                            <div class="col-12 col-md-6 col-lg-3 mb-5">
+                            <div class="col-6 col-md-6 col-lg-3 mb-5">
                                 <a class="product-item d-flex flex-column"
                                     href="{{ route('subcategory.products', $latestsubcategory->id) }}"
                                     style="height: 100%; display: flex; flex-direction: column;">
@@ -25,6 +25,7 @@
                             </div>
                         @endforeach
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -35,31 +36,16 @@
         <div class="container">
             <div class="row">
                 <!-- Start Column 1 -->
-                <div class="col-md-12 col-lg-3  mb-lg-0">
+                <div class="col-md-12 col-lg-3 mb-lg-0">
                     <h2 class="mb-4 section-title">Explore Our Latest Products</h2>
-                    <p class="mb-4">Discover our newest collection, designed to bring comfort, style, and durability to
-                        your living space. Each product is carefully selected to ensure long-lasting satisfaction.</p>
-
-
+                    <p class="mb-4">Discover our newest collection, designed to bring comfort, style, and durability to your living space. Each product is carefully selected to ensure long-lasting satisfaction.</p>
                     <p><a href="{{ route('shop.view') }}" class="btn">Shop Now</a></p>
                 </div>
                 <!-- End Column 1 -->
-
-                <!-- Start Column 2 -->
+            
+                <!-- Start Column 2 (Products) -->
                 @foreach ($latestProducts as $latestProduct)
-                    {{-- <div class="col-6 col-md-4 col-lg-3  mb-md-4"> 
-                        <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
-                            <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
-                                alt="{{ $latestProduct->name }}">
-                            <h3 class="product-title">{{ $latestProduct->name }}</h3>
-                            <strong class="product-price">£{{ $latestProduct->price }}</strong>
-                         
-
-                            <button type="submit" product-id="{{ $latestProduct->id }}"
-                                class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
-                        </a>
-                    </div> --}}
-                    <div class="col-12 col-md-6 col-lg-3 mb-5">
+                    <div class="col-6 col-md-6 col-lg-3 mb-5">
                         <a class="product-item d-flex flex-column" href="{{ route('product.detail', $latestProduct->id) }}"
                             style="height: 100%; display: flex; flex-direction: column;">
                             <!-- Adjust image size to 4:3 aspect ratio -->
@@ -72,11 +58,12 @@
                             <strong class="product-price" style="flex-grow: 1;">£{{ $latestProduct->price }}</strong>
                             <button type="submit" product-id="{{ $latestProduct->id }}"
                                 class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
-
                         </a>
                     </div>
                 @endforeach
+                <!-- End Column 2 -->
             </div>
+            
         </div>
     </div>
 
@@ -88,7 +75,7 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($allProducts as $latestProduct)
-                            <div class="col-12 col-md-6 col-lg-3 mb-5">
+                            <div class="col-6 col-md-6 col-lg-3 mb-5">
                                 <a class="product-item d-flex flex-column"
                                     href="{{ route('product.detail', $latestProduct->id) }}"
                                     style="height: 100%; display: flex; flex-direction: column;">
@@ -103,11 +90,11 @@
                                         style="flex-grow: 1;">£{{ $latestProduct->price }}</strong>
                                     <button type="submit" product-id="{{ $latestProduct->id }}"
                                         class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
-
                                 </a>
                             </div>
                         @endforeach
                     </div>
+                    
                 </div>
             </div>
 

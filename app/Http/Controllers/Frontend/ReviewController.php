@@ -15,6 +15,10 @@ class ReviewController extends Controller
         try {
             $user = auth()->user()->id;
 
+            if (!$user) {
+                alert()->error('Please login before you can leave a review');
+                return redirect()->back(); 
+            }
             if ($request->hasFile('image')) {
                 $image = ImageHelper::saveImage($request->image, 'review');
             } else {

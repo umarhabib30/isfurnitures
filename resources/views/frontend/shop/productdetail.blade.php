@@ -22,19 +22,20 @@
                             @else
                                 <p>No images found.</p>
                             @endif
-                            <img src="{{ asset($product->image) }}" alt=""
-                                class="rounded shadow-sm slider-image"
+                            <img src="{{ asset($product->image) }}" alt="" class="rounded shadow-sm slider-image"
                                 style="padding: 5px; cursor: pointer; border: none; height: 70px; width: 70px;"
                                 onclick="changeMainImage(this.src)">
                         </div>
                     </div>
 
                     <!-- Modal for zoomed-in image -->
-                    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-body text-center">
-                                    <img id="zoomedImage" src="{{ asset($product->image) }}" alt="Zoomed Image" class="img-fluid">
+                                    <img id="zoomedImage" src="{{ asset($product->image) }}" alt="Zoomed Image"
+                                        class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -62,7 +63,8 @@
                                             <p class="mb-1">Rate the Product:</p>
                                             <div id="starRating" class="d-flex">
                                                 @for ($i = 1; $i <= 5; $i++)
-                                                    <i class="far fa-star text-muted rating-star" data-value="{{ $i }}"></i>
+                                                    <i class="far fa-star text-muted rating-star"
+                                                        data-value="{{ $i }}"></i>
                                                 @endfor
                                             </div>
                                             <input type="hidden" name="rating" id="ratingInput" value="0">
@@ -77,7 +79,8 @@
                                         <!-- Upload Image -->
                                         <div class="col-md-6">
                                             <input type="file" name="image" class="form-control input-default"
-                                                placeholder="Upload Image" style="border: 1px solid black; margin-top: 30px; height: 40px;">
+                                                placeholder="Upload Image"
+                                                style="border: 1px solid black; margin-top: 30px; height: 40px;">
                                         </div>
 
                                         <!-- Submit Button -->
@@ -98,11 +101,9 @@
                     <div class="col-11 col-md-8 mt-3 text-dark">
                         <p class="fs-5 fw-bold text-primary">£{{ $product->price }}</p>
                     </div>
+
                     <div class="col-11 col-md-8 text-dark">
-                        <p><b>Category: </b><span class="ms-3">{{ $product->category->name }}</span></p>
-                    </div>
-                    <div class="col-11 col-md-8 text-dark">
-                        <p><b>Sub Category: </b><span class="ms-3">{{ $product->subcategory->name }}</span></p>
+                        <p><b>Sofa Type: </b><span class="ms-3">{{ $product->subcategory->name }}</span></p>
                     </div>
                     <div class="col-11 col-md-8 text-dark">
                         <p><b>Color:</b> <span class="ms-3">{{ $product->color->name ?? 'not available' }}</span></p>
@@ -111,7 +112,8 @@
                         <p><b>Stuff:</b> <span class="ms-3">{{ $product->stuff->name ?? 'not available' }}</span></p>
                     </div>
                     <div class="col-11 col-md-8 text-dark">
-                        <p><b>Seat:</b> <span class="ms-3">{{ $product->seat->seat_number ?? 'not available' }}</span></p>
+                        <p><b>Seat:</b> <span class="ms-3">{{ $product->seat->seat_number ?? 'not available' }}</span>
+                        </p>
                     </div>
                     <div class="col-11 col-md-8 text-dark">
                         <p><b>Size:</b> <span class="ms-3">{{ $product->size->name ?? 'not available' }}</span></p>
@@ -125,14 +127,15 @@
                             </span>
                         </p>
                     </div>
-                    
-                    <div class="col-11 col-md-10 text-muted">
+
+                    <div class="col-11 col-md-10 ">
                         <p class="ps-md-5">{{ $product->description }}</p>
                     </div>
                     <div class="col-8 d-flex justify-content-around mt-2">
-                        <a href="#" class="btn btn-dark px-4 py-2 shadow-sm w-100 cart-add" product-id="{{ $product->id }}">
+                        <button type="submit" class="btn btn-dark px-4 py-2 shadow-sm w-100 cart-add"
+                            product-id="{{ $product->id }}">
                             Add to Cart
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -144,7 +147,7 @@
                 <div class="user-reviews border p-3" style="max-height: 400px; overflow-y: scroll;">
                     @foreach ($reviews as $review)
                         <div class="review mb-3 p-2 border-bottom">
-                            <p class="fw-bold mb-1">Name: {{ $review->user->name }}</p>
+                            <p class="fw-bold mb-1">User Name: {{ $review->user->name }}</p>
                             <p>
                                 @php
                                     $reviewRating = $review->rating ?? 0;
@@ -166,36 +169,7 @@
     </div>
 @endsection
 
-@section('css')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-<style>
-    .fa-star {
-        font-size: 18px;
-    }
 
-    .text-warning {
-        color: #ffc107 !important;
-    }
-
-    .text-muted {
-        color: #ddd !important;
-    }
-
-    .rating-star {
-        font-size: 24px;
-        cursor: pointer;
-        margin-right: 5px;
-    }
-
-    .rating-star.fas {
-        color: #ffc107;
-    }
-
-    .rating-star.far {
-        color: #ddd;
-    }
-</style>
-@endsection
 
 
 
@@ -204,6 +178,7 @@
 @section('js')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready(function() {
             $('body').on('click', '.cart-add', function(e) {
@@ -278,41 +253,11 @@
             document.getElementById('mainImage').src = newSrc;
         }
 
-        document.getElementById("mainImage").onclick = function () {
+        document.getElementById("mainImage").onclick = function() {
             const zoomedImage = document.getElementById("zoomedImage");
-            zoomedImage.src = this.src;  
+            zoomedImage.src = this.src;
         }
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const stars = document.querySelectorAll('.rating-star');
-            const ratingInput = document.getElementById('ratingInput');
-    
-            stars.forEach(star => {
-                star.addEventListener('click', function () {
-                    const rating = this.getAttribute('data-value');
-                    ratingInput.value = rating;
-    
-                    // Update star visuals
-                    updateStarRating(rating);
-                });
-            });
-    
-            function updateStarRating(rating) {
-                stars.forEach(star => {
-                    const starValue = star.getAttribute('data-value');
-                    if (starValue <= rating) {
-                        star.classList.remove('far', 'text-muted');
-                        star.classList.add('fas', 'text-warning');
-                    } else {
-                        star.classList.remove('fas', 'text-warning');
-                        star.classList.add('far', 'text-muted');
-                    }
-                });
-            }
-        });
-    </script>
-    
 @endsection
 
 @section('css')
@@ -329,15 +274,71 @@
                 height: auto !important;
             }
         }
-        .main-image, .slider-image {
+
+        .main-image,
+        .slider-image {
             background-color: transparent !important;
         }
     </style>
-   
-    
-    <script>
-        function changeMainImage(src) {
-            document.getElementById('mainImage').src = src;
+
+
+
+    <style>
+        .fa-star {
+            font-size: 18px;
         }
+
+        .text-warning {
+            color: #ffc107 !important;
+        }
+
+        .text-muted {
+            color: #ddd !important;
+        }
+
+        .rating-star {
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .rating-star.fas {
+            color: #ffc107;
+        }
+
+        .rating-star.far {
+            color: #ddd;
+        }
+    </style>
+@endsection
+@section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.rating-star');
+            const ratingInput = document.getElementById('ratingInput');
+
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-value');
+                    ratingInput.value = rating;
+
+                    // Update star visuals
+                    updateStarRating(rating);
+                });
+            });
+
+            function updateStarRating(rating) {
+                stars.forEach(star => {
+                    const starValue = star.getAttribute('data-value');
+                    if (starValue <= rating) {
+                        star.classList.remove('far', 'text-muted');
+                        star.classList.add('fas', 'text-warning');
+                    } else {
+                        star.classList.remove('fas', 'text-warning');
+                        star.classList.add('far', 'text-muted');
+                    }
+                });
+            }
+        });
     </script>
 @endsection
