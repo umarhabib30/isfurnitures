@@ -33,13 +33,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Sr#</th>
-                                    <th>Category</th>
-                                    <th>Sub Category</th>
-                                </tr>
-                            </tfoot>
+                           
                         </table>
                     </div>
                 </div>

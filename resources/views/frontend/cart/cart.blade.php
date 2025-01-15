@@ -20,7 +20,8 @@
                                 @foreach (App\Helpers\Cart::products() as $product)
                                     <tr class="remove-row">
                                         <td class="product-thumbnail">
-                                            <img src="{{ $product->image }}" alt="Image" class="img-fluid" height="50px" width="50px">
+                                            <img src="{{ $product->image }}" alt="Image" class="img-fluid" height="50px"
+                                                width="50px">
                                         </td>
                                         <td class="product-name">
                                             <h2 class="h5 text-black">{{ $product->name }}</h2>
@@ -64,12 +65,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="row mb-5">
-                        
+
                         <div class="col-md-6">
-                            <a class="btn btn-outline-black btn-sm btn-block" href="{{route('shop.view')}}" >Continue Shopping</a>
+                            <a class="btn btn-outline-black btn-sm btn-block" href="{{ route('shop.view') }}">Continue
+                                Shopping</a>
                         </div>
                     </div>
-                   
+
                 </div>
                 <div class="col-md-6 pl-5">
                     <div class="row justify-content-end">
@@ -92,7 +94,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button class="btn btn-black btn-lg py-3 btn-block"
-                                        onclick="window.location='{{route('checkout.view')}}'">Proceed To Checkout</button>
+                                        onclick="window.location='{{ route('checkout.view') }}'">Proceed To
+                                        Checkout</button>
                                 </div>
                             </div>
                         </div>
@@ -142,36 +145,7 @@
             });
         });
 
-        // Remove product from cart
-        function remove(id) {
-            let data = {
-                id: id,
-                expectsJson: true,
-                _token: '{{ csrf_token() }}'
-            };
-
-            $.ajax({
-                url: "{{ route('cart.product.remove') }}",
-                type: 'POST',
-                data: data,
-                success: function(response) {
-                    // Remove the row of the product from the table
-                    $('.remove-row').each(function() {
-                        if ($(this).find('.remove').attr('product-id') === id) {
-                            $(this).remove();
-                        }
-                    });
-
-                    // Update grand total after product removal
-                    var totalprice = response.grandTotal;
-                    $('#grand-total').text(totalprice);
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        }
-
+       
         // Increment product quantity
         function increment(id) {
             let data = {
@@ -187,7 +161,7 @@
                 success: function(response) {
                     // Update quantity input field for the specific product
                     var quantityInput = $('.input-' + id);
-                    var quantity = parseInt(quantityInput.val()) + 1;
+                    var quantity = parseInt(quantityInput.val());
                     quantityInput.val(quantity); // Set new quantity in input
 
                     // Get product price and calculate the total
@@ -220,28 +194,58 @@
                 type: 'POST',
                 data: data,
                 success: function(response) {
-                    var quantityInput = $('.input-' + id);
-                    var quantity = parseInt(quantityInput.val());
+                    console.log(response)
+                    let quantityInput = $('.input-' + id);
+                    let quantity = parseInt(quantityInput.val());
 
-                    // Decrease the quantity if greater than 0
                     if (quantity > 1) {
-                        quantity -= 1;
-                        quantityInput.val(quantity); // Update the quantity input field
-
-                        var price = parseFloat($('.prod-price-' + id).text()); // Get the product price
-                        var total = quantity * price; // Calculate new total for the product
-                        $('.cost-' + id).text(total.toFixed(2)); // Update the subtotal for this product
-                    } else {
-                        remove(id); // Remove the product if quantity is 0 or less
+                        quantity = 1;
+                        quantityInput.val(quantity);
+                        let price = parseFloat($('.prod-price-' + id).text()); 
+                        let total = quantity * price; 
+                        $('.cost-' + id).text(total.toFixed(2)); 
+                    } else if (quantity === 1) {
+                        remove(id);
+                      
                     }
-
-                    updateGrandTotal(); // Recalculate the grand total after updating the quantity and subtotal
+                    updateGrandTotal();
                 },
                 error: function(error) {
                     console.log(error);
                 }
             });
         }
+
+         // Remove product from cart
+         function remove(id) {
+            let data = {
+                id: id,
+                expectsJson: true,
+                _token: '{{ csrf_token() }}'
+            };
+
+            $.ajax({
+                url: "{{ route('cart.product.remove') }}",
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    // Remove the row of the product from the table
+                    $('.remove-row').each(function() {
+                        if ($(this).find('.remove').attr('product-id') === id) {
+                            $(this).remove();
+                        }
+                    });
+
+                    // Update grand total after product removal
+                    var totalprice = response.grandTotal;
+                    $('#grand-total').text(totalprice);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
 
         // Function to update the grand total
         function updateGrandTotal() {

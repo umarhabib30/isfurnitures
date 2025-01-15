@@ -28,8 +28,8 @@ class CartController extends Controller
     public function decrease(Request $request)
     {
     
+        
         $response = Cart::decrease($request->id);
-      
         return $response->json();
     }
     public function destroy(Request $request)
