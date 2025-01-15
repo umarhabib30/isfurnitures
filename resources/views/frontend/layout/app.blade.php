@@ -33,7 +33,7 @@
     <!-- End Footer Section -->
 
 
-    @include('frontend.partials.css')
+    @include('frontend.partials.js')
     @yield('js')
 </body>
 

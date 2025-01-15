@@ -26,6 +26,7 @@ class ReviewController extends Controller
                 'product_id' => $request->productId,
                 'notes' => $request->notes,
                 'image' => $image,
+                'rating' => $request->rating,
             ]);
 
             if ($review) {

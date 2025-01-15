@@ -9,12 +9,18 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($latestSubcategories as $latestsubcategory)
-                            <div class="col-6 col-md-4 col-lg-3 mb-3 mb-md-4">
-                                <!-- Reduced margin for mobile and medium screens -->
-                                <a class="product-item" href="{{ route('subcategory.products', $latestsubcategory->id) }}">
-                                    <img src="{{ $latestsubcategory->image }}" class="img-fluid product-thumbnail"
-                                        alt="{{ $latestsubcategory->name }}">
-                                    <h3 class="product-title">{{ $latestsubcategory->name }}</h3>
+                            <div class="col-12 col-md-6 col-lg-3 mb-5">
+                                <a class="product-item d-flex flex-column"
+                                    href="{{ route('subcategory.products', $latestsubcategory->id) }}"
+                                    style="height: 100%; display: flex; flex-direction: column;">
+                                    <!-- Adjust image size to 4:3 aspect ratio -->
+                                    <div class="product-image mb-2"
+                                        style="width: 100%; padding-top: 75%; position: relative;">
+                                        <img src="{{ asset($latestsubcategory->image) }}"
+                                            class="img-fluid product-thumbnail" alt="{{ $latestsubcategory->name }}"
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <h3 class="product-title" style="flex-grow: 1;">{{ $latestsubcategory->name }}</h3>
                                 </a>
                             </div>
                         @endforeach
@@ -41,17 +47,32 @@
 
                 <!-- Start Column 2 -->
                 @foreach ($latestProducts as $latestProduct)
-            
-                    <div class="col-6 col-md-4 col-lg-3  mb-md-4"> <!-- Reduced margin for mobile and medium screens -->
+                    {{-- <div class="col-6 col-md-4 col-lg-3  mb-md-4"> 
                         <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
                             <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
                                 alt="{{ $latestProduct->name }}">
                             <h3 class="product-title">{{ $latestProduct->name }}</h3>
                             <strong class="product-price">£{{ $latestProduct->price }}</strong>
-                            {{-- <h6>Sold Quantity :{{$latestProduct->total_sold_qty}}</h6> --}}
+                         
 
                             <button type="submit" product-id="{{ $latestProduct->id }}"
                                 class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
+                        </a>
+                    </div> --}}
+                    <div class="col-12 col-md-6 col-lg-3 mb-5">
+                        <a class="product-item d-flex flex-column" href="{{ route('product.detail', $latestProduct->id) }}"
+                            style="height: 100%; display: flex; flex-direction: column;">
+                            <!-- Adjust image size to 4:3 aspect ratio -->
+                            <div class="product-image" style="width: 100%; padding-top: 75%; position: relative;">
+                                <img src="{{ asset($latestProduct->image) }}" class="img-fluid product-thumbnail"
+                                    alt="{{ $latestProduct->name }}"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3 class="product-title" style="flex-grow: 1;">{{ $latestProduct->name }}</h3>
+                            <strong class="product-price" style="flex-grow: 1;">£{{ $latestProduct->price }}</strong>
+                            <button type="submit" product-id="{{ $latestProduct->id }}"
+                                class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
+
                         </a>
                     </div>
                 @endforeach
@@ -67,16 +88,19 @@
                 <div class="container">
                     <div class="row">
                         @foreach ($allProducts as $latestProduct)
-                            <div class="col-6 col-md-4 col-lg-3 mb-md-4">
-                                <!-- Reduced margin for mobile and medium screens -->
-                                <a class="product-item" href="{{ route('product.detail', $latestProduct->id) }}">
-                                    <img src="{{ $latestProduct->image }}" class="img-fluid product-thumbnail"
-                                        alt="{{ $latestProduct->name }}">
-                                    <h3 class="product-title">{{ $latestProduct->name }}</h3>
-                                    <strong class="product-price">£{{ $latestProduct->price }}</strong>
-                                    {{-- <h6>Sold Quantity :{{$latestProduct->total_sold_qty}}</h6> --}}
-
-
+                            <div class="col-12 col-md-6 col-lg-3 mb-5">
+                                <a class="product-item d-flex flex-column"
+                                    href="{{ route('product.detail', $latestProduct->id) }}"
+                                    style="height: 100%; display: flex; flex-direction: column;">
+                                    <!-- Adjust image size to 4:3 aspect ratio -->
+                                    <div class="product-image" style="width: 100%; padding-top: 75%; position: relative;">
+                                        <img src="{{ asset($latestProduct->image) }}" class="img-fluid product-thumbnail"
+                                            alt="{{ $latestProduct->name }}"
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <h3 class="product-title" style="flex-grow: 1;">{{ $latestProduct->name }}</h3>
+                                    <strong class="product-price"
+                                        style="flex-grow: 1;">£{{ $latestProduct->price }}</strong>
                                     <button type="submit" product-id="{{ $latestProduct->id }}"
                                         class="btn btn-primary btn-sm w-100 cart-add">Add to Cart</button>
 

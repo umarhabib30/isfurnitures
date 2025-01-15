@@ -1,11 +1,11 @@
 <nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="Furni navigation bar">
-    <div class="container">
+    <div class="container-fluid">
         <a href="{{route('home')}}">
             <img class="navbar-brand" src="{{ asset('assets/images/logo2.svg') }}">
         </a>
 
         <!-- Mobile View -->
-        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5 d-md-none" id="mobileview">
+        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 d-md-none" id="mobileview">
             <li>
                 <a class="nav-link" href="{{route('register.view')}}">
                     <img src="{{ asset('assets/images/user.svg') }}">
@@ -60,6 +60,11 @@
 
 <!-- Start Hero Section -->
 <style>
+    .container-fluid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
     .cart-qty {
         position: absolute;
         top: -5px;
@@ -80,6 +85,12 @@
     .nav-link {
         position: relative; 
     }
+
+    /* Adjusting the margin in the mobile view */
+    .custom-navbar-cta {
+        margin-left: 0 !important; /* Remove extra margin */
+    }
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>

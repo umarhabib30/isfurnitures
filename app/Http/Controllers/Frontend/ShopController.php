@@ -104,6 +104,7 @@ class ShopController extends Controller
         $description = 'Explore top products, great prices, fast delivery.';
         $product = Product::with(['category', 'subcategory', 'images', 'color','stuff','seat'])->where('id', $id)->first();
         $reviews = Review::where('product_id', $id)->get();
+        $averageRating = $product ? $product->average_rating : 0;
         return view('frontend.shop.productdetail', [
             'active' => 'shop',
             'title' => 'Product Detail',
@@ -111,6 +112,7 @@ class ShopController extends Controller
             'heading' => $heading,
             'description' => $description,
             'reviews' => $reviews,
+            'averageRating' => $averageRating,
         ]);
     }
 }

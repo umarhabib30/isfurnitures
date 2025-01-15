@@ -25,6 +25,7 @@ class Product extends Model
         'sold_qty'
 
     ];
+    protected $appends = ['average_rating'];
 
     /**
      * category
@@ -73,5 +74,13 @@ class Product extends Model
     public function size()
     {
         return $this->belongsTo(Size::class);
+    }
+    public function rating()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function getAverageRatingAttribute()
+    {
+        return $this->rating()->avg('rating') ?? 0;
     }
 }
