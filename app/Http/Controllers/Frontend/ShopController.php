@@ -15,7 +15,6 @@ class ShopController extends Controller
 {
     public function shop(Request $request)
     {
-
         $heading = 'Shop the Best';
         $description = 'Explore top products, great prices, fast delivery.';
         $query = Product::with(
@@ -25,6 +24,7 @@ class ShopController extends Controller
             'seat'
         );
 
+        // Apply filters if they exist
         if ($request->has('color')) {
             $query->where('color_id', $request->color);
         }
@@ -39,8 +39,13 @@ class ShopController extends Controller
             $query->where('seatNumber_id', $request->seatNumber);
         }
 
-        $products = $query->paginate(8);
+        // Order by latest products
+        $query->orderBy('created_at', 'desc');
 
+        // Paginate the results
+        $products = $query->paginate(20);
+
+        // Fetch filter data
         $colors = Color::all();
         $subcategories = SubCategory::all();
         $stuffs = Stuff::all();
@@ -58,6 +63,7 @@ class ShopController extends Controller
             'seatNumbers' => $seatNumbers
         ]);
     }
+
 
     public function filterProducts(Request $request)
     {
@@ -102,7 +108,7 @@ class ShopController extends Controller
     {
         $heading = 'Shop the Best';
         $description = 'Explore top products, great prices, fast delivery.';
-        $product = Product::with(['category', 'subcategory', 'images', 'color','stuff','seat'])->where('id', $id)->first();
+        $product = Product::with(['category', 'subcategory', 'images', 'color', 'stuff', 'seat'])->where('id', $id)->first();
         $reviews = Review::where('product_id', $id)->get();
         $averageRating = $product ? $product->average_rating : 0;
         return view('frontend.shop.productdetail', [

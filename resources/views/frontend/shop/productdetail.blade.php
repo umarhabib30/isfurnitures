@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="accordion col-6 mt-5 pt-3 pb-4" id="reviewAccordion">
+                    <div class="accordion col-6 mt-5 pt-3" id="reviewAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingReview">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -87,31 +87,6 @@
                                         <button type="submit" class="btn btn-primary mt-3">Submit Review</button>
                                     </form>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <h2 class="fw-bold"><u>Reviews</u></h2>
-                        <div class="col-md-6 p-4">
-                            <div class="user-reviews border p-3" style="max-height: 400px; overflow-y: scroll;">
-                                @foreach ($reviews as $review)
-                                    <div class="review mb-3 p-2 border-bottom">
-                                        <p class="fw-bold mb-1">User Name: {{ $review->user->name }}</p>
-                                        <p>
-                                            @php
-                                                $reviewRating = $review->rating ?? 0;
-                                            @endphp
-                                            @for ($i = 1; $i <= 5; $i++)
-                                                <i class="fas fa-star {{ $i <= $reviewRating ? 'text-warning' : 'text-muted' }}"></i>
-                                            @endfor
-                                        </p>
-                                        @if ($review->image)
-                                            <img src="{{ asset($review->image) }}" alt="User Image" class="img-fluid rounded mb-2"
-                                                style="width: 50px; height: 50px;">
-                                        @endif
-                                        <p>Review: {{ $review->notes }}</p>
-                                    </div>
-                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -169,7 +144,31 @@
             </div>
         </div>
 
-       
+        <div class="row">
+            <h2 class="fw-bold"><u>Reviews</u></h2>
+            <div class="col-md-6 p-4">
+                <div class="user-reviews border p-3" style="max-height: 400px; overflow-y: scroll;">
+                    @foreach ($reviews as $review)
+                        <div class="review mb-3 p-2 border-bottom">
+                            <p class="fw-bold mb-1">User Name: {{ $review->user->name }}</p>
+                            <p>
+                                @php
+                                    $reviewRating = $review->rating ?? 0;
+                                @endphp
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <i class="fas fa-star {{ $i <= $reviewRating ? 'text-warning' : 'text-muted' }}"></i>
+                                @endfor
+                            </p>
+                            @if ($review->image)
+                                <img src="{{ asset($review->image) }}" alt="User Image" class="img-fluid rounded mb-2"
+                                    style="width: 50px; height: 50px;">
+                            @endif
+                            <p>Review: {{ $review->notes }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -262,35 +261,6 @@
             zoomedImage.src = this.src;
         }
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const stars = document.querySelectorAll('.rating-star');
-            const ratingInput = document.getElementById('ratingInput');
-
-            stars.forEach(star => {
-                star.addEventListener('click', function() {
-                    const rating = this.getAttribute('data-value');
-                    ratingInput.value = rating;
-
-                    // Update star visuals
-                    updateStarRating(rating);
-                });
-            });
-
-            function updateStarRating(rating) {
-                stars.forEach(star => {
-                    const starValue = star.getAttribute('data-value');
-                    if (starValue <= rating) {
-                        star.classList.remove('far', 'text-muted');
-                        star.classList.add('fas', 'text-warning');
-                    } else {
-                        star.classList.remove('fas', 'text-warning');
-                        star.classList.add('far', 'text-muted');
-                    }
-                });
-            }
-        });
-    </script>
 @endsection
 
 @section('css')
@@ -344,7 +314,7 @@
         }
     </style>
 @endsection
-{{-- @section('js')
+@section('js')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const stars = document.querySelectorAll('.rating-star');
@@ -374,4 +344,4 @@
             }
         });
     </script>
-@endsection --}}
+@endsection
