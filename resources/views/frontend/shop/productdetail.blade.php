@@ -198,8 +198,8 @@
         </div>
         <!-- Tabs content -->
 
-        <h3 class="mt-5 mb-4 text-center">Related Products</h3>
-        <div id="relatedProductsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        {{-- <h3 class="mt-5 mb-4 text-center">Related Products</h3> --}}
+        {{-- <div id="relatedProductsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
                 @php
                     $chunks = $relatedProducts->chunk(2); // Divide related products into groups of 2
@@ -247,7 +247,8 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
+        </div> --}}
+        
 
 
 
