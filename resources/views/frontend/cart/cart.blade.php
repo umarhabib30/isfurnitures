@@ -198,13 +198,13 @@
                     let quantityInput = $('.input-' + id);
                     let quantity = parseInt(quantityInput.val());
 
-                    if (quantity > 1) {
-                        quantity = 1;
+                    if (quantity > 0) {
+                        quantity == 1;
                         quantityInput.val(quantity);
                         let price = parseFloat($('.prod-price-' + id).text()); 
                         let total = quantity * price; 
                         $('.cost-' + id).text(total.toFixed(2)); 
-                    } else if (quantity === 1) {
+                    } else if (quantity === 0) {
                         remove(id);
                       
                     }
