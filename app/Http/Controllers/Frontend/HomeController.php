@@ -39,6 +39,7 @@ class HomeController extends Controller
                 'products.description',
                 'products.image' // Add these columns to the GROUP BY
             )
+            ->orderBy('products.created_at', 'desc')
             ->take(3)
             ->get();
 

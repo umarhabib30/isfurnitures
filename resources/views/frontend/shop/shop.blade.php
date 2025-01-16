@@ -8,18 +8,18 @@
                 <!-- Start Filter Section -->
                 <div class="col-12 mb-4">
                     <!-- Filter Toggle Button -->
-                    <a type="button" class="mb-4" style="text-decoration: none; color:#3B5D50; font-size:20px" id="filter-toggle">
+                    <a type="button" class="mb-4" style="text-decoration: none; color:#3B5D50; font-size:20px"
+                        id="filter-toggle">
                         <i class="fas fa-filter"></i> Filter <i class="fas fa-chevron-down" id="arrow-icon"></i>
                     </a>
-                
+
                     <div class="filter-section" id="filter" style="display: none;">
-                        <h5>Filters</h5>
-                    
+
                         <div class="row">
                             <!-- Filter by Colors and Subcategories in one row -->
-                            <div class="col-12 col-md-6 mb-3">
+                            <div class="col-6 col-md-3 mb-3">
                                 <h6>Colors</h6>
-                                <select class="form-control form-control-sm" id="color-filter">
+                                <select class=" form-control-sm filterfield" id="color-filter">
                                     <option value="">Select Color</option>
                                     @foreach ($colors as $color)
                                         <option value="{{ $color->id }}" style="color: {{ $color->code }};"
@@ -29,10 +29,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                    
-                            <div class="col-12 col-md-6 mb-3">
+
+                            <div class="col-6 col-md-3 mb-3">
                                 <h6>Categories</h6>
-                                <select class="form-control form-control-sm" id="subcategory-filter">
+                                <select class=" form-control-sm filterfield" id="subcategory-filter">
                                     <option value="">Select Category</option>
                                     @foreach ($subcategories as $subcategory)
                                         <option value="{{ $subcategory->id }}"
@@ -42,13 +42,9 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                    
-                        <div class="row">
-                            <!-- Filter by Stuff and Seats in one row -->
-                            <div class="col-12 col-md-6 mb-3">
+                            <div class="col-6 col-md-3 mb-3">
                                 <h6>Stuff</h6>
-                                <select class="form-control form-control-sm" id="stuff-filter">
+                                <select class=" form-control-sm filterfield" id="stuff-filter">
                                     <option value="">Select Stuff</option>
                                     @foreach ($stuffs as $stuff)
                                         <option value="{{ $stuff->id }}"
@@ -58,10 +54,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                    
-                            <div class="col-12 col-md-6 mb-3">
+
+                            <div class="col-6 col-md-3 mb-3">
                                 <h6>Seats</h6>
-                                <select class="form-control form-control-sm" id="seat-filter">
+                                <select class=" form-control-sm filterfield" id="seat-filter">
                                     <option value="">Select Seats</option>
                                     @foreach ($seatNumbers as $seatNumber)
                                         <option value="{{ $seatNumber->id }}"
@@ -72,7 +68,12 @@
                                 </select>
                             </div>
                         </div>
-                    
+
+                        {{-- <div class="row">
+                            <!-- Filter by Stuff and Seats in one row -->
+                           
+                        </div>
+                     --}}
                         <div class="row">
                             <!-- Filter by Price Range in one row -->
                             <div class="col-12 mb-3">
@@ -85,9 +86,9 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
                 <!-- End Filter Section -->
 
                 <!-- Start Product Grid -->
@@ -106,14 +107,15 @@
                                     </div>
                                     <h3 class="product-title" style="flex-grow: 1;">{{ $product->name }}</h3>
                                     <strong class="product-price" style="flex-grow: 1;">£{{ $product->price }}</strong>
-                    
+
                                     <button type="submit" product-id="{{ $product->id }}"
-                                        class="btn btn-primary btn-sm w-100 cart-add" style="flex-shrink: 0;">Add to Cart</button>
+                                        class="btn btn-primary btn-sm w-100 cart-add" style="flex-shrink: 0;">Add to
+                                        Cart</button>
                                 </a>
                             </div>
                         @endforeach
                     </div>
-                    
+
 
                     <!-- Pagination -->
                     @if ($products->hasPages())
@@ -144,39 +146,39 @@
         });
 
         $(document).on('change', '#color-filter, #subcategory-filter, #stuff-filter, #seat-filter, #price-range',
-        function() {
-            let color = $('#color-filter').val();
-            let subcategory = $('#subcategory-filter').val();
-            let stuff = $('#stuff-filter').val();
-            let seat = $('#seat-filter').val();
-            let maxPrice = $('#price-range').val();
+            function() {
+                let color = $('#color-filter').val();
+                let subcategory = $('#subcategory-filter').val();
+                let stuff = $('#stuff-filter').val();
+                let seat = $('#seat-filter').val();
+                let maxPrice = $('#price-range').val();
 
-            $.ajax({
-                url: "{{ route('filter.products') }}",
-                method: "GET",
-                data: {
-                    color: color,
-                    subcategory: subcategory,
-                    stuff: stuff,
-                    seatNumber: seat,
-                    max_price: maxPrice
-                },
-                success: function(response) {
-                    if (response.products) {
-                        $('.product-list').html(response.products);
-                    } else if (response.message) {
-                        $('.product-list').html('<div class="col-12 text-center"><p>' + response
-                            .message + '</p></div>');
+                $.ajax({
+                    url: "{{ route('filter.products') }}",
+                    method: "GET",
+                    data: {
+                        color: color,
+                        subcategory: subcategory,
+                        stuff: stuff,
+                        seatNumber: seat,
+                        max_price: maxPrice
+                    },
+                    success: function(response) {
+                        if (response.products) {
+                            $('.product-list').html(response.products);
+                        } else if (response.message) {
+                            $('.product-list').html('<div class="col-12 text-center"><p>' + response
+                                .message + '</p></div>');
+                        }
+                        if (response.pagination) {
+                            $('.pagination').html(response.pagination);
+                        }
+                    },
+                    error: function(xhr) {
+                        console.error(xhr.responseText);
                     }
-                    if (response.pagination) {
-                        $('.pagination').html(response.pagination);
-                    }
-                },
-                error: function(xhr) {
-                    console.error(xhr.responseText);
-                }
+                });
             });
-        });
 
         $(document).ready(function() {
             $('body').on('click', '.cart-add', function(e) {
@@ -223,4 +225,13 @@
             });
         });
     </script>
+@endsection
+
+@section('css')
+    <style>
+        .filterfield {
+            height: 30px;
+            width: 100%;
+        }
+    </style>
 @endsection

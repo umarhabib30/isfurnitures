@@ -1,12 +1,14 @@
 @extends('frontend.layout.app')
 @section('content')
     <div class="container mt-5">
-        <div class="row mb-5">
-            <div class="col-md-8">
-                <div class="row">
+        <div class="row mb-5 align-items-stretch">
+            <!-- Image Section -->
+            <div class="col-md-8 d-flex flex-column justify-content-center h-100">
+                <div class="row h-100">
                     <div class="col-12 d-flex justify-content-center flex-column align-items-center">
-                        <img id="mainImage" src="{{ asset($product->image) }}" data-lightbox="review-image" alt="" class=" mb-3 col-md-12 main-image"
-                            style=" width: 100%; height: 75%; object-fit: cover; border: none;" data-bs-toggle="modal"
+                        <img id="mainImage" src="{{ asset($product->image) }}" data-lightbox="review-image" alt=""
+                            class="mb-3 col-md-12 main-image"
+                            style="width: 100%; height: 450px; object-fit: cover; border: none;" data-bs-toggle="modal"
                             data-bs-target="#imageModal">
 
                         <div class="image-slider d-flex flex-wrap justify-content-center col-md-12" style="gap: 10px;">
@@ -38,62 +40,67 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
 
-            <div class="col-md-4 px-4 mt-3 mt-md-0">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-11 col-md-8 text-dark">
-                        <h2 class="fw-bold"><u>{{ $product->name }}</u></h2>
-                    </div>
-                    <div class="col-11 col-md-8 mt-3 text-dark">
-                        <p class="fs-5 fw-bold text-primary">£{{ $product->price }}</p>
-                    </div>
+            <!-- Details Section -->
+            <div class="col-md-4 d-flex flex-column justify-content-between px-4 mt-3 mt-md-0 h-100">
+                <div>
+                    <div class="row">
+                        <div class="col-11 col-md-12 text-dark">
+                            <h2 class="fw-bold"><u>{{ $product->name }}</u></h2>
+                        </div>
+                        <div class="col-11 col-md-12 mt-3 text-dark">
+                            <p class="fs-5 fw-bold text-primary">£{{ $product->price }}</p>
+                        </div>
 
-                    <div class="col-11 col-md-8 text-dark">
-                        <p><b>Sofa Type: </b><span class="ms-3">{{ $product->subcategory->name }}</span></p>
+                        <div class="col-11 col-md-12 text-dark">
+                            <p><b>Sofa Type: </b><span class="ms-3">{{ $product->subcategory->name }}</span></p>
+                        </div>
+                        <div class="col-11 col-md-12 text-dark">
+                            <p><b>Color:</b> <span class="ms-3">{{ $product->color->name ?? 'not available' }}</span></p>
+                        </div>
+                        <div class="col-11 col-md-12 text-dark">
+                            <p><b>Stuff:</b> <span class="ms-3">{{ $product->stuff->name ?? 'not available' }}</span></p>
+                        </div>
+                        <div class="col-11 col-md-12 text-dark">
+                            <p><b>Seat:</b> <span class="ms-3">{{ $product->seat->seat_number ?? 'not available' }}</span>
+                            </p>
+                        </div>
+                        <div class="col-11 col-md-12 text-dark">
+                            <p><b>Size:</b> <span class="ms-3">{{ $product->size->name ?? 'not available' }}</span></p>
+                        </div>
+                        <div class="col-11 col-md-12 text-dark">
+                            <p><b>Sold:</b> <span class="ms-3">{{ $product->sold_qty ?? 'not available' }}</span></p>
+                        </div>
+                        <div class="col-11 col-md-12 text-dark">
+                            <p><b>Rating:</b>
+                                <span class="ms-3">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i
+                                            class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-muted' }}"></i>
+                                    @endfor
+                                </span>
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-11 col-md-8 text-dark">
-                        <p><b>Color:</b> <span class="ms-3">{{ $product->color->name ?? 'not available' }}</span></p>
-                    </div>
-                    <div class="col-11 col-md-8 text-dark">
-                        <p><b>Stuff:</b> <span class="ms-3">{{ $product->stuff->name ?? 'not available' }}</span></p>
-                    </div>
-                    <div class="col-11 col-md-8 text-dark">
-                        <p><b>Seat:</b> <span class="ms-3">{{ $product->seat->seat_number ?? 'not available' }}</span>
-                        </p>
-                    </div>
-                    <div class="col-11 col-md-8 text-dark">
-                        <p><b>Size:</b> <span class="ms-3">{{ $product->size->name ?? 'not available' }}</span></p>
-                    </div>
-                    <div class="col-11 col-md-8 text-dark">
-                        <p><b>Sold Quantity:</b> <span class="ms-3">{{ $product->sold_qty ?? 'not available' }}</span>
-                        </p>
-                    </div>
-                    <div class="col-11 col-md-8 text-dark">
-                        <p><b>Rating:</b>
-                            <span class="ms-3">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <i class="fas fa-star {{ $i <= $averageRating ? 'text-warning' : 'text-muted' }}"></i>
-                                @endfor
-                            </span>
-                        </p>
-                    </div>
+                </div>
 
-
-                    <div class="col-8 d-flex justify-content-around mt-2">
-                        <button type="submit" class="btn btn-dark px-4 py-2 shadow-sm w-100 cart-add"
-                            product-id="{{ $product->id }}">
-                            Add to Cart
-                        </button>
-                    </div>
+                <div class="mt-4 d-flex justify-content-center">
+                    <a href="#"
+                        class="btn btn-dark shadow-sm cart-add d-flex justify-content-center align-items-center text-white"
+                        style="width: 200px; height: 50px; border-radius: 0; white-space: nowrap; font-size: 16px;"
+                        product-id="{{ $product->id }}">
+                        Add to Cart
+                    </a>
                 </div>
             </div>
         </div>
-        <ul class="nav nav-tabs nav-justified mb-3" id="ex1" role="tablist">
-            <li class="nav-item" role="presentation">
+
+
+
+        <ul class="nav nav-tabs nav-justified " id="ex1" role="tablist">
+            <li class="nav-item pb-4" role="presentation">
                 <a class="nav-link active" id="ex3-tab-1" data-mdb-toggle="tab" href="#ex3-tabs-1" role="tab"
                     aria-controls="ex3-tabs-1" aria-selected="true" style="text-decoration: none;">
                     Detail
@@ -117,14 +124,14 @@
         <!-- Tabs navs -->
 
         <!-- Tabs content -->
-        <div class="tab-content" id="ex1-content">
+        <div class="tab-content pb-4" id="ex1-content">
             <div class="tab-pane fade show active" id="ex3-tabs-1" role="tabpanel" aria-labelledby="ex3-tab-1">
                 <div class="col-11 col-md-10">
                     <p class="ps-md-5" style="word-wrap: break-word; overflow-wrap: break-word;">
                         {{ $product->description }}
                     </p>
                 </div>
-                
+
             </div>
             <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
                 <div class="user-reviews border p-3" style=" overflow-y: scroll;">
@@ -140,11 +147,12 @@
                                 @endfor
                             </p>
                             @if ($review->image)
-                            <a href="{{ asset($review->image) }}" data-lightbox="review-image" data-title="User Image">
-                                <img src="{{ asset($review->image) }}" alt="User Image" class="img-fluid rounded mb-2"
-                                    style="width: 50px; height: 50px;">
-                            </a>
-                        @endif                        
+                                <a href="{{ asset($review->image) }}" data-lightbox="review-image"
+                                    data-title="User Image">
+                                    <img src="{{ asset($review->image) }}" alt="User Image"
+                                        class="img-fluid rounded mb-2" style="width: 50px; height: 50px;">
+                                </a>
+                            @endif
                             <p>Review: {{ $review->notes }}</p>
                         </div>
                     @endforeach
@@ -189,6 +197,61 @@
             </div>
         </div>
         <!-- Tabs content -->
+
+        <h3 class="mt-5 mb-4 text-center">Related Products</h3>
+        <div id="relatedProductsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner">
+                @php
+                    $chunks = $relatedProducts->chunk(2); // Divide related products into groups of 2
+                @endphp
+                @foreach ($chunks as $chunkIndex => $chunk)
+                    <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
+                        <div class="row justify-content-center">
+                            @foreach ($chunk as $relatedProduct)
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <!-- Image Container -->
+                                    <div class="image-container"
+                                        style="position: relative; width: 100%; height: 200px; overflow: hidden;">
+                                        <img src="{{ asset($relatedProduct->image) }}" class="card-img-top"
+                                            alt="{{ $relatedProduct->name }}"
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body d-flex justify-content-center align-items-center">
+                                        <a href="{{ route('product.detail', $relatedProduct->id) }}"
+                                            class="btn btn-dark shadow-sm d-flex justify-content-center align-items-center text-white"
+                                            style="width: 200px; height: 50px; border-radius: 0; white-space: nowrap; font-size: 16px;">
+                                            View Product
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#relatedProductsCarousel"
+                data-bs-slide="prev"
+                style="background-color: #3B5D50; border: none; width: 50px; height: 50px; border-radius: 50%; position: absolute; top: 50%; transform: translateY(-50%);">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#relatedProductsCarousel"
+                data-bs-slide="next"
+                style="background-color: #3B5D50; border: none; width: 50px; height: 50px; border-radius: 50%; position: absolute; top: 50%; transform: translateY(-50%); right: 0;">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+
+
     </div>
 @endsection
 @section('js')
@@ -335,13 +398,15 @@
         .nav-tabs .nav-link.active {
             background-color: #a8a8a8 !important;
             color: #fff !important;
-            border: none;   
+            border: none;
         }
+
         .nav-tabs .nav-link {
             color: #3B5D50;
-          
+
             transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         .nav-tabs .nav-link:hover {
             background-color: #d3d3d3;
         }

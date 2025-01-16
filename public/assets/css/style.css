@@ -15,7 +15,7 @@ body {
   line-height: 28px;
   color: #6a6a6a;
   font-size: 14px;
-  background-color: #eff2f1; }
+  background-color: white; }
 
 a {
   text-decoration: none;
@@ -536,7 +536,7 @@ a {
 
 .footer-section {
   padding: 80px 0;
-  background: #ffffff; }
+  background: #eff2f1; }
   .footer-section .relative {
     position: relative; }
   .footer-section a {
