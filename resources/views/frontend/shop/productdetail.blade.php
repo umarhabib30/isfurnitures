@@ -253,14 +253,14 @@
             @foreach ($relatedProducts as $relatedProduct)
                 <div class="card">
                     <img src="{{ asset($relatedProduct->image) }}" alt="Product Image">
-        
+
                     <form action="{{ route('product.detail', $relatedProduct->id) }}" method="GET">
                         <button type="submit">Detail</button>
                     </form>
                 </div>
             @endforeach
         </div>
-        
+
 
 
 
@@ -468,25 +468,30 @@
 
         .card {
             background: #fff;
-
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             text-align: center;
             margin: 0 10px;
-            /* Add margin to create space between cards */
+            height: 350px;
+            /* Fixed height for the card */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          
         }
+
         .card img {
             width: 100%;
             /* Ensure the image takes up the full width of the card */
-            /* Set a fixed height for uniformity */
-            object-fit: contain;
-            /* Ensure the image fits within the box without being cropped */
-            /* Add padding to create space around the image */
+           
+            /* Fixed height for the image */
+            object-fit: cover;
+            /* Ensure the image fills the space without distortion */
             display: block;
         }
+
         .card h3 {
             margin: 15px 0;
-            /* Added space above and below the title */
             font-size: 1.2rem;
             color: #333;
         }
@@ -509,7 +514,7 @@
         }
 
         .card button:hover {
-            background: #3B5D50;
+            background: #2E473F;
         }
     </style>
 @endsection
