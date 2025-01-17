@@ -477,16 +477,13 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-          
+
         }
 
         .card img {
             width: 100%;
-            /* Ensure the image takes up the full width of the card */
-           height: 200px;
-            /* Fixed height for the image */
+            height: 200px;
             object-fit: cover;
-            /* Ensure the image fills the space without distortion */
             display: block;
         }
 
