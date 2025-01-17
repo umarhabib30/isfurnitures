@@ -276,10 +276,12 @@
         $(document).ready(function() {
             $('.responsive').slick({
                 dots: true,
-                infinite: false,
+                infinite: true,
                 speed: 300,
                 slidesToShow: 4,
                 slidesToScroll: 4,
+                autoplay: true, // Enable autoplay
+                autoplaySpeed: 3000, // Set autoplay speed to 3 seconds (3000ms)
                 responsive: [{
                         breakpoint: 1024,
                         settings: {
@@ -307,6 +309,7 @@
             });
         });
     </script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -460,10 +463,12 @@
         .nav-tabs .nav-link:hover {
             background-color: #d3d3d3;
         }
+
         .slider {
             width: 80%;
             margin: 0 auto;
         }
+
         .card {
             background: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -476,35 +481,46 @@
             justify-content: space-between;
 
         }
+
         .card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             display: block;
         }
+
         .card h3 {
             margin: 15px 0;
             font-size: 1.2rem;
             color: #333;
         }
+
         .card p {
             font-size: 0.9rem;
             color: #666;
             margin: 10px 0;
         }
+
         .card button {
-    position: absolute;
-    bottom: 0; /* Stick the button to the bottom of the card */
-    left: 0; /* Align the button to the left */
-    width: 100%; /* Make the button full width */
-    margin: 0; /* Remove unnecessary margins */
-    padding: 12px 0; /* Adjust padding for better appearance */
-    background: #3B5D50;
-    color: #fff;
-    border: none;
-    border-radius: 0; /* Remove border radius for a clean edge */
-    cursor: pointer;
-}
+            position: absolute;
+            bottom: 0;
+            /* Stick the button to the bottom of the card */
+            left: 0;
+            /* Align the button to the left */
+            width: 100%;
+            /* Make the button full width */
+            margin: 0;
+            /* Remove unnecessary margins */
+            padding: 12px 0;
+            /* Adjust padding for better appearance */
+            background: #3B5D50;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            /* Remove border radius for a clean edge */
+            cursor: pointer;
+        }
+
         .card button:hover {
             background: #2E473F;
         }
