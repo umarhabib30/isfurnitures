@@ -110,7 +110,12 @@ class ShopController extends Controller
         $description = 'Explore top products, great prices, fast delivery.';
         $product = Product::with(['category', 'subcategory', 'images', 'color', 'stuff', 'seat'])->where('id', $id)->first();
         $reviews = Review::where('product_id', $id)->get();
-        $relatedProducts = Product::with(['category', 'subcategory', 'images', 'color', 'stuff', 'seat'])->where('category_id', $product->category_id)->get();
+        $relatedProducts = Product::with(['category', 'subcategory', 'images', 'color', 'stuff', 'seat'])
+            ->where('category_id', $product->category_id)
+            ->latest()
+            ->take(7)
+            ->get();
+
         $averageRating = $product ? $product->average_rating : 0;
         return view('frontend.shop.productdetail', [
             'active' => 'shop',
@@ -120,7 +125,7 @@ class ShopController extends Controller
             'description' => $description,
             'reviews' => $reviews,
             'averageRating' => $averageRating,
-            'relatedProducts'=>$relatedProducts
+            'relatedProducts' => $relatedProducts
         ]);
     }
 }

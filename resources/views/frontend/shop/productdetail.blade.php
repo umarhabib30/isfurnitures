@@ -198,7 +198,7 @@
         </div>
         <!-- Tabs content -->
 
-        {{-- <h3 class="mt-5 mb-4 text-center">Related Products</h3> --}}
+        <h3 class="mt-5 mb-4 text-center">Related Products</h3>
         {{-- <div id="relatedProductsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
                 @php
@@ -248,8 +248,19 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div> --}}
-        
 
+        <div class="slider responsive">
+            @foreach ($relatedProducts as $relatedProduct)
+                <div class="card">
+                    <img src="{{ asset($relatedProduct->image) }}" alt="Product Image">
+        
+                    <form action="{{ route('product.detail', $relatedProduct->id) }}" method="GET">
+                        <button type="submit">Detail</button>
+                    </form>
+                </div>
+            @endforeach
+        </div>
+        
 
 
 
@@ -259,6 +270,44 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- Slick Initialization -->
+    <script>
+        $(document).ready(function() {
+            $('.responsive').slick({
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('[data-mdb-toggle="tab"]');
@@ -410,6 +459,57 @@
 
         .nav-tabs .nav-link:hover {
             background-color: #d3d3d3;
+        }
+
+        .slider {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #fff;
+
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            margin: 0 10px;
+            /* Add margin to create space between cards */
+        }
+        .card img {
+            width: 100%;
+            /* Ensure the image takes up the full width of the card */
+            /* Set a fixed height for uniformity */
+            object-fit: contain;
+            /* Ensure the image fits within the box without being cropped */
+            /* Add padding to create space around the image */
+            display: block;
+        }
+        .card h3 {
+            margin: 15px 0;
+            /* Added space above and below the title */
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .card button {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background: #3B5D50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: #3B5D50;
         }
     </style>
 @endsection
