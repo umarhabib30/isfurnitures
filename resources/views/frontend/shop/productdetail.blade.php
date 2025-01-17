@@ -134,30 +134,35 @@
 
             </div>
             <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
-                <div class="user-reviews border p-3" style=" overflow-y: scroll;">
-                    @foreach ($reviews as $review)
-                        <div class="review mb-3 p-2 border-bottom">
-                            <p class="fw-bold mb-1">User Name: {{ $review->user->name }}</p>
-                            <p>
-                                @php
-                                    $reviewRating = $review->rating ?? 0;
-                                @endphp
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <i class="fas fa-star {{ $i <= $reviewRating ? 'text-warning' : 'text-muted' }}"></i>
-                                @endfor
-                            </p>
-                            @if ($review->image)
-                                <a href="{{ asset($review->image) }}" data-lightbox="review-image"
-                                    data-title="User Image">
-                                    <img src="{{ asset($review->image) }}" alt="User Image"
-                                        class="img-fluid rounded mb-2" style="width: 50px; height: 50px;">
-                                </a>
-                            @endif
-                            <p>Review: {{ $review->notes }}</p>
-                        </div>
-                    @endforeach
+                <div class="user-reviews border p-3" style="overflow-y: scroll;">
+                    @if($reviews->isEmpty())
+                        <p>No reviews available.</p> <!-- Message when no reviews exist -->
+                    @else
+                        @foreach ($reviews as $review)
+                            <div class="review mb-3 p-2 border-bottom">
+                                <p class="fw-bold mb-1">User Name: {{ $review->user->name }}</p>
+                                <p>
+                                    @php
+                                        $reviewRating = $review->rating ?? 0;
+                                    @endphp
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i class="fas fa-star {{ $i <= $reviewRating ? 'text-warning' : 'text-muted' }}"></i>
+                                    @endfor
+                                </p>
+                                @if ($review->image)
+                                    <a href="{{ asset($review->image) }}" data-lightbox="review-image"
+                                        data-title="User Image">
+                                        <img src="{{ asset($review->image) }}" alt="User Image"
+                                            class="img-fluid rounded mb-2" style="width: 50px; height: 50px;">
+                                    </a>
+                                @endif
+                                <p>Review: {{ $review->notes }}</p>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
+            
             <div class="tab-pane fade" id="ex3-tabs-3" role="tabpanel" aria-labelledby="ex3-tab-3">
 
                 <div class="accordion-body">
