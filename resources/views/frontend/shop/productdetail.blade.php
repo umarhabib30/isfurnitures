@@ -472,7 +472,7 @@
             overflow: hidden;
             text-align: center;
             margin: 0 10px;
-            height: 350px;
+            height: 300px;
             /* Fixed height for the card */
             display: flex;
             flex-direction: column;
@@ -483,7 +483,7 @@
         .card img {
             width: 100%;
             /* Ensure the image takes up the full width of the card */
-           
+           height: 200px;
             /* Fixed height for the image */
             object-fit: cover;
             /* Ensure the image fills the space without distortion */
