@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="sale-price" class="form-label">Product Sale Price</label>
-                        <input type="number" value="{{ $product->price }}" name="sale_price" id="sale-price" required
+                        <input type="number" value="{{ $product->price }}" name="price" id="sale-price" required
                             class="form-control">
                     </div>
                     <div class="form-group col-md-6">
