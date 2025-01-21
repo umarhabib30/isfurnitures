@@ -10,7 +10,7 @@
                             class="mb-3 col-md-12 main-image"
                             style="width: 100%; height: 450px; object-fit: cover; border: none;" data-bs-toggle="modal"
                             data-bs-target="#imageModal">
-
+            
                         <div class="image-slider d-flex flex-wrap justify-content-center col-md-12" style="gap: 10px;">
                             @if ($product->images)
                                 @foreach ($product->images as $image)
@@ -27,7 +27,7 @@
                                 onclick="changeMainImage(this.src)">
                         </div>
                     </div>
-
+            
                     <!-- Modal for zoomed-in image -->
                     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
                         aria-hidden="true">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Details Section -->
             <div class="col-md-4 d-flex flex-column justify-content-between px-4 mt-3 mt-md-0 h-100">
                 <div>
@@ -529,5 +529,27 @@
         .card button:hover {
             background: #2E473F;
         }
+
+        /* General styling for the main image */
+.main-image {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    .main-image {
+        height: auto; /* Automatically adjust height */
+        max-height: 100%; /* Ensure it does not exceed the container height */
+        object-fit: contain; /* Ensure the whole image is visible without cropping */
+    }
+
+    .image-slider img {
+        height: 60px; /* Smaller thumbnail size for mobile */
+        width: 60px;
+    }
+}
+
     </style>
 @endsection
