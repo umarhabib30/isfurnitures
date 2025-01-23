@@ -8,9 +8,8 @@
                     <div class="col-12 d-flex justify-content-center flex-column align-items-center">
                         <img id="mainImage" src="{{ asset($product->image) }}" data-lightbox="review-image" alt=""
                             class="mb-3 col-md-12 main-image"
-                            style="width: 100%; height: 450px; object-fit: cover; border: none;" data-bs-toggle="modal"
+                            style="width: 100%; height: auto; object-fit: cover; border: none;" data-bs-toggle="modal"
                             data-bs-target="#imageModal">
-            
                         <div class="image-slider d-flex flex-wrap justify-content-center col-md-12" style="gap: 10px;">
                             @if ($product->images)
                                 @foreach ($product->images as $image)
@@ -27,7 +26,7 @@
                                 onclick="changeMainImage(this.src)">
                         </div>
                     </div>
-            
+
                     <!-- Modal for zoomed-in image -->
                     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel"
                         aria-hidden="true">
@@ -42,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Details Section -->
             <div class="col-md-4 d-flex flex-column justify-content-between px-4 mt-3 mt-md-0 h-100">
                 <div>
@@ -135,7 +134,7 @@
             </div>
             <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
                 <div class="user-reviews border p-3" style="overflow-y: scroll;">
-                    @if($reviews->isEmpty())
+                    @if ($reviews->isEmpty())
                         <p>No reviews available.</p> <!-- Message when no reviews exist -->
                     @else
                         @foreach ($reviews as $review)
@@ -146,7 +145,8 @@
                                         $reviewRating = $review->rating ?? 0;
                                     @endphp
                                     @for ($i = 1; $i <= 5; $i++)
-                                        <i class="fas fa-star {{ $i <= $reviewRating ? 'text-warning' : 'text-muted' }}"></i>
+                                        <i
+                                            class="fas fa-star {{ $i <= $reviewRating ? 'text-warning' : 'text-muted' }}"></i>
                                     @endfor
                                 </p>
                                 @if ($review->image)
@@ -162,7 +162,7 @@
                     @endif
                 </div>
             </div>
-            
+
             <div class="tab-pane fade" id="ex3-tabs-3" role="tabpanel" aria-labelledby="ex3-tab-3">
 
                 <div class="accordion-body">
@@ -531,25 +531,28 @@
         }
 
         /* General styling for the main image */
-.main-image {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-}
+        .main-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
 
-/* Mobile view adjustments */
-@media (max-width: 768px) {
-    .main-image {
-        height: auto; /* Automatically adjust height */
-        max-height: 100%; /* Ensure it does not exceed the container height */
-        object-fit: contain; /* Ensure the whole image is visible without cropping */
-    }
+        /* Mobile view adjustments */
+        @media (max-width: 768px) {
+            .main-image {
+                height: auto;
+                /* Automatically adjust height */
+                max-height: 100%;
+                /* Ensure it does not exceed the container height */
+                object-fit: contain;
+                /* Ensure the whole image is visible without cropping */
+            }
 
-    .image-slider img {
-        height: 60px; /* Smaller thumbnail size for mobile */
-        width: 60px;
-    }
-}
-
+            .image-slider img {
+                height: 60px;
+                /* Smaller thumbnail size for mobile */
+                width: 60px;
+            }
+        }
     </style>
 @endsection
