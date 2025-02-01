@@ -10,7 +10,7 @@
     <meta name="keywords" content="cheap sofas, corner sofa 3 seat, cheap 3 piece sofa set, furniture couch sofa, corner sofa three seater, modern sofa UK, sofas direct, sofa direct UK, couches UK, 2 seat sofas UK, sofa store Manchester, sofas available now, sofas Manchester, cheap modular sofas UK, couches 3 piece set, cheap couches Manchester, comfort sofa, direct furniture limited, armchair and 2 seater sofa">
 
 
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo2.svg') }}">
 
     <meta name="description" content="" />
     <meta name="keywords" content="bootstrap, bootstrap4" />
