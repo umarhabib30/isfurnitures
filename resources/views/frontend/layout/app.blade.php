@@ -4,7 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Untree.co">
+    <meta name="author" content="thesofahub.com">
+    <meta name="title" content="THE SOFA HUB | BEST QUALITY SOFAS IN UK	">
+    <meta name="description" content="Looking for modern designed sofas in the UK? Sofa hub is here with the best sofas to fit in your room space perfectly!" >
+    <meta name="keywords" content="cheap sofas, corner sofa 3 seat, cheap 3 piece sofa set, furniture couch sofa, corner sofa three seater, modern sofa UK, sofas direct, sofa direct UK, couches UK, 2 seat sofas UK, sofa store Manchester, sofas available now, sofas Manchester, cheap modular sofas UK, couches 3 piece set, cheap couches Manchester, comfort sofa, direct furniture limited, armchair and 2 seater sofa">
+
+
     <link rel="shortcut icon" href="favicon.png">
 
     <meta name="description" content="" />
@@ -18,7 +23,7 @@
     @include('frontend.partials.css')
     @yield('css')
     <title>{{ $title }}</title>
-   
+
 </head>
 
 <body>
